@@ -1,0 +1,303 @@
+{
+    "windows.chrome.local": {
+        "isRemote": false,
+        "browser": "Chrome",
+        "headless": false,
+        "driverPath": "executables\\win\\chromedriver.exe",
+        "arguments": [
+            "--remote-allow-origins=*"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.local.headless": {
+        "isRemote": false,
+        "browser": "Chrome",
+        "headless": true,
+        "driverPath": "executables\\win\\chromedriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.chrome.remote": {
+        "isRemote": true,
+        "browser": "chrome",
+        "headless": false,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest",
+            "browserName": "chrome"
+        }
+    },
+    "windows.chrome.remote.headless": {
+        "isRemote": true,
+        "browser": "Chrome",
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest"
+        }
+    },
+
+    "windows.firefox.local": {
+        "isRemote": false,
+        "browser": "Firefox",
+        "headless": false,
+        "driverPath": "executables\\win\\geckodriver.exe",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.firefox.local.headless": {
+        "isRemote": false,
+        "browser": "Firefox",
+        "headless": true,
+        "driverPath": "executables\\win\\geckodriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.firefox.remote": {
+        "isRemote": true,
+        "browser": "Firefox",
+        "headless": false,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest"
+        }
+    },
+    "windows.firefox.remote.headless": {
+        "isRemote": true,
+        "browser": "Firefox",
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest"
+        }
+    },
+
+    "windows.edge.local": {
+        "isRemote": false,
+        "browser": "Edge",
+        "headless": false,
+        "driverPath": "executables\\win\\msedgedriver.exe",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.edge.local.headless": {
+        "isRemote": false,
+        "browser": "Edge",
+        "headless": true,
+        "driverPath": "executables\\win\\msedgedriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "windows.edge.remote": {
+        "isRemote": true,
+        "browser": "Edge",
+        "headless": false,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest"
+        }
+    },
+    "windows.edge.remote.headless": {
+        "isRemote": true,
+        "browser": "Edge",
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "Windows 10",
+            "browserVersion": "latest"
+        }
+    },
+
+    "linux.chrome.local": {
+        "isRemote": false,
+        "headless": false,
+        "driverPath": "executables/linux/chromedriver.exe",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "linux.chrome.local.headless": {
+        "isRemote": false,
+        "headless": true,
+        "driverPath": "executables/linux/chromedriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "linux.chrome.remote": {
+        "isRemote": true,
+        "headless": false,
+        "browser": "Chrome",
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "linux",
+            "browserVersion": "latest"
+        }
+    },
+    "linux.chrome.remote.headless": {
+        "isRemote": true,
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "linux",
+            "browserVersion": "latest"
+        }
+    },
+
+    "linux.firefox.local": {
+        "isRemote": false,
+        "headless": false,
+        "driverPath": "executables/linux/chromedriver.exe",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "linux.firefox.local.headless": {
+        "isRemote": false,
+        "headless": true,
+        "driverPath": "executables/linux/chromedriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "linux.firefox.remote": {
+        "isRemote": true,
+        "headless": false,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "linux",
+            "browserVersion": "latest"
+        }
+    },
+    "linux.firefox.remote.headless": {
+        "isRemote": true,
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "linux",
+            "browserVersion": "latest"
+        }
+    },
+
+    "macos.chrome.local": {
+        "isRemote": false,
+        "browser": "Chrome",
+        "headless": false,
+        "driverPath": "executables/win/chromedriver.exe",
+        "arguments": [
+        ],
+        "capabilities": {
+        }
+    },
+    "macos.chrome.local.headless": {
+        "isRemote": false,
+        "browser": "Chrome",
+        "headless": true,
+        "driverPath": "executables\\win\\chromedriver.exe",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+        }
+    },
+    "macos.chrome.remote": {
+        "isRemote": true,
+        "browser": "Chrome",
+        "headless": false,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "macOS 12.0",
+            "browserVersion": "latest"
+        }
+    },
+    "macos.chrome.remote.headless": {
+        "isRemote": true,
+        "browser": "Chrome",
+        "headless": true,
+        "remoteUrl": "http://localhost:4444/",
+        "arguments": [
+            "--headless",
+            "--disable-gpu"
+        ],
+        "capabilities": {
+            "platformName": "macOS 12.0",
+            "browserVersion": "latest"
+        }
+    },
+
+    "saucelabs.safari.remote": {
+        "isRemote": true,
+        "browser": "Safari",
+        "headless": false,
+        "remoteUrl": "https://oauth-dungha.tien-0358f:c399da05-ab55-47ab-80c9-75b055b0a0fb@ondemand.eu-central-1.saucelabs.com:443/wd/hub",
+        "arguments": [
+        ],
+        "capabilities": {
+            "platformName": "macOS 12",
+            "browserVersion": "latest"
+        }
+    }
+}

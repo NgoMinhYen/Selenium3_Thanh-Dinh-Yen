@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="2" parallel="methods">
+    <parameter name="browser-setting" value="windows.chrome.local"/>
+
+    <listeners>
+        <listener class-name="utils.listeners.AllureReportListener" />
+    </listeners>
+    <test name="Test case">
+        <classes>
+            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC016"/></methods></class>
+            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC017"/></methods></class>
+            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC018"/></methods></class>
+            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC019"/></methods></class>
+            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC020"/></methods></class>
+
+        </classes>
+
+    </test>
+</suite>
