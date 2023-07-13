@@ -13,5 +13,7 @@ public class Constant {
 
     public static final User USER_ADMIN = new User("Admin", "admin123");
 
+    public static String PROJECT = System.getProperty("user.dir");
+
 
 }

@@ -1,11 +1,16 @@
 package core.framework.locator;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openqa.selenium.By;
 
+@Getter
+@Setter
 public class Locator {
 
     private LocatorType locatorType;
     private String      value;
+
 
     /**
      * Get element by xpath return locator (bọc cái by lại)
