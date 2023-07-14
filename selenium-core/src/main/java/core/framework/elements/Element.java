@@ -33,6 +33,11 @@ public class Element implements IElement{
         this.locator = locator;
     }
 
+    public Element of(Object... content){
+        Locator newLocator = this.locator;
+        newLocator.setValue(String.format(this.locator.getValue(), content));
+        return new Element(newLocator);
+    }
     /**
 	 * Check if element is displayed in DOM
 	 *

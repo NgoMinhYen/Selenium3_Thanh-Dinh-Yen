@@ -9,6 +9,7 @@ public interface IElement {
     boolean isDisplayed();
 
     void enter(String value);
+    Element of(Object... content);
 
     void click();
 
