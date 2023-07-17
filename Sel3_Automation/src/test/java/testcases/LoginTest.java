@@ -23,5 +23,6 @@ public class LoginTest extends BaseTest{
 
         logger.step("Step 4: Verify that OrangeHRM Mainpage appears");
         Assert.assertTrue(pimPage.isDisplayedHeader(), "Dashboard Mainpage doesn't appear");
+        //cmt
     }
 }
