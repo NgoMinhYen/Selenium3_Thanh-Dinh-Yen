@@ -1,21 +1,30 @@
 package pageobjects;
 
-import core.framework.elements.Element;
 import core.framework.elements.IElement;
-import core.framework.locator.Locator;
+import core.framework.source.Find;
+import core.framework.source.Page;
+import core.framework.source.ResourcePage;
 import dataobjects.User;
 import pageobjects.PIM.PIMPage;
 
 
+@ResourcePage(file = "loginPage.properties")
 public class LoginPage extends AbstractPage {
 
     private static LoginPage instance = null;
 
-    private IElement txtUserName = new Element(Locator.name("username"));
-    private IElement txtPassword = new Element(Locator.name("password"));
-    private IElement btnLogin    = new Element(Locator.xpath("//button[@type = 'submit']"));
+    @Find(key = "txtUserName")
+    private IElement txtUserName;
+
+    @Find(key = "txtPassword")
+    private IElement txtPassword;
+
+    @Find(key = "btnLogin")
+    private IElement btnLogin;
+
 
     private LoginPage() {
+        Page.init(this);
     }
 
     public static synchronized LoginPage getInstance() {
@@ -25,6 +34,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public PIMPage login(String username, String password) {
+
         txtUserName.enter(username);
         txtPassword.enter(password);
         btnLogin.click();
@@ -39,6 +49,7 @@ public class LoginPage extends AbstractPage {
      * @return
      */
     public PIMPage login(User user) {
+        txtUserName.waitForVisibility(5);
         txtUserName.enter(user.getUsername());
         txtPassword.enter(user.getPassword());
         btnLogin.click();
