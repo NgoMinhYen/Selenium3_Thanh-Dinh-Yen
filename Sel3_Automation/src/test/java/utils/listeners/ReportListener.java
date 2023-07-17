@@ -14,7 +14,7 @@ import utils.extentreports.ExtentTestManager;
 import static utils.extentreports.ExtentManager.getExtentReports;
 
 public class ReportListener implements ITestListener {
-    private static Logger logger = LogManager.getLogger(AllureReportListener.class);
+    private static Logger logger = LogManager.getLogger(ReportListener.class);
     WebDriver driver;
 
     public String getTestName(ITestResult result) {
