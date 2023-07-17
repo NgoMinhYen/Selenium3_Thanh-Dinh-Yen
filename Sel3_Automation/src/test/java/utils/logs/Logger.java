@@ -7,6 +7,7 @@ import io.qameta.allure.model.StepResult;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import utils.extentreports.ExtentTestManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class Logger {
 
     public void step(String message) {
         logger.info(message);
-
+        ExtentTestManager.logMessage(message);
         final String uuid = UUID.randomUUID().toString();
         getLifecycle().startStep(uuid, new StepResult().setName(message).setStatus(Status.PASSED));
 
@@ -40,6 +41,7 @@ public class Logger {
     }
 
     public void info(String message) {
+        ExtentTestManager.logMessage(message);
         logger.info(message);
     }
 

@@ -4,7 +4,7 @@
     <parameter name="browser-setting" value="windows.chrome.local"/>
 
     <listeners>
-        <listener class-name="utils.listeners.AllureReportListener" />
+        <listener class-name="utils.listeners.ReportListener" />
 
     </listeners>
     <test name="Test case">
