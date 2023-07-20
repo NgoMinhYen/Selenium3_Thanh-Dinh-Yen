@@ -3,6 +3,7 @@ package core.framework.elements;
 import core.framework.commons.Constant;
 import core.framework.locator.Locator;
 import core.framework.locator.LocatorType;
+import core.framework.utils.extentreports.ExtentTestManager;
 import core.framework.wrappers.Driver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
@@ -50,6 +51,7 @@ public class Element implements IElement{
             return getElement().isDisplayed();
         } catch (Exception e) {
             logger.error(e.getMessage());
+            ExtentTestManager.logMessage(e.getMessage());
             return false;
         }
     }
@@ -62,6 +64,7 @@ public class Element implements IElement{
     @Override
     public void enter(String value) {
     	logger.info(String.format("Enter '%s' on %s", value, getElement()));
+        ExtentTestManager.logMessage(String.format("Enter '%s' on %s", value, getElement()));
     	waitForVisibility();
         getElement().clear();
         getElement().sendKeys(value);
@@ -74,10 +77,12 @@ public class Element implements IElement{
     public void click() {
     	try {
     		logger.info(String.format("Click on %s", getElement()));
-    		getElement().click();
+            ExtentTestManager.logMessage(String.format("Enter on %s", getElement()));
+            getElement().click();
     	} catch (Exception e){
     		logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
-    	}
+            ExtentTestManager.logMessage(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
+        }
     }
 
     /**
@@ -153,6 +158,7 @@ public class Element implements IElement{
             return this.getElement().getText();
         } catch (Exception e) {
             logger.error(e.getMessage());
+            ExtentTestManager.logMessage(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
             throw new RuntimeException(e);
         }
     }
@@ -173,6 +179,7 @@ public class Element implements IElement{
             return Driver.getWebDriver().findElement(locator.getBy());
         } catch (Exception ex) {
             logger.error(ex.getMessage());
+            ExtentTestManager.logMessage(String.format(ex.getMessage()));
             return null;
         }
     }
@@ -278,6 +285,7 @@ public class Element implements IElement{
             return this.getElement().getDomProperty(property);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            ExtentTestManager.logMessage(String.format(e.getMessage()));
             throw new RuntimeException(e);
         }
     }
@@ -307,6 +315,7 @@ public class Element implements IElement{
             return this.getElement().getDomAttribute(attribute);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            ExtentTestManager.logMessage(String.format(e.getMessage()));
             throw new RuntimeException(e);
         }
     }

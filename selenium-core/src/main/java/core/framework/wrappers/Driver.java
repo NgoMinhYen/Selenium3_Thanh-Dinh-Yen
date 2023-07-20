@@ -4,6 +4,7 @@ import core.framework.driver.DriverFactory;
 import core.framework.driver.DriverProperty;
 import core.framework.elements.Element;
 
+import core.framework.utils.extentreports.ExtentTestManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -46,6 +47,7 @@ public class Driver extends DriverFactory {
      */
     public static void navigateTo(String url) {
     	logger.info(String.format("Navigating to '%s'", url));
+        ExtentTestManager.logMessage(String.format("Navigating to '%s'", url));
         getWebDriver().get(url);
     }
 

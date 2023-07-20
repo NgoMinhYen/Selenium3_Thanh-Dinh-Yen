@@ -7,7 +7,7 @@ import io.qameta.allure.model.StepResult;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import utils.extentreports.ExtentTestManager;
+import core.framework.utils.extentreports.ExtentTestManager;
 
 import java.io.File;
 import java.io.IOException;

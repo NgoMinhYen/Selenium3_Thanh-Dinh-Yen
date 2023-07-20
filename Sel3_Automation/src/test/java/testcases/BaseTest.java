@@ -7,7 +7,7 @@ import core.framework.wrappers.Driver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.common.constants.Constant;
-import utils.listeners.ReportListener;
+import core.framework.utils.listeners.ReportListener;
 import utils.logs.Logger;
 
 import java.io.IOException;
