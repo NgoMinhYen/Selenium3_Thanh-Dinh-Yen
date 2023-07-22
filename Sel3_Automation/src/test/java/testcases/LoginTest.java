@@ -20,6 +20,7 @@ public class LoginTest extends BaseTest{
         logger.step("Step 2: Enter valid username and password");
         logger.step("Step 3: Click on \"Login\" button");
         pimPage = loginPage.login(Constant.USER_ADMIN);
+        loginPage.clickIconProfile();
 
         logger.step("Step 4: Verify that OrangeHRM Mainpage appears");
         Assert.assertTrue(pimPage.isDisplayedHeader(), "Dashboard Mainpage doesn't appear");

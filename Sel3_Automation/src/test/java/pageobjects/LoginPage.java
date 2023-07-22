@@ -1,6 +1,7 @@
 package pageobjects;
 
 import core.framework.elements.IElement;
+import core.framework.elements.IListElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
@@ -21,7 +22,10 @@ public class LoginPage extends AbstractPage {
 
     @Find(key = "btnLogin")
     private IElement btnLogin;
-
+    @Find(key = "iconProfile")
+    private IElement iconProfile;
+    @Find(key = "listDropdownMenu")
+    private IListElement listDropdownMenu;
 
     private LoginPage() {
         Page.init(this);
@@ -55,6 +59,9 @@ public class LoginPage extends AbstractPage {
         btnLogin.click();
         waitForPageLoadingComplete();
         return PIMPage.getInstance();
+    } public void clickIconProfile(){
+        iconProfile.click();
+        listDropdownMenu.click(2);
     }
 
 }
