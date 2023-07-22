@@ -50,10 +50,10 @@ public class ReportListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        ThreadContext.remove("testcaseName");
         logger.info(getTestName(iTestResult) + " test is passed.");
         //ExtentReports log operation for passed tests.
         ExtentTestManager.logMessage(Status.PASS, getTestDescription(iTestResult));
+        ThreadContext.remove("testcaseName");
     }
 
     @Override
