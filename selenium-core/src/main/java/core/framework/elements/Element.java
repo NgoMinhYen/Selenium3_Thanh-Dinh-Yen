@@ -18,31 +18,37 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class Element implements IElement{
-    private Logger logger        = LoggerFactory.getLogger(Element.class);
-    private long   timeOutSecond = Constant.DEFAULT_TIME_OUT;
+public class Element implements IElement {
+    private Logger logger = LoggerFactory.getLogger(Element.class);
+    private long timeOutSecond = Constant.DEFAULT_TIME_OUT;
 
     private LocatorType locatorType;
-    private Locator     locator;
+    private Locator locator;
+    private WebElement element;
 
     private Actions action;
-    
+
     private Locator options;
-    
+
+    public Element(WebElement e) {
+        this.element = e;
+    }
+
     public Element(Locator locator) {
         this.locator = locator;
     }
 
-    public Element of(Object... content){
+    public Element of(Object... content) {
         Locator newLocator = this.locator;
         newLocator.setValue(String.format(this.locator.getValue(), content));
         return new Element(newLocator);
     }
+
     /**
-	 * Check if element is displayed in DOM
-	 *
-	 * @return true if element is enabled. Otherwise, return false.
-	 */
+     * Check if element is displayed in DOM
+     *
+     * @return true if element is enabled. Otherwise, return false.
+     */
     @Override
     public boolean isDisplayed() {
         try {
@@ -55,34 +61,34 @@ public class Element implements IElement{
     }
 
     /**
-	 * Input text into the element
-	 *
-	 * @param value the value of the text to be entered
-	 */
+     * Input text into the element
+     *
+     * @param value the value of the text to be entered
+     */
     @Override
     public void enter(String value) {
-    	logger.info(String.format("Enter '%s' on %s", value, getElement()));
-    	waitForVisibility();
+        logger.info(String.format("Enter '%s' on %s", value, getElement()));
+        waitForVisibility();
         getElement().clear();
         getElement().sendKeys(value);
     }
 
     /**
-	 * Click on the element
-	 */
+     * Click on the element
+     */
     @Override
     public void click() {
-    	try {
-    		logger.info(String.format("Click on %s", getElement()));
-    		getElement().click();
-    	} catch (Exception e){
-    		logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
-    	}
+        try {
+            logger.info(String.format("Click on %s", getElement()));
+            getElement().click();
+        } catch (Exception e) {
+            logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
+        }
     }
 
     /**
-	 * Check the element
-	 */
+     * Check the element
+     */
     @Override
     public void check() {
         waitForVisibility();
@@ -93,8 +99,8 @@ public class Element implements IElement{
     }
 
     /**
-	 * Uncheck the element
-	 */
+     * Uncheck the element
+     */
     @Override
     public void uncheck() {
         waitForVisibility();
@@ -104,20 +110,20 @@ public class Element implements IElement{
     }
 
     /**
-	 * Check if the element checked or unchecked
-	 *
-	 * @return true if the element is checked. Otherwise, return false if the element is unchecked.
-	 */
+     * Check if the element checked or unchecked
+     *
+     * @return true if the element is checked. Otherwise, return false if the element is unchecked.
+     */
     @Override
     public boolean isChecked() {
         return getElement().isSelected();
     }
 
     /**
-	 * Check if the element enabled or disabled
-	 *
-	 * @return true if the element is enabled. Otherwise, return false if the element is disabled.
-	 */
+     * Check if the element enabled or disabled
+     *
+     * @return true if the element is enabled. Otherwise, return false if the element is disabled.
+     */
     @Override
     public boolean isEnabled() {
         return getElement().isEnabled();
@@ -125,10 +131,10 @@ public class Element implements IElement{
 
 
     /**
-	 * Get the list of text of elements
-	 *
-	 * @return List<String> List of string
-	 */
+     * Get the list of text of elements
+     *
+     * @return List<String> List of string
+     */
     @Override
     public List<String> getTextList() {
         return getElement().findElements(locator.getBy()).stream().map(WebElement::getText).filter(StringUtils::isNoneEmpty).collect(Collectors.toList());
@@ -141,11 +147,11 @@ public class Element implements IElement{
     }
 
     /**
-	 * Get text value of an element with wait element visible custom time out
-	 *
-	 * @param timeOut: Seconds timeout to wait for element to displayed
-	 * @return text value of text
-	 */
+     * Get text value of an element with wait element visible custom time out
+     *
+     * @param timeOut: Seconds timeout to wait for element to displayed
+     * @return text value of text
+     */
     @Override
     public String getText(long timeOut) {
         try {
@@ -158,10 +164,10 @@ public class Element implements IElement{
     }
 
     /**
-	 * Get text value of an element with wait element visible default time out
-	 *
-	 * @return text value of text
-	 */
+     * Get text value of an element with wait element visible default time out
+     *
+     * @return text value of text
+     */
     @Override
     public String getText() {
         return this.getText(timeOutSecond);
@@ -170,6 +176,7 @@ public class Element implements IElement{
     @Override
     public WebElement getElement() {
         try {
+            if(element != null) return element;
             return Driver.getWebDriver().findElement(locator.getBy());
         } catch (Exception ex) {
             logger.error(ex.getMessage());

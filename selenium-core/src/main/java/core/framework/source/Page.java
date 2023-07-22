@@ -2,6 +2,7 @@ package core.framework.source;
 
 import core.framework.elements.Element;
 import core.framework.elements.IElement;
+import core.framework.elements.ListElement;
 import core.framework.locator.Locator;
 
 import java.io.*;
@@ -54,17 +55,25 @@ public class Page {
             if(find != null){
                 Object value = data.get(find.key());
                 Locator locator = getLocator(value);
-                IElement element = new Element(locator);
-                field.setAccessible(true);
+                Object element = null;
+                if(field.getType().getSimpleName().equalsIgnoreCase("IElement")){
+                    element = new Element(locator);
+                }else{
+                    element = new ListElement(locator);
+                }
 
+                field.setAccessible(true);
                 try {
                     field.set(page, element);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
+
             }
         }
     }
+
+
 
     private static List<String> extract(Object value){
         if(value != null){
