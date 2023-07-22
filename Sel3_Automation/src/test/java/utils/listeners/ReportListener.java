@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utils.common.Utilities;
 import utils.extentreports.ExtentTestManager;
 
 import static utils.extentreports.ExtentManager.getExtentReports;
@@ -42,7 +43,7 @@ public class ReportListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        ThreadContext.put("testcaseName", getTestName(iTestResult));
+        ThreadContext.put("testcaseName", getTestName(iTestResult) + " " + Utilities.toDate("yyyy-MM-dd HH-mm-ss"));
         logger.info(getTestName(iTestResult) + " test is starting...");
         ExtentTestManager.saveToReport(iTestResult.getName(), iTestResult.getTestName());
     }

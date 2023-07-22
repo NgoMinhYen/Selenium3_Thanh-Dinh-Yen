@@ -1,7 +1,6 @@
 package utils.logs;
 
 import core.framework.wrappers.Driver;
-import io.qameta.allure.Allure;
 import io.qameta.allure.model.Status;
 import io.qameta.allure.model.StepResult;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +20,7 @@ import static io.qameta.allure.Allure.getLifecycle;
  *
  */
 public class Logger {
-    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Logger.class);
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger();
 
     public void step(String message) {
         logger.info(message);
