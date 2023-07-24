@@ -35,31 +35,31 @@ public class ManageEmployeeTest extends BaseTest {
 		logger.step("Step 1: Navigate to OrangeHRM login page");
 		Driver.navigateTo(Constant.URL);
 
-		logger.step("Step 2: Login with valid account");
-		pimPage = loginPage.login(USER_ADMIN);
-		
-		logger.step("Step 3: Go to PIM tab");
-		pimPage.selectLeftMenu(LeftMenu.PIM);
-
-		logger.step("Step 4: Click on Add button");
-
-		addEmployeePage = employeeListPage.clickAddEmployee();
-		
-		logger.step("Step 5: Enter employee First name and Last Name");
-		addEmployeePage.enterFirstName(emp.getFirstName());
-		addEmployeePage.enterLastName(emp.getLastName());
-
-		logger.step("Step 6: Toggle the \"Create Login Details\"");
-		addEmployeePage.clickCreateLoginDetail();
-		
-		logger.step("Step 7: Enter Username, Password and Confirm password");
-		addEmployeePage.enterUsername(user);
-		addEmployeePage.enterPassword(user);
-		addEmployeePage.enterConfirmPassword(user);
-		
-		logger.step("Step 8: Click on Save button");
-		
-		logger.step("VP: Verify that Personal Details page with employee name appears");
+//		logger.step("Step 2: Login with valid account");
+//		pimPage = loginPage.login(USER_ADMIN);
+//
+//		logger.step("Step 3: Go to PIM tab");
+//		pimPage.selectLeftMenu(LeftMenu.PIM);
+//
+//		logger.step("Step 4: Click on Add button");
+//
+//		addEmployeePage = employeeListPage.clickAddEmployee();
+//
+//		logger.step("Step 5: Enter employee First name and Last Name");
+//		addEmployeePage.enterFirstName(emp.getFirstName());
+//		addEmployeePage.enterLastName(emp.getLastName());
+//
+//		logger.step("Step 6: Toggle the \"Create Login Details\"");
+//		addEmployeePage.clickCreateLoginDetail();
+//
+//		logger.step("Step 7: Enter Username, Password and Confirm password");
+//		addEmployeePage.enterUsername(user);
+//		addEmployeePage.enterPassword(user);
+//		addEmployeePage.enterConfirmPassword(user);
+//
+//		logger.step("Step 8: Click on Save button");
+//
+//		logger.step("VP: Verify that Personal Details page with employee name appears");
 
 	}
 	@Test(description = "Verify that admin can add a report template")

@@ -2,6 +2,7 @@ package testcases;
 
 
 import core.framework.commons.Utilities;
+import core.framework.driver.DriverManager;
 import core.framework.driver.DriverProperty;
 import core.framework.wrappers.Driver;
 import org.testng.ITestResult;
@@ -10,37 +11,46 @@ import utils.common.constants.Constant;
 import utils.listeners.ReportListener;
 import utils.logs.Logger;
 
-import java.io.IOException;
-
 @Listeners(ReportListener.class)
 public class BaseTest {
 
     protected     Logger logger                  = new Logger();
     private final String DEFAULT_BROWSER_SETTING = "windows.chrome.local";
+    private final String FF_BROWSER_SETTING = "windows.firefox.local";
+    public final String BROWSER_1 = "browser1";
+    public final String BROWSER_2 = "browser2";
 
-    private ThreadLocal<DriverProperty> thDriverProperty = new ThreadLocal<>();
+    public ThreadLocal<DriverProperty> thDriverProperty = new ThreadLocal<>();
+    public DriverProperty property;
+    public DriverProperty propertyFF;
 
 
     @Parameters({Constant.BROWSER_SETTING})
     @BeforeMethod(alwaysRun = true)
-    public void createWebDriver(
+    public synchronized void createWebDriver(
             @Optional(DEFAULT_BROWSER_SETTING) String browserSetting) {
 
-        DriverProperty property = Utilities.loadBrowserSetting(Constant.BROWSER_SETTING_PATH, browserSetting);
-        thDriverProperty.set(property);
-        Driver.initWebDriver(property);
+        property = Utilities.loadBrowserSetting(Constant.BROWSER_SETTING_PATH, browserSetting);
+        propertyFF = Utilities.loadBrowserSetting(Constant.BROWSER_SETTING_PATH, FF_BROWSER_SETTING);
+
+
+        Driver.initWebDriver(String.valueOf(Thread.currentThread().getId()), BROWSER_1, property);
         Driver.maximize();
+
 //        Driver.navigateTo(Constant.URL);
+
+
     }
 
-    public void openBrowser() {
-        Driver.initWebDriver(thDriverProperty.get());
-        Driver.maximize();
-    }
+//    public void openBrowser() {
+//        Driver.initWebDriver(thDriverProperty.get());
+//        Driver.maximize();
+//    }
 
     @AfterMethod(alwaysRun = true)
-    public void quiteBrowser(ITestResult result) throws IOException {
-        Driver.quitBrowser();
+    public void quiteBrowser(ITestResult result) {
+        DriverManager.clear(String.valueOf(Thread.currentThread().getId()));
+//        Driver.quitBrowser();
     }
 
 

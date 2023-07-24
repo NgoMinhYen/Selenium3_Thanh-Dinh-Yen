@@ -28,7 +28,6 @@ public class Element implements IElement {
 
     private Actions action;
 
-    private Locator options;
 
     public Element(WebElement e) {
         this.element = e;

@@ -1,6 +1,7 @@
 package core.framework.wrappers;
 
 import core.framework.driver.DriverFactory;
+import core.framework.driver.DriverManager;
 import core.framework.driver.DriverProperty;
 import core.framework.elements.Element;
 
@@ -16,11 +17,17 @@ import java.util.Set;
 
 
 public class Driver extends DriverFactory {
-	
-	private static Logger logger        = LoggerFactory.getLogger(Element.class);
 
-    public static void initWebDriver(DriverProperty property) {
-        createWebDriver(property);
+    private static Logger logger = LoggerFactory.getLogger(Element.class);
+
+    public static WebDriver initWebDriver(String threadId, String key, DriverProperty property) {
+        WebDriver webDriver = createWebDriver(property);
+        DriverManager.add(threadId, key, webDriver);
+        return webDriver;
+    }
+
+    public static WebDriver initWebDriver(String key, DriverProperty property) {
+        return initWebDriver(String.valueOf(Thread.currentThread().getId()), key, property);
     }
 
     /**
@@ -45,7 +52,7 @@ public class Driver extends DriverFactory {
      * @param url: <a href="https://example.com">example.com</a>
      */
     public static void navigateTo(String url) {
-    	logger.info(String.format("Navigating to '%s'", url));
+        logger.info(String.format("Navigating to '%s'", url));
         getWebDriver().get(url);
     }
 
@@ -111,6 +118,13 @@ public class Driver extends DriverFactory {
     }
 
     /**
+     * Switch to new window browser
+     */
+    public static void switchToDriver(WebDriver driver) {
+        threadWebDriver.set(driver);
+    }
+
+    /**
      * Get window handles
      *
      * @return String array hashcode for each browser
@@ -120,7 +134,7 @@ public class Driver extends DriverFactory {
         return windowHandles.toArray(new String[windowHandles.size()]);
     }
 
-    public static File takesScreenshot(){
+    public static File takesScreenshot() {
         File file = ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.FILE);
         return file;
     }

@@ -27,6 +27,9 @@ public class LoginPage extends AbstractPage {
     @Find(key = "listDropdownMenu")
     private IListElement listDropdownMenu;
 
+    @Find(key = "test")
+    private IElement test;
+
     private LoginPage() {
         Page.init(this);
     }
@@ -38,7 +41,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public PIMPage login(String username, String password) {
-
+        test.of("submit", "Abc").click();
         txtUserName.enter(username);
         txtPassword.enter(password);
         btnLogin.click();

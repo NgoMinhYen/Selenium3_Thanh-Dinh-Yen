@@ -21,9 +21,6 @@ public class ListElement  implements IListElement  {
     private LocatorType locatorType;
     private Locator locator;
 
-    private Actions action;
-
-    private Locator options;
 
     public ListElement(Locator locator) {
         this.locator = locator;
