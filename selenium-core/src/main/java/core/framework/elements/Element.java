@@ -5,6 +5,7 @@ import core.framework.locator.Locator;
 import core.framework.locator.LocatorType;
 import core.framework.wrappers.Driver;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -83,6 +84,15 @@ public class Element implements IElement {
         } catch (Exception e) {
             logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
         }
+    }
+
+    /**
+     * Click on the element by Js
+     */
+    @Override
+    public void clickByJs() {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getWebDriver();
+        js.executeScript("arguments[0].click();", getElement());
     }
 
     /**
