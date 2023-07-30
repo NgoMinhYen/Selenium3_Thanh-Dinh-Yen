@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest{
     public void OHRM_LOGIN_TC001() {
         
         logger.step("Step 1: Navigate to OrangeHRM login page");
-        Driver.navigateTo(Constant.URL);
+//        Driver.navigateTo(Constant.URL);
 
         Driver.initWebDriver(String.valueOf(Thread.currentThread().getId()), BROWSER_2, propertyFF);
         Driver.maximize();
