@@ -13,6 +13,7 @@ public interface IElement{
 
     void click();
 
+    void clickByJs();
 
     void check();
 
