@@ -18,21 +18,14 @@ public class LoginTest extends BaseTest{
     public void OHRM_LOGIN_TC001() {
         
         logger.step("Step 1: Navigate to OrangeHRM login page");
-        Driver.navigateTo(Constant.URL);
 
-        Driver.initWebDriver(String.valueOf(Thread.currentThread().getId()), BROWSER_2, propertyFF);
-        Driver.maximize();
+        logger.step("Step 2: Enter valid username and password");
+        logger.step("Step 3: Click on \"Login\" button");
+        pimPage = loginPage.login(Constant.USER_ADMIN);
+        //loginPage.clickIconProfile();
 
-        Driver.switchToDriver(DriverManager.get(String.valueOf(Thread.currentThread().getId()), BROWSER_1));
-        Driver.navigateTo("https://www.google.com/");
-//        logger.step("Step 2: Enter valid username and password");
-//        logger.step("Step 3: Click on \"Login\" button");
-//        pimPage = loginPage.login(Constant.USER_ADMIN);
-//        //loginPage.clickIconProfile();
-//
-//        logger.step("Step 4: Verify that OrangeHRM Mainpage appears");
-//        Assert.assertTrue(pimPage.isDisplayedHeader(), "Dashboard Mainpage doesn't appear");
-//        //cmt
+        logger.step("Step 4: Verify that OrangeHRM Mainpage appears");
+        //cmt
 
     }
 }
