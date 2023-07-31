@@ -16,4 +16,5 @@ public interface IListElement {
     List<IElement> getElements();
 
     boolean isEmpty();
+    IElement getElement(int index);
 }

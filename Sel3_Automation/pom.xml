@@ -113,5 +113,10 @@
 			<artifactId>javafaker</artifactId>
 			<version>${javafaker-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>pdfextentreporter</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 	</dependencies>
 </project>
