@@ -69,4 +69,10 @@ public class ListElement  implements IListElement  {
     public boolean isEmpty() {
         return getElements().size() == 0;
     }
+
+    @Override
+    public IElement getElement(int index) {
+        IElement iElement = getElements().get(index);
+        return iElement;
+    }
 }
