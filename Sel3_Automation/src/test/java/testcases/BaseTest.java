@@ -37,7 +37,7 @@ public class BaseTest {
         Driver.initWebDriver(String.valueOf(Thread.currentThread().getId()), BROWSER_1, property);
         Driver.maximize();
 
-        Driver.navigateTo(Constant.URL_DIGIKEY);
+        Driver.navigateTo(Constant.URL);
     }
 
 //    public void openBrowser() {
