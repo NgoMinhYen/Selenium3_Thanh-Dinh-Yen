@@ -22,10 +22,6 @@ public class LoginPage extends AbstractPage {
 
     @Find(key = "btnLogin")
     private IElement btnLogin;
-    @Find(key = "iconProfile")
-    private IElement iconProfile;
-    @Find(key = "listDropdownMenu")
-    private IListElement listDropdownMenu;
 
     @Find(key = "test")
     private IElement test;
@@ -40,14 +36,14 @@ public class LoginPage extends AbstractPage {
         return instance;
     }
 
-    public PIMPage login(String username, String password) {
-        test.of("submit", "Abc").click();
-        txtUserName.enter(username);
-        txtPassword.enter(password);
-        btnLogin.click();
-        waitForPageLoadingComplete();
-        return PIMPage.getInstance();
-    }
+//    public PIMPage login(String username, String password) {
+//        test.of("submit", "Abc").click();
+//        txtUserName.enter(username);
+//        txtPassword.enter(password);
+//        btnLogin.click();
+//        waitForPageLoadingComplete();
+//        return PIMPage.getInstance();
+//    }
 
     /**
      * Login to application
@@ -62,9 +58,6 @@ public class LoginPage extends AbstractPage {
         btnLogin.click();
         waitForPageLoadingComplete();
         return PIMPage.getInstance();
-    } public void clickIconProfile(){
-        iconProfile.click();
-        listDropdownMenu.click(2);
     }
 
 }

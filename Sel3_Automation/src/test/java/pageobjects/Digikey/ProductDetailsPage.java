@@ -13,6 +13,21 @@ public class ProductDetailsPage extends AbstractPage {
     @Find(key = "eleNameProduct")
     private IElement eleNameProduct;
 
+    @Find(key = "checkboxBanerEngineer")
+    private IElement checkboxBanerEngineer;
+
+    @Find(key = "checkboxVE")
+    private IElement checkboxVE;
+
+    @Find(key = "checkboxBulk")
+    private IElement checkboxBulk;
+
+    @Find(key = "eleSearchCountRemaining")
+    private IElement eleSearchCountRemaining;
+
+    @Find(key = "btnViewSimilar")
+    private IElement btnViewSimilar;
+
     private ProductDetailsPage() {
         Page.init(this);
     }
@@ -26,6 +41,32 @@ public class ProductDetailsPage extends AbstractPage {
     public String getNameProduct() {
         eleNameProduct.waitForVisibility();
         return eleNameProduct.getText();
+    }
+
+    public String getSearchCountRemaining () {
+        eleSearchCountRemaining.waitForVisibility();
+        return eleSearchCountRemaining.getText();
+    }
+
+    public void clickCheckboxBanerEngineer() {
+        checkboxBanerEngineer.waitForVisibility();
+        checkboxBanerEngineer.check();
+    }
+
+    public void clickCheckboxVE() {
+        checkboxVE.waitForVisibility();
+        checkboxVE.check();
+    }
+
+    public void clickCheckboxBulk() {
+        checkboxBulk.waitForVisibility();
+        checkboxBulk.check();
+    }
+
+    public MachineVisionCamerasSensorsPage clickBtnViewSimilar() {
+        btnViewSimilar.waitForVisibility();
+        btnViewSimilar.click();
+        return MachineVisionCamerasSensorsPage.getInstance();
     }
 
 }
