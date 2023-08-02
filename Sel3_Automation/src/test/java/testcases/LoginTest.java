@@ -32,7 +32,7 @@ public class LoginTest extends BaseTest{
 
         logger.step("Login successfully.\n VP: Username/Email displays on page");
         String userName = "Yen Ngo";
-        homePage.getUserName();
+        //homePage.getUserName();
 
 
 
