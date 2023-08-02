@@ -91,8 +91,13 @@ public class Element implements IElement {
      */
     @Override
     public void clickByJs() {
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getWebDriver();
-        js.executeScript("arguments[0].click();", getElement());
+        try {
+            logger.info(String.format("Click by Js on %s", getElement()));
+            JavascriptExecutor js = (JavascriptExecutor) Driver.getWebDriver();
+            js.executeScript("arguments[0].click();", getElement());
+        } catch (Exception e) {
+            logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
+        }
     }
 
     /**
@@ -265,9 +270,14 @@ public class Element implements IElement {
      */
     @Override
     public void hover() {
-        waitForVisibility();
-        this.action = new Actions(Driver.getWebDriver());
-        action.moveToElement(getElement()).perform();
+        try {
+            logger.info(String.format("Hover on %s", getElement()));
+            waitForVisibility();
+            this.action = new Actions(Driver.getWebDriver());
+            action.moveToElement(getElement()).perform();
+        } catch (Exception e) {
+            logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
+        }
     }
 
     /**

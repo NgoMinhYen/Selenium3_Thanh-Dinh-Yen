@@ -17,4 +17,8 @@ public interface IListElement {
 
     boolean isEmpty();
     IElement getElement(int index);
+
+    void waitForVisibility();
+
+    void waitForVisibility(long timeOut);
 }

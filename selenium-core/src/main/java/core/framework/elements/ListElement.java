@@ -5,10 +5,12 @@ import core.framework.locator.Locator;
 import core.framework.locator.LocatorType;
 import core.framework.wrappers.Driver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,5 +76,27 @@ public class ListElement  implements IListElement  {
     public IElement getElement(int index) {
         IElement iElement = getElements().get(index);
         return iElement;
+    }
+
+    /**
+     * Wait for list element visible in DOM with default time out
+     */
+    @Override
+    public void waitForVisibility() {
+        this.waitForVisibility(timeOutSecond);
+    }
+
+    /**
+     * Wait for list element visible in DOM with custom time out
+     *
+     * @param timeOut: Seconds
+     */
+    @Override
+    public void waitForVisibility(long timeOut) {
+        try {
+            new WebDriverWait(Driver.getWebDriver(), Duration.ofSeconds(timeOut))
+                    .until(ExpectedConditions.visibilityOfElementLocated(locator.getBy()));
+        } catch (Exception ex) {
+        }
     }
 }

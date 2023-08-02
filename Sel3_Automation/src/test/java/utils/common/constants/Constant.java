@@ -11,7 +11,7 @@ public class Constant {
     public static final String URL                  = "https://www.digikey.com/";
     public static final int    DEFAULT_TIME_OUT     = 20;
 
-    public static final User USER_ADMIN = new User("Admin", "admin123");
+    public static final User USER_ADMIN = new User("minhyen1311414@gmail.com", "Selenium3@");
 
     public static String PROJECT = System.getProperty("user.dir");
 
