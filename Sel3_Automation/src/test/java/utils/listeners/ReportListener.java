@@ -38,7 +38,11 @@ public class ReportListener implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
         logger.info("End testing " + iTestContext.getName());
         //Finish and execute Extents Report
-        getExtentReports().flush();
+        try{
+            getExtentReports().flush();
+        }catch (Exception e){
+
+        }
     }
 
     @Override

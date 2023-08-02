@@ -9,6 +9,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import utils.common.Utilities;
+import utils.common.constants.Constant;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -64,7 +65,7 @@ public class ExtentTestManager {
             throw new RuntimeException(e);
         }
 
-        String path = "ExtentReports/Images";
+        String path = Constant.TARGET + "/ExtentReports/Images";
         File folder = new File(path);
         if (!folder.exists()) {
             folder.mkdir();

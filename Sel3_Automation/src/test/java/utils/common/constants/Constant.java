@@ -14,6 +14,7 @@ public class Constant {
     public static final User USER_ADMIN = new User("minhyen1311414@gmail.com", "Selenium3@");
 
     public static String PROJECT = System.getProperty("user.dir");
+    public static String TARGET = System.getProperty("user.dir").concat(File.separator).concat("target");
 
 
 }
