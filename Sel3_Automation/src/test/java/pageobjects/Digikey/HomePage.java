@@ -20,6 +20,10 @@ public class HomePage extends AbstractPage {
     @Find(key = "lbItemLevel2")
     private IElement lbItemLevel2;
 
+    @Find(key = "lbMyAccount")
+    private IElement lbMyAccount;
+
+
 
     private HomePage() {
         Page.init(this);
@@ -39,6 +43,13 @@ public class HomePage extends AbstractPage {
     }
     public HomePage clickHeaderMenuItemLevel2(String value){
         lbItemLevel2.of(value).hover();
+        return instance;
+    }
+    public HomePage getUserName(){
+        String myAccount = lbMyAccount.getText();
+        System.out.println("fasfsg : " + myAccount);
+
+        System.out.println("kfksjkgs: " + myAccount.matches(".*, (.+)"));
         return instance;
     }
 }

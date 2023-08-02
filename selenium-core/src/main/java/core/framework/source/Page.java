@@ -95,6 +95,10 @@ public class Page {
                case "name" : return Locator.name(data.get(1));
                case "id" : return Locator.id(data.get(1));
                case "xpath" : return Locator.xpath(data.get(1));
+               case "className" : return Locator.className(data.get(1));
+               case "tagName" : return Locator.tagName(data.get(1));
+               case "dynamicXPath" : return Locator.dynamicXPath(data.get(1));
+
            }
         }
         return null;
