@@ -9,7 +9,7 @@
     </listeners>
     <test name="Test case">
         <classes>
-            <class name="testcases.LoginTest"><methods><include name="OHRM_LOGIN_TC001"/></methods></class>
+            <class name="testcases.LoginTest"><methods><include name="LOGIN_TC001"/></methods></class>
 <!--            <class name="testcases.ManageEmployeeTest"><methods><include name="OHRM_MANAGE_EMPLOYEE_TC002"/></methods></class>-->
 <!--            <class name="testcases.LeaveTest"><methods><include name="OHRM_LEAVE_TC006"/></methods></class>-->
 <!--            <class name="testcases.PIMTest"><methods><include name="OHRM_PIM_ADD_NEW_EMPLOYEE_TC011"/></methods></class>-->

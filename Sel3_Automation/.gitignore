@@ -59,3 +59,4 @@ bin
 .settings
 /Selenium3Ggroup3.iml
 /ExtentReports/
+/ExtentReport*.html
