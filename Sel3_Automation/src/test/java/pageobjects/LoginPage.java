@@ -6,7 +6,7 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.User;
-import pageobjects.PIM.PIMPage;
+import pageobjects.Digikey.HomePage;
 
 
 @ResourcePage(file = "loginPage.properties")
@@ -36,14 +36,6 @@ public class LoginPage extends AbstractPage {
         return instance;
     }
 
-//    public PIMPage login(String username, String password) {
-//        test.of("submit", "Abc").click();
-//        txtUserName.enter(username);
-//        txtPassword.enter(password);
-//        btnLogin.click();
-//        waitForPageLoadingComplete();
-//        return PIMPage.getInstance();
-//    }
 
     /**
      * Login to application
@@ -51,13 +43,13 @@ public class LoginPage extends AbstractPage {
      * @param user
      * @return
      */
-    public PIMPage login(User user) {
+    public HomePage login(User user) {
         txtUserName.waitForVisibility(5);
         txtUserName.enter(user.getUsername());
         txtPassword.enter(user.getPassword());
         btnLogin.click();
         waitForPageLoadingComplete();
-        return PIMPage.getInstance();
+        return HomePage.getInstance();
     }
 
 }
