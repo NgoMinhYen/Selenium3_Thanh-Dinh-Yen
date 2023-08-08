@@ -20,8 +20,23 @@ public class LoginPage extends AbstractPage {
     @Find(key = "txtPassword")
     private IElement txtPassword;
 
+    @Find(key = "lblInvalidUsernameErrorMessage")
+    private IElement lblInvalidUsernameErrorMessage;
+
+    @Find(key = "lblRequiredUsernameErrorMessage")
+    private IElement lblRequiredUsernameErrorMessage;
+
+    @Find(key = "lblRequiredPasswordErrorMessage")
+    private IElement lblRequiredPasswordErrorMessage;
+
+    @Find(key = "titleAdminPortal")
+    private IElement titleAdminPortal;
+
     @Find(key = "btnLogin")
     private IElement btnLogin;
+
+    @Find(key = "eleLoginFailPopup")
+    private IElement eleLoginFailPopup;
 
     private LoginPage() {
         Page.init(this);
@@ -42,13 +57,55 @@ public class LoginPage extends AbstractPage {
      */
     public HomePage login(User user) {
         txtEmailAddress.waitForVisibility(5);
-        txtEmailAddress.enter(user.getUsername());
-        txtPassword.enter(user.getPassword());
-        btnLogin.click();
+        enterEmailAddress(user.getUsername());
+        enterPassword(user.getPassword());
+        clickButtonLogin();
         waitForPageLoadingComplete();
         return HomePage.getInstance();
     }
 
+    public void enterEmailAddress(String sEmailAddress) {
+        txtEmailAddress.enter(sEmailAddress);
+    }
+
+    public void enterPassword(String sPassword) {
+        txtPassword.enter(sPassword);
+    }
+
+    public void clickTitleAdminPortal() {
+        titleAdminPortal.click();
+    }
+
+    public void clickButtonLogin() {
+        if (btnLogin.isEnabled()) {
+            btnLogin.click();
+        }
+    }
+
+    /**
+     * Check if Button Login enabled or disabled
+     *
+     * @return true if Button Login is enabled. Otherwise, return false if Button Login is disabled.
+     */
+    public boolean isButtonLoginEnabled() {
+        return btnLogin.isEnabled();
+    }
+
+    public boolean isDisplayedLblInvalidUsernameErrorMessage() {
+        return lblInvalidUsernameErrorMessage.isDisplayed();
+    }
+
+    public boolean isDisplayedLblRequiredUsernameErrorMessage() {
+        return lblRequiredUsernameErrorMessage.isDisplayed();
+    }
+
+    public boolean isDisplayedLblRequiredPasswordErrorMessage() {
+        return lblRequiredPasswordErrorMessage.isDisplayed();
+    }
+
+    public boolean isDisplayedLoginFailPopup() {
+        return eleLoginFailPopup.isDisplayed();
+    }
 }
 
 
