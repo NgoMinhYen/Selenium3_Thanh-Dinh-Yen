@@ -14,17 +14,14 @@ public class LoginPage extends AbstractPage {
 
     private static LoginPage instance = null;
 
-    @Find(key = "txtUserName")
-    private IElement txtUserName;
+    @Find(key = "txtEmailAddress")
+    private IElement txtEmailAddress;
 
     @Find(key = "txtPassword")
     private IElement txtPassword;
 
     @Find(key = "btnLogin")
     private IElement btnLogin;
-
-    @Find(key = "test")
-    private IElement test;
 
     private LoginPage() {
         Page.init(this);
@@ -44,8 +41,8 @@ public class LoginPage extends AbstractPage {
      * @return
      */
     public HomePage login(User user) {
-        txtUserName.waitForVisibility(5);
-        txtUserName.enter(user.getUsername());
+        txtEmailAddress.waitForVisibility(5);
+        txtEmailAddress.enter(user.getUsername());
         txtPassword.enter(user.getPassword());
         btnLogin.click();
         waitForPageLoadingComplete();

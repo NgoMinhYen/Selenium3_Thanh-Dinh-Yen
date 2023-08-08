@@ -1,40 +1,31 @@
 package testcases;
 
 import core.framework.wrappers.Driver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import pageobjects.Digikey.BasePage;
-import pageobjects.Digikey.HomePage;
+import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import utils.common.constants.Constant;
 
 public class LoginTest extends BaseTest{
-    BasePage basePage = BasePage.getInstance();
+    LoginPage loginPage = LoginPage.getInstance();
     HomePage homePage = HomePage.getInstance();
 
     @Test(description = "Test case 001: User can login with valid account")
-    public void LOGIN_TC001() throws InterruptedException {
+    public void LOGIN_TC001(){
         
-        logger.step("Step 1. Navigate to Digi-Key website\n url: https://www.digikey.com/");
+        logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
-        basePage.waitForPageLoadingComplete();
-        Thread.sleep(1000);
+        loginPage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Navigate to Login page by hover on \"Login or REGISTER\" link on top menu");
-        basePage.hoverBtnLoginOrRegister();
-        LoginPage loginPage = basePage.clickBtnLogin();
-
-        logger.step("Step 3. Login\n" +
-                            "- Enter valid Username, \n" +
-                            "- Enter valid Password\n" +
-                            "- Click Login.");
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
         loginPage.login(Constant.USER_ADMIN);
 
-        logger.step("Login successfully.\n VP: Username/Email displays on page");
-        String userName = "Yen Ngo";
-        //homePage.getUserName();
-
-
-
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedHomePage(), "Login successfully");
     }
 }
