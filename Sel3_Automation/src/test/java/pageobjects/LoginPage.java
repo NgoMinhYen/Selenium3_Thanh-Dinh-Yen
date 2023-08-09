@@ -6,7 +6,7 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.User;
-import pageobjects.Digikey.HomePage;
+import pageobjects.HomePage;
 
 
 @ResourcePage(file = "loginPage.properties")
@@ -28,6 +28,9 @@ public class LoginPage extends AbstractPage {
 
     @Find(key = "lblRequiredPasswordErrorMessage")
     private IElement lblRequiredPasswordErrorMessage;
+
+    @Find(key = "lblRequiredLengthPasswordErrorMessage")
+    private IElement lblRequiredLengthPasswordErrorMessage;
 
     @Find(key = "titleAdminPortal")
     private IElement titleAdminPortal;
@@ -103,8 +106,16 @@ public class LoginPage extends AbstractPage {
         return lblRequiredPasswordErrorMessage.isDisplayed();
     }
 
+    public boolean isDisplayedLblRequiredLengthPasswordErrorMessage() {
+        return lblRequiredLengthPasswordErrorMessage.isDisplayed();
+    }
+
     public boolean isDisplayedLoginFailPopup() {
         return eleLoginFailPopup.isDisplayed();
+    }
+
+    public boolean isDisplayedTitleAdminPortal() {
+        return titleAdminPortal.isDisplayed();
     }
 }
 

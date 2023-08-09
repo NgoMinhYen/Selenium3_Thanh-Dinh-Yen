@@ -84,4 +84,24 @@ public class LoginTest extends BaseTest{
         logger.step("Step 3. The login button cannot be clicked");
         Assert.assertFalse(loginPage.isButtonLoginEnabled(), "The login button cannot be clicked");
     }
+
+    @Test(description = "Login with password less than 8 characters")
+    public void LOGIN_TC005(){
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        loginPage.enterEmailAddress(Constant.USER_ADMIN.getUsername());
+
+        logger.step("Step 3. Enter  'Password' less than 8 characters");
+        loginPage.enterPassword("123");
+        loginPage.clickTitleAdminPortal();
+
+        logger.step("VP Step 3. Verify that an error message is displayed \n" +
+                "\"Password min length 8 characters\"\n" +
+                "- The login button cannot be clicked");
+        Assert.assertTrue(loginPage.isDisplayedLblRequiredLengthPasswordErrorMessage(), "'Password min length 8 characters' is displayed");
+        Assert.assertFalse(loginPage.isButtonLoginEnabled(), "The login button cannot be clicked");
+    }
 }
