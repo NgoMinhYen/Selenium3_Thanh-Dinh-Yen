@@ -19,9 +19,9 @@ public class UserProfileTest extends BaseTest{
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
 
         logger.step("Step 2. Navigate to the User Profile page");
-        homePage.waitForPageLoadingComplete();
         userProfilePage = homePage.clickUserProfile();
         Assert.assertTrue(userProfilePage.isDisplayedUserProfilePage(), "User Profile page is displayed");
 
@@ -39,9 +39,9 @@ public class UserProfileTest extends BaseTest{
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
 
         logger.step("Step 2. Navigate to the User Profile page");
-        homePage.waitForPageLoadingComplete();
         userProfilePage = homePage.clickUserProfile();
         Assert.assertTrue(userProfilePage.isDisplayedUserProfilePage(), "User Profile page is displayed");
 

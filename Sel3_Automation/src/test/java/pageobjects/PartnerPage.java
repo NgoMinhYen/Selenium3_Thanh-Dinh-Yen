@@ -22,8 +22,17 @@ public class PartnerPage extends AbstractPage{
     @Find(key = "lblRequiredNameErrorMessage")
     private IElement lblRequiredNameErrorMessage;
 
+    @Find(key = "lblRequiredExpiredDateErrorMessage")
+    private IElement lblRequiredExpiredDateErrorMessage;
+
     @Find(key = "txtName")
     private IElement txtName;
+
+    @Find(key = "txtExpiredDate")
+    private IElement txtExpiredDate;
+
+    @Find(key = "txtStartDate")
+    private IElement txtStartDate;
 
     private PartnerPage() {
         Page.init(this);
@@ -39,6 +48,13 @@ public class PartnerPage extends AbstractPage{
         txtName.enter(sName);
     }
 
+    public void enterExpiredDate(String sExpiredDate) {
+        txtExpiredDate.enter(sExpiredDate);
+    }
+
+    public void enterStartDate(String sStartDate) {
+        txtStartDate.enter(sStartDate);
+    }
 
     public void clickAddPartner() {
         btnAddPartner.waitForVisibility();
@@ -51,6 +67,10 @@ public class PartnerPage extends AbstractPage{
 
     public boolean isDisplayedRequiredNameErrorMessage() {
         return lblRequiredNameErrorMessage.isDisplayed();
+    }
+
+    public boolean isDisplayedRequiredExpiredDateErrorMessage() {
+        return lblRequiredExpiredDateErrorMessage.isDisplayed();
     }
 
     public boolean isButtonSaveEnabled() {
