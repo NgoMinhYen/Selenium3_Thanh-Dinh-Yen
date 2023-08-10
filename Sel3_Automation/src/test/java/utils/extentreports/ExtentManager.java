@@ -15,7 +15,7 @@ public class ExtentManager {
         ExtentSparkReporter reporter = new ExtentSparkReporter(Constant.TARGET + "/ExtentReports/ExtentReport " + sDate + ".html");//chay được
         reporter.config().setReportName("Start Report " + sDate);
         reporter.config().setDocumentTitle("Start Report " + sDate);
-        reporter.config().setTheme(Theme.DARK);
+//        reporter.config().setTheme(Theme.DARK);
         extentReports.attachReporter(reporter);
 
         ExtentPDFReporter pdfReporter = new ExtentPDFReporter(Constant.TARGET + "/ExtentReports/ExtentReport " + sDate +".pdf");
