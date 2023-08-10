@@ -11,6 +11,15 @@ public class HomePage extends AbstractPage{
     @Find(key = "titleWelcome")
     private IElement titleWelcome;
 
+    @Find(key = "eleLogout")
+    private IElement eleLogout;
+
+    @Find(key = "eleLogoutPopup")
+    private IElement eleLogoutPopup;
+
+    @Find(key = "btnYes")
+    private IElement btnYes;
+
     private HomePage() {
         Page.init(this);
     }
@@ -24,4 +33,20 @@ public class HomePage extends AbstractPage{
     public boolean isDisplayedHomePage() {
         return titleWelcome.isDisplayed();
     }
+
+    public boolean isDisplayedLogoutPopup() {
+        return eleLogoutPopup.isDisplayed();
+    }
+
+    public void clickLogout() {
+        eleLogout.waitForVisibility();
+        eleLogout.click();
+    }
+
+    public void clickYes() {
+        if (btnYes.isEnabled()) {
+            btnYes.click();
+        }
+    }
+
 }
