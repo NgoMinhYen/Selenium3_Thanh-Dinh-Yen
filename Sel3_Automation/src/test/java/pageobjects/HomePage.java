@@ -11,6 +11,12 @@ public class HomePage extends AbstractPage{
     @Find(key = "titleWelcome")
     private IElement titleWelcome;
 
+    @Find(key = "eleUserProfile")
+    private IElement eleUserProfile;
+
+    @Find(key = "elePartner")
+    private IElement elePartner;
+
     @Find(key = "eleLogout")
     private IElement eleLogout;
 
@@ -47,6 +53,18 @@ public class HomePage extends AbstractPage{
         if (btnYes.isEnabled()) {
             btnYes.click();
         }
+    }
+
+    public UserProfilePage clickUserProfile() {
+        eleUserProfile.waitForVisibility();
+        eleUserProfile.click();
+        return UserProfilePage.getInstance();
+    }
+
+    public PartnerPage clickPartner() {
+        elePartner.waitForVisibility();
+        elePartner.click();
+        return PartnerPage.getInstance();
     }
 
 }
