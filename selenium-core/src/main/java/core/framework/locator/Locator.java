@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 @Getter
 @Setter
-public class Locator {
+public class Locator implements Cloneable {
 
     private LocatorType locatorType;
     private String      value;
@@ -129,5 +129,13 @@ public class Locator {
         return by;
     }
 
-
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

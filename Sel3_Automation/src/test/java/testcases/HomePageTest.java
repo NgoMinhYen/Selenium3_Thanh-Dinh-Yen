@@ -28,7 +28,7 @@ public class HomePageTest extends BaseTest {
         homePage.selectTitle(LeftMenu.LOGOUT.getValue());
 
         logger.step("VP Step 3. \"Do you want to logout?\" popup is displayed");
-        Assert.assertTrue(homePage.isDisplayedEleOnPopup(Message.DO_YOU_WANT_TO_LOGOUT.getValue()), "The login button cannot be clicked");
+        Assert.assertTrue(homePage.isDisplayedEleOnPopup(Message.DO_YOU_WANT_TO_LOGOUT.getValue()), "\"Do you want to logout?\" popup is displayed");
 
         logger.step("Step 4. Click Yes on popup");
         homePage.clickElement(UserActions.YES.getValue());
