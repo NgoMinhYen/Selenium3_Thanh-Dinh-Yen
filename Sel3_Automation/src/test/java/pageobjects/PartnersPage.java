@@ -4,6 +4,7 @@ import core.framework.elements.IElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
+import dataobjects.Partner;
 
 @ResourcePage(file = "partnersPage.properties")
 public class PartnersPage extends AbstractPage{
@@ -28,6 +29,12 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "txtName")
     private IElement txtName;
 
+    @Find(key = "txtWebsite")
+    private IElement txtWebsite;
+
+    @Find(key = "txtDescription")
+    private IElement txtDescription;
+
     @Find(key = "txtExpiredDate")
     private IElement txtExpiredDate;
 
@@ -46,6 +53,14 @@ public class PartnersPage extends AbstractPage{
 
     public void enterName(String sName) {
         txtName.enter(sName);
+    }
+
+    public void enterWebsite(String sWebsite) {
+        txtWebsite.enter(sWebsite);
+    }
+
+    public void enterDescription(String sDescription) {
+        txtDescription.enter(sDescription);
     }
 
     public void enterExpiredDate(String sExpiredDate) {
@@ -76,6 +91,15 @@ public class PartnersPage extends AbstractPage{
     public boolean isButtonSaveEnabled() {
         btnSave.waitForVisibility();
         return btnSave.isEnabled();
+    }
+
+    public void addPartnerWithRandomInfo(Partner partner) {
+        enterName(partner.getName());
+        enterWebsite(partner.getWebsite());
+        enterStartDate(partner.getStartDate());
+        enterExpiredDate(partner.getExpiredDate());
+        enterDescription(partner.getDescription());
+
     }
 
 }
