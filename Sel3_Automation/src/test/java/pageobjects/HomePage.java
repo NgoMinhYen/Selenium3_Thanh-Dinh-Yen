@@ -17,14 +17,8 @@ public class HomePage extends AbstractPage{
     @Find(key = "elePartner")
     private IElement elePartner;
 
-    @Find(key = "eleLogout")
-    private IElement eleLogout;
-
-    @Find(key = "eleLogoutPopup")
-    private IElement eleLogoutPopup;
-
-    @Find(key = "btnYes")
-    private IElement btnYes;
+    @Find(key = "eleStringOnPopup")
+    private IElement eleStringOnPopup;
 
     @Find(key = "eleStringTitle")
     private IElement eleTitle;
@@ -44,19 +38,12 @@ public class HomePage extends AbstractPage{
         return titleWelcome.isDisplayed();
     }
 
-    public boolean isDisplayedLogoutPopup() {
-        return eleLogoutPopup.isDisplayed();
+    public boolean isDisplayedEleOnPopup(String value) {
+        return eleStringOnPopup.of(value).isDisplayed();
     }
 
-    public void clickLogout() {
-        eleLogout.waitForVisibility();
-        eleLogout.click();
-    }
-
-    public void clickYes() {
-        if (btnYes.isEnabled()) {
-            btnYes.click();
-        }
+    public void clickElement(String value) {
+        eleStringOnPopup.of(value).click();
     }
 
     public UserProfilePage clickUserProfile() {
@@ -73,7 +60,7 @@ public class HomePage extends AbstractPage{
 
     //Coi lai
     public AccountsPage selectTitle(String title) {
-        eleTitle.waitForVisibility();
+        eleTitle.of(title).waitForVisibility();
         eleTitle.of(title).click();
         return AccountsPage.getInstance();
     }

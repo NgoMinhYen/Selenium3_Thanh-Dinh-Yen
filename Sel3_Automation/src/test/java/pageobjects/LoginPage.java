@@ -1,12 +1,10 @@
 package pageobjects;
 
 import core.framework.elements.IElement;
-import core.framework.elements.IListElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.User;
-import pageobjects.HomePage;
 
 
 @ResourcePage(file = "loginPage.properties")
@@ -20,17 +18,11 @@ public class LoginPage extends AbstractPage {
     @Find(key = "txtPassword")
     private IElement txtPassword;
 
-    @Find(key = "lblInvalidUsernameErrorMessage")
-    private IElement lblInvalidUsernameErrorMessage;
+    @Find(key = "lblStringErrorMessage")
+    private IElement lblErrorMessage;
 
-    @Find(key = "lblRequiredUsernameErrorMessage")
-    private IElement lblRequiredUsernameErrorMessage;
-
-    @Find(key = "lblRequiredPasswordErrorMessage")
-    private IElement lblRequiredPasswordErrorMessage;
-
-    @Find(key = "lblRequiredLengthPasswordErrorMessage")
-    private IElement lblRequiredLengthPasswordErrorMessage;
+    @Find(key = "lblStringRequiredErrorMessage")
+    private IElement lblRequiredErrorMessage;
 
     @Find(key = "titleAdminPortal")
     private IElement titleAdminPortal;
@@ -94,20 +86,12 @@ public class LoginPage extends AbstractPage {
         return btnLogin.isEnabled();
     }
 
-    public boolean isDisplayedLblInvalidUsernameErrorMessage() {
-        return lblInvalidUsernameErrorMessage.isDisplayed();
+    public boolean isDisplayedErrorMessage(String value) {
+        return lblErrorMessage.of(value).isDisplayed();
     }
 
-    public boolean isDisplayedLblRequiredUsernameErrorMessage() {
-        return lblRequiredUsernameErrorMessage.isDisplayed();
-    }
-
-    public boolean isDisplayedLblRequiredPasswordErrorMessage() {
-        return lblRequiredPasswordErrorMessage.isDisplayed();
-    }
-
-    public boolean isDisplayedLblRequiredLengthPasswordErrorMessage() {
-        return lblRequiredLengthPasswordErrorMessage.isDisplayed();
+    public boolean isDisplayedLblErrorMessage(String value) {
+        return lblRequiredErrorMessage.of(value).isDisplayed();
     }
 
     public boolean isDisplayedLoginFailPopup() {

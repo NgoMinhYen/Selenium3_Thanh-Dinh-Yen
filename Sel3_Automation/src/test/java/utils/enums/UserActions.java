@@ -1,14 +1,11 @@
 package utils.enums;
 
-
-
-public enum LeftMenu {
-    LOGOUT("Logout"),
-    PARTNERS("Partners");
+public enum UserActions {
+    YES("Yes");
 
     private String value;
 
-    LeftMenu(String value) {
+    UserActions(String value) {
         this.value = value;
     }
 
