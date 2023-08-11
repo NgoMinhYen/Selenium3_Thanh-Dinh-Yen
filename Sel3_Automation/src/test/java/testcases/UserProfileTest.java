@@ -7,6 +7,8 @@ import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import pageobjects.UserProfilePage;
 import utils.common.constants.Constant;
+import utils.enums.EntityFields;
+import utils.enums.UserActions;
 
 public class UserProfileTest extends BaseTest{
     LoginPage loginPage = LoginPage.getInstance();
@@ -23,14 +25,14 @@ public class UserProfileTest extends BaseTest{
 
         logger.step("Step 2. Navigate to the User Profile page");
         userProfilePage = homePage.clickUserProfile();
-        Assert.assertTrue(userProfilePage.isDisplayedUserProfilePage(), "User Profile page is displayed");
+        Assert.assertTrue(userProfilePage.isDisplayedTitle(EntityFields.USER_PROFILE.getValue()), "User Profile page is displayed");
 
         logger.step("Step 3. Leave the firstname field empty");
-        userProfilePage.enterFirstName("");
+        userProfilePage.enter(EntityFields.FIRST_NAME.getValue(), "");
 
         logger.step("Step 4. Observe");
         logger.step("VP Step 4. User can not click \"Save\"");
-        Assert.assertFalse(userProfilePage.isButtonSaveEnabled(), "User can not click \"Save\"");
+        Assert.assertFalse(userProfilePage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
     @Test(description = "User can not update profile with Invalid Phone field")
@@ -43,13 +45,13 @@ public class UserProfileTest extends BaseTest{
 
         logger.step("Step 2. Navigate to the User Profile page");
         userProfilePage = homePage.clickUserProfile();
-        Assert.assertTrue(userProfilePage.isDisplayedUserProfilePage(), "User Profile page is displayed");
+        Assert.assertTrue(userProfilePage.isDisplayedTitle(EntityFields.USER_PROFILE.getValue()), "User Profile page is displayed");
 
         logger.step("Step 3. Enter a invalid phone number in the phone field");
-        userProfilePage.enterPhone("-1234567");
+        userProfilePage.enter(EntityFields.PHONE.getValue(), "-1234567");
 
         logger.step("Step 4. Observe");
         logger.step("VP Step 4. User can not click \"Save\"");
-        Assert.assertFalse(userProfilePage.isButtonSaveEnabled(), "User can not click \"Save\"");
+        Assert.assertFalse(userProfilePage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 }

@@ -5,6 +5,8 @@ public enum Message {
     PASSWORD_IS_REQUIRED("Password is required"),
     PASSWORD_CHARACTERS("Password min length 8 characters"),
     USERNAME_IS_REQUIRED("Username is required"),
+    NAME_IS_REQUIRED("Name is required"),
+    EXPIRED_DATE_IS_REQUIRED("Expired date is required"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?");
 
     private String value;

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import utils.common.constants.Constant;
+import utils.enums.EntityFields;
 import utils.enums.Message;
 
 public class LoginTest extends BaseTest{
@@ -29,7 +30,7 @@ public class LoginTest extends BaseTest{
 
         logger.info("Wait for the page to load");
         logger.step("VP Step 4: Login successfully.");
-        Assert.assertTrue(homePage.isDisplayedHomePage(), "Login successfully");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
     }
 
     @Test(description = "Test case 002: Login with Invalid Email")
