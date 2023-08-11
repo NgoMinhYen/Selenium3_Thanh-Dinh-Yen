@@ -26,8 +26,8 @@ public class HomePage extends AbstractPage{
     @Find(key = "btnYes")
     private IElement btnYes;
 
-    @Find(key = "eleAccount")
-    private IElement eTitleAccount;
+    @Find(key = "eleStringTitle")
+    private IElement eleTitle;
 
 
     private HomePage() {
@@ -72,10 +72,9 @@ public class HomePage extends AbstractPage{
     }
 
     //Coi lai
-    public AccountsPage clickAccounts() {
-        String title = "Accounts";
-        eTitleAccount.waitForVisibility();
-        eTitleAccount.click();
+    public AccountsPage selectTitle(String title) {
+        eleTitle.waitForVisibility();
+        eleTitle.of(title).click();
         return AccountsPage.getInstance();
     }
 }

@@ -4,8 +4,7 @@ import core.framework.elements.IElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
-import elementTest.Select;
-import pageobjects.AccountPage.PartnerPage;
+import org.openqa.selenium.support.ui.Select;
 
 @ResourcePage(file = "accountsPage.properties")
 public class AccountsPage extends AbstractPage {
@@ -13,7 +12,7 @@ public class AccountsPage extends AbstractPage {
     @Find(key = "eleSelectRole")
     private IElement selectRole;
 
-    @Find(key = "eleSelectOption")
+    @Find(key = "eleSelectRole")
     private IElement selectOptionRole;
 
     private AccountsPage() {
@@ -26,8 +25,9 @@ public class AccountsPage extends AbstractPage {
         return instance;
     }
     public void selectUserRole(String role){
-        selectOptionRole.click();
-        //Select select = new Select()
+        selectOptionRole.waitForVisibility();
+        selectOptionRole.selectValue(role);
+
 
 
     }

@@ -15,6 +15,7 @@ public class Locator {
     /**
      * Get element by xpath return locator (bọc cái by lại)
      */
+    // xpath="ffgf";
     public static Locator xpath(String value) {
         Locator locator = new Locator();
         locator.locatorType = LocatorType.XPath;
