@@ -5,14 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
-import pageobjects.PartnerPage;
+import pageobjects.PartnersPage;
 import utils.common.Utilities;
 import utils.common.constants.Constant;
 
-public class PartnerTest extends BaseTest{
+public class PartnersTest extends BaseTest{
     LoginPage loginPage = LoginPage.getInstance();
     HomePage homePage = HomePage.getInstance();
-    PartnerPage partnerPage = PartnerPage.getInstance();
+    PartnersPage partnerPage = PartnersPage.getInstance();
 
     @Test(description = "User can not add partner with Empty Name field")
     public void PARTNER_TC002(){
