@@ -40,7 +40,7 @@ public class Element implements IElement {
     }
 
     public Element of(Object... content) {
-        Locator newLocator = this.locator;
+        Locator newLocator = (Locator) this.locator.clone();
         newLocator.setValue(String.format(this.locator.getValue(), content));
         return new Element(newLocator);
     }
