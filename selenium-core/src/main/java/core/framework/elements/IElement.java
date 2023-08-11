@@ -1,6 +1,7 @@
 package core.framework.elements;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -56,4 +57,8 @@ public interface IElement{
     String getDomAttribute(String attribute, long timeOut);
 
     void pressKey(CharSequence... value);
+
+    void selectText(String value);
+
+    void selectValue(String value);
 }

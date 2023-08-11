@@ -5,6 +5,7 @@
 
     <listeners>
         <listener class-name="utils.listeners.ReportListener" />
+<!--        <listener class-name="utils.listeners.AllureReportListener" />-->
 
     </listeners>
     <test name="Test case">

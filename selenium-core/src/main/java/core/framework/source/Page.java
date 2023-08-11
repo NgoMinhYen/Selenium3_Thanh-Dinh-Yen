@@ -7,7 +7,9 @@ import core.framework.locator.Locator;
 
 import java.io.*;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +46,7 @@ public class Page {
         return properties;
     }
 
-    public static void init(Object page){
+    public static void init(Object page) {
         Class<?> clone = page.getClass();
         ResourcePage sourcePage = clone.getAnnotation(ResourcePage.class);
         Properties data = read(sourcePage.file());
@@ -56,14 +58,16 @@ public class Page {
                 Object value = data.get(find.key());
                 Locator locator = getLocator(value);
                 Object element = null;
+
+
                 if(field.getType().getSimpleName().equalsIgnoreCase("IElement")){
                     element = new Element(locator);
                 }else{
                     element = new ListElement(locator);
                 }
 
-                field.setAccessible(true);
                 try {
+                    field.setAccessible(true);
                     field.set(page, element);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
