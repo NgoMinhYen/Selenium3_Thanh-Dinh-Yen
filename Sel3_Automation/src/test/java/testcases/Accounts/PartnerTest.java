@@ -7,6 +7,7 @@ import pageobjects.AccountsPage;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import testcases.BaseTest;
+import utils.common.Utilities;
 import utils.common.constants.Constant;
 import utils.enums.UserRole;
 
@@ -37,11 +38,10 @@ public class PartnerTest extends BaseTest {
         logger.step("Step 6. Select user role : partner ");
         accountsPage.selectUserRole(UserRole.PARTNER.getValue());
 
-
-
-
-
-
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+        accountsPage.uploadProfile(Constant.PATH);
+        Utilities.wait(5000);
     }
 
 

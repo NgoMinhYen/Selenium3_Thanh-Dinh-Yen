@@ -15,6 +15,7 @@ public class Constant {
 
     public static String PROJECT = System.getProperty("user.dir");
     public static String TARGET = System.getProperty("user.dir").concat(File.separator).concat("target");
+    public static String PATH = System.getProperty("user.dir") + "/src/test/resources/dataFileUpload/upload_01.png";
 
 
 }
