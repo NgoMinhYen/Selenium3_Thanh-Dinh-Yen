@@ -5,10 +5,10 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 
-@ResourcePage(file = "partnerPage.properties")
-public class PartnerPage extends AbstractPage{
+@ResourcePage(file = "partnersPage.properties")
+public class PartnersPage extends AbstractPage{
 
-    private static PartnerPage instance = null;
+    private static PartnersPage instance = null;
 
     @Find(key = "btnAddPartner")
     private IElement btnAddPartner;
@@ -34,13 +34,13 @@ public class PartnerPage extends AbstractPage{
     @Find(key = "txtStartDate")
     private IElement txtStartDate;
 
-    private PartnerPage() {
+    private PartnersPage() {
         Page.init(this);
     }
 
-    public static synchronized PartnerPage getInstance(){
+    public static synchronized PartnersPage getInstance(){
         if (instance == null)
-            instance = new PartnerPage();
+            instance = new PartnersPage();
         return instance;
     }
 

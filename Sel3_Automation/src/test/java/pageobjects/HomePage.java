@@ -26,6 +26,10 @@ public class HomePage extends AbstractPage{
     @Find(key = "btnYes")
     private IElement btnYes;
 
+    @Find(key = "eleAccount")
+    private IElement eTitleAccount;
+
+
     private HomePage() {
         Page.init(this);
     }
@@ -61,10 +65,17 @@ public class HomePage extends AbstractPage{
         return UserProfilePage.getInstance();
     }
 
-    public PartnerPage clickPartner() {
+    public PartnersPage clickPartner() {
         elePartner.waitForVisibility();
         elePartner.click();
-        return PartnerPage.getInstance();
+        return PartnersPage.getInstance();
     }
 
+    //Coi lai
+    public AccountsPage clickAccounts() {
+        String title = "Accounts";
+        eTitleAccount.waitForVisibility();
+        eTitleAccount.click();
+        return AccountsPage.getInstance();
+    }
 }
