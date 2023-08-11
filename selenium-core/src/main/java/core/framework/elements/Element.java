@@ -70,7 +70,6 @@ public class Element implements IElement {
     public void enter(String value) {
         logger.info(String.format("Enter '%s' on %s", value, getElement()));
         waitForVisibility();
-        getElement().clear();
         getElement().sendKeys(value);
     }
 
