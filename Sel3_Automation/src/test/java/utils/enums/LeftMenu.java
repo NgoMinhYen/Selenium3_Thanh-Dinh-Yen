@@ -4,7 +4,8 @@ package utils.enums;
 
 public enum LeftMenu {
     LOGOUT("Logout"),
-    PARTNERS("Partners");
+    PARTNERS("Partners"),
+    ACCOUNT("Accounts");
 
     private String value;
 
