@@ -24,8 +24,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -52,8 +50,6 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with Empty Name field")
     public void PARTNER_TC002(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -79,8 +75,6 @@ public class PartnersTest extends BaseTest{
         partner.setWebsite("xyzcorp.com");
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -110,8 +104,6 @@ public class PartnersTest extends BaseTest{
         String sFutureDate = Utilities.fromDate("M/dd/YYYY", 2);
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -137,8 +129,6 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with Empty description field")
     public void PARTNER_TC005(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -162,8 +152,6 @@ public class PartnersTest extends BaseTest{
         partner.setProfile("");
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -189,8 +177,6 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with invalid profile")
     public void PARTNER_TC007(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -214,8 +200,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -246,8 +230,6 @@ public class PartnersTest extends BaseTest{
         String sYesterday = Utilities.fromDate("M/dd/YYYY", -1);
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -271,8 +253,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -307,8 +287,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -335,8 +313,6 @@ public class PartnersTest extends BaseTest{
     @Test(description = "Invite New Partner popup is displayed")
     public void PARTNER_TC012(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -357,8 +333,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -389,8 +363,6 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 

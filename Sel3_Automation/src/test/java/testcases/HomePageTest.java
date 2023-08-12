@@ -17,9 +17,6 @@ public class HomePageTest extends BaseTest {
     @Test(description = "User can Logout")
     public void LOGOUT_TC001(){
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Login successful with valid account");
         homePage = loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
