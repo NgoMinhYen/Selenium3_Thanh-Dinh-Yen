@@ -111,9 +111,14 @@ public class PartnersPage extends AbstractPage{
         return eleListPartner.getElements().size();
     }
 
+    public String getTextPartner(int index) {
+        eleListPartner.waitForVisibility();
+        return eleListPartner.getElements().get(index).getText();
+    }
+
     public void selectEditFirstPartner() {
         if(getListPartnerOnAPage()>0) {
-            String name = eleListPartner.getElements().get(0).getText();
+            String name = getTextPartner(0);
             elePartner.of(name).waitForVisibility();
             elePartner.of(name).hover();
             btnActionOnPartner.of(name).hover();

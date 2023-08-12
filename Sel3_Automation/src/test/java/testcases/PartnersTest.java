@@ -352,4 +352,36 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.INVITE_NEW_PARTNER.getValue()), "'Invite New Partner' popup is displayed");
     }
 
+    @Test(description = "User cannot add two partners with the same name")
+    public void PARTNER_TC013(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+        partner.setName(partnerPage.getTextPartner(0));
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Enter a name that already exists");
+        logger.step("Step 5. Enter Website");
+        logger.step("Step 6. Select valid Start Date");
+        logger.step("Step 6. Select valid Expired Date");
+        logger.step("Step 7. Enter Description");
+        logger.step("Step 8. Select Profile");
+        logger.step("Step 9. Click Save");
+        partnerPage.addPartnerWithRandomInfo(partner);
+
+        logger.step("Step 10. Observe");
+        logger.step("VP Step 10. Verify user add partner is not successful");
+        Assert.assertFalse(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+    }
+
 }
