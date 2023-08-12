@@ -8,6 +8,7 @@ import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import testcases.BaseTest;
 import utils.common.constants.Constant;
+import utils.enums.EntityFields;
 import utils.enums.LeftMenu;
 import utils.enums.UserRole;
 
@@ -20,7 +21,7 @@ public class AdminTest extends BaseTest {
         Admin admin = Admin.generateRandomAdmin();
         logger.step("Step 1: Login to home page (Admin Role)");
         homePage = loginPage.login(Constant.USER_ADMIN);
-        Assert.assertTrue(homePage.isDisplayedHomePage(),
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()),
                 "Home Page should be displayed");
 
         logger.step("Step 2: Select Accounts tab");
