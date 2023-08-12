@@ -13,8 +13,14 @@ public class PartnersPage extends AbstractPage{
 
     private static PartnersPage instance = null;
 
+    @Find(key = "eleListPartner")
+    private IElement eleListPartner;
+
     @Find(key = "btnUserActions")
     private IElement btnUserActions;
+
+    @Find(key = "btnActionOnPartner")
+    private IElement btnActionOnPartner;
 
     @Find(key = "eleUploadFile")
     private IElement btnUploadFile;
@@ -22,14 +28,23 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "eleTitle")
     private IElement eleTitle;
 
+    @Find(key = "eleTitleOfSpan")
+    private IElement eleTitleOfSpan;
+
+    @Find(key = "elePartner")
+    private IElement elePartner;
+
+    @Find(key = "eleImg")
+    private IElement eleImg;
+
     @Find(key = "lblErrorMessage")
-    private IElement lblNameErrorMessage;
+    private IElement lblErrorMessage;
 
     @Find(key = "txtUserActions")
     private IElement txtUserActions;
 
-    @Find(key = "txtDescription")
-    private IElement txtDescription;
+    @Find(key = "textareaUserActions")
+    private IElement textareaUserActions;
 
     @Find(key = "txtFormcontrolname")
     private IElement txtFormcontrolname;
@@ -48,8 +63,8 @@ public class PartnersPage extends AbstractPage{
         txtUserActions.of(fieldName).enter(value);
     }
 
-    public void enterDescription(String sDescription) {
-        txtDescription.enter(sDescription);
+    public void enterTextarea(String fieldName, String value) {
+        textareaUserActions.of(fieldName).enter(value);
     }
 
     public void enterForm(String fieldName, String value) {
@@ -61,12 +76,21 @@ public class PartnersPage extends AbstractPage{
         btnUserActions.of(value).click();
     }
 
+    public void select(String value) {
+        eleImg.of(value).waitForVisibility();
+        eleImg.of(value).click();
+    }
+
     public boolean isDisplayedTitle(String value) {
         return eleTitle.of(value).isDisplayed();
     }
 
+    public boolean isDisplayedTitleOfSpan(String value) {
+        return eleTitleOfSpan.of(value).isDisplayed();
+    }
+
     public boolean isDisplayedErrorMessage(String value) {
-        return lblNameErrorMessage.of(value).isDisplayed();
+        return lblErrorMessage.of(value).isDisplayed();
     }
 
     public boolean isButtonEnabled(String value) {
@@ -75,17 +99,48 @@ public class PartnersPage extends AbstractPage{
     }
 
     public void addPartnerWithRandomInfo(Partner partner) {
+        enterDataIntoAddPartnerForm(partner);
+        selectButton(UserActions.SAVE.getValue());
+    }
+
+    public void enterDataIntoAddPartnerForm(Partner partner) {
         enterValue(UserActions.ENTER_NAME.getValue(), partner.getName());
         enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
         enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
         enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
-        enterDescription(partner.getDescription());
-        uploadProfile(partner.getProfile());
+        enterTextarea(UserActions.ENTER_DESCRIPTION.getValue(), partner.getDescription());
+        if(!partner.getProfile().isEmpty()) {
+            uploadProfile(partner.getProfile());
+        }
     }
 
     public void uploadProfile(String path){
         btnUploadFile.waitForVisibility();
         btnUploadFile.enter(path);
+    }
+
+    public int getListPartnerOnAPage() {
+        eleListPartner.waitForVisibility();
+        return eleListPartner.getElements().size();
+    }
+
+    public String getTextPartner(int index) {
+        eleListPartner.waitForVisibility();
+        return eleListPartner.getElements().get(index).getText();
+    }
+
+    /*
+        index is the position of the partner to be updated
+        The index starts from 0, meaning the index of the first partner is 0
+     */
+    public void selectEditPartner(int index) {
+        if(getListPartnerOnAPage()>0) {
+            String name = getTextPartner(index);
+            elePartner.of(name).waitForVisibility();
+            elePartner.of(name).hover();
+            btnActionOnPartner.of(name).hover();
+            btnActionOnPartner.of(name).click();
+        }
     }
 
 }
