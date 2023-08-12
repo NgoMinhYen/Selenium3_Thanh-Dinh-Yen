@@ -4,6 +4,7 @@ import core.framework.elements.IElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
+import utils.enums.LeftMenu;
 
 @ResourcePage(file = "homePage.properties")
 public class HomePage extends AbstractPage{
@@ -63,5 +64,31 @@ public class HomePage extends AbstractPage{
         eleTitle.of(title).waitForVisibility();
         eleTitle.of(title).click();
         return AccountsPage.getInstance();
+    }
+
+    public <T extends AbstractPage> T openTab( LeftMenu tab) {
+        T page = getTab(tab);
+
+        if (page == null)
+            return null;
+
+//        if (isActiveTab(tab))
+//            return page;
+//        waitForLoadingSpinnerDisappear();
+        eleTitle.of(tab.getValue()).waitForVisibility();
+        eleTitle.of(tab.getValue()).click();
+        page.waitForPageLoadingComplete();
+        return page;
+    }
+    @SuppressWarnings("unchecked")
+    private <T extends AbstractPage> T getTab( LeftMenu tab) {
+        switch (tab) {
+            case ACCOUNT:
+                return (T) AccountsPage.getInstance();
+            case PARTNERS:
+                return (T) PartnersPage.getInstance();
+            default:
+                return null;
+        }
     }
 }
