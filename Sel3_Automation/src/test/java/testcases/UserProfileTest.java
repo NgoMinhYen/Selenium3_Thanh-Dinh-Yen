@@ -18,8 +18,6 @@ public class UserProfileTest extends BaseTest{
     @Test(description = "User can not update profile with empty name field")
     public void USER_PROFILE_TC001(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
@@ -38,8 +36,6 @@ public class UserProfileTest extends BaseTest{
     @Test(description = "User can not update profile with Invalid Phone field")
     public void USER_PROFILE_TC002(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
