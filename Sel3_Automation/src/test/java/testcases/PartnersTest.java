@@ -29,7 +29,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
@@ -45,8 +45,8 @@ public class PartnersTest extends BaseTest{
         logger.step("Step 9. Click Save");
         partnerPage.addPartnerWithRandomInfo(partner);
 
-        logger.step("Step 10. Search for a partner by the newly added partner's name");
-        logger.step("VP Step 10. Verify user add partner is successful");
+        logger.step("VP Step 9. Verify user add partner is successful");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
     }
 
     @Test(description = "User can not add partner with Empty Name field")
@@ -57,7 +57,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -73,6 +73,37 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
+    @Test(description = "User can not add partner with Invalid website")
+    public void PARTNER_TC003(){
+        Partner partner = Partner.generateRandomPartner();
+        partner.setWebsite("xyzcorp.com");
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Enter Name");
+        logger.step("Step 5. Enter \"xyzcorp.com\" in the Website field");
+        logger.step("Step 6. Select valid Start Date");
+        logger.step("Step 6. Select valid Expired Date");
+        logger.step("Step 7. Enter Description");
+        logger.step("Step 8. Select Profile");
+        partnerPage.enterDataIntoAddPartnerForm(partner);
+
+        logger.step("Step 9. Observe");
+        logger.step("VP Step 9. User can not click \"Save\"");
+        Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
+    }
+
     @Test(description = "Error message is played when user add partner with Expired date before start date")
     public void PARTNER_TC004(){
         String sToday = Utilities.toDate("M/dd/YYYY");
@@ -84,7 +115,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -103,4 +134,25 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.EXPIRED_DATE_IS_REQUIRED.getValue()), "\"Expired date is required\" is displayed");
     }
 
+    @Test(description = "User can not add partner with Empty description field")
+    public void PARTNER_TC005(){
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Leave the Description field empty");
+        partnerPage.enterDescription("");
+
+        logger.step("VP Step 4. \"Description is required\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.DESCRIPTION_IS_REQUIRED.getValue()), "\"Description is required\" is displayed");
+    }
 }
