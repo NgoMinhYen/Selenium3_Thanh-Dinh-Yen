@@ -5,6 +5,7 @@ public enum EntityFields {
     START_DATE("subscriptionDate"),
     USER_PROFILE("User Profile"),
     INVITE_NEW_PARTNER("Invite New Partner"),
+    UPDATE_PARTNER("Update Partner"),
     WELCOME_TO_VOUCHER_PARADISE("Welcome to Voucher Paradise"),
     PHONE("Phone"),
     FIRST_NAME("First name");

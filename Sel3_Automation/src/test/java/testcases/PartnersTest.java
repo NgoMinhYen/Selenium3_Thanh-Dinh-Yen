@@ -266,4 +266,40 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.START_DATE_IS_REQUIRED.getValue()), "\"Start date is required\" is displayed");
     }
 
+    @Test(description = "User can update partner successfully with valid information")
+    public void PARTNER_TC010(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Add a partner if list is empty");
+        if(partnerPage.getListPartnerOnAPage()<0) {
+            partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+            partnerPage.addPartnerWithRandomInfo(partner);
+            Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+        }
+
+        logger.step("Step 4. Select a partner");
+        logger.step("Step 5. Click edit partner");
+        partnerPage.selectEditFirstPartner();
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
+
+        logger.step("Step 6. Enter new name");
+        partnerPage.enterValue(UserActions.ENTER_NAME.getValue(), "Update " + partner.getName());
+
+        logger.step("Step 7. Click Save");
+        partnerPage.selectButton(UserActions.SAVE.getValue());
+
+        logger.step("VP Step 7. Verify user update partner is successful");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.UPDATED_PARTNER_SUCCESSFULLY.getValue()), "User update partner is successful");
+    }
+
 }
