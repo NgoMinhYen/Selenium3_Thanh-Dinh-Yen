@@ -67,15 +67,6 @@ public class AccountsPage extends AbstractPage {
     @Find(key = "elePartners")
     private IElement getPartners;
 
-    @Find(key = "eleFirstName")
-    private IElement eleFirstName;
-
-    @Find(key = "eleLastName")
-    private IElement eleLastName;
-
-    @Find(key = "eleUserName")
-    private IElement eleUserName;
-
     @Find(key = "eleSubmit")
     private IElement submit;
 
@@ -91,6 +82,10 @@ public class AccountsPage extends AbstractPage {
     private IElement btnSearch;
     @Find(key = "iconEdit")
     private IElement iconEdit;
+    @Find(key = "iconDelete")
+    private IElement iconDelete;
+    @Find(key = "eleButtonOnPopup")
+    private IElement buttonOnPopup;
 
 
     private AccountsPage() {
@@ -142,9 +137,9 @@ public class AccountsPage extends AbstractPage {
 
     }
     public AccountsPage inviteNewPartner(InvitePartner invitePartner){
-        eleFirstName.enter(invitePartner.getFirstName());
-        eleLastName.enter(invitePartner.getLastName());
-        eleUserName.enter(invitePartner.getUserName());
+        txtFirstNamePopUp.enter(invitePartner.getFirstName());
+        txtLastNamePopUp.enter(invitePartner.getLastName());
+        txtUserNamePopUp.enter(invitePartner.getUserName());
         uploadProfile(invitePartner.getProfile());
         searchPartnerInPopup(invitePartner.getPartner());
         submit.click();
@@ -209,6 +204,16 @@ public class AccountsPage extends AbstractPage {
         return AccountsPage.getInstance();
 
     }
-    //public void editFirstName
+    public void editFirstName(String value){
+        txtFirstNamePopUp.clear();
+        txtFirstNamePopUp.enter(value);
+
+    }
+    public AccountsPage deleteAccount(String value){
+        iconDelete.click();
+        buttonOnPopup.waitForVisibility();
+        buttonOnPopup.of(value).click();
+        return AccountsPage.getInstance();
+    }
 
 }

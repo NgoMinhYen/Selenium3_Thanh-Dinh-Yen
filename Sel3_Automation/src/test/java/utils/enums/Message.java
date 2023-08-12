@@ -15,7 +15,9 @@ public enum Message {
     PARTNER_HAVE_BEEN_DELETED_SUCCESSFULLY("Partner have been deleted successfully"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully"),
     UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully"),
-    CREATED_ACCOUNT_SUCCESSFULLY("Create account success");
+    CREATED_ACCOUNT_SUCCESSFULLY("Create account success"),
+    UPDATE_ACCOUNT_SUCCESSFULLY("Update account success"),
+    DELETE_ACCOUNT_SUCCESSFULLY("Account have been deleted successfully");
 
     private String value;
 
