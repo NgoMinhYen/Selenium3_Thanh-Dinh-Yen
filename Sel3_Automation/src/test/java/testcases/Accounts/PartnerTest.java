@@ -10,6 +10,7 @@ import testcases.BaseTest;
 import utils.common.Utilities;
 import utils.common.constants.Constant;
 import utils.enums.EntityFields;
+import utils.enums.LeftMenu;
 import utils.enums.UserRole;
 
 public class PartnerTest extends BaseTest {
@@ -20,6 +21,10 @@ public class PartnerTest extends BaseTest {
 
     @Test(description = "Test case PARTNERS_TC01: Partner can invite User")
     public void PARTNER_TC01(){
+        String firstName = Utilities.generateString(4);
+        String lastName = Utilities.generateString(4);
+        String userName = firstName + "@gmail.com";
+
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -34,14 +39,17 @@ public class PartnerTest extends BaseTest {
         Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
 
         logger.step("Step 5. Select Account on the left");
-        homePage.selectTitle("Accounts");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
 
         logger.step("Step 6. Select user role : partner ");
         accountsPage.selectUserRole(UserRole.PARTNER.getValue());
 
         logger.step("Step 7: Click Invite User");
         accountsPage.clickInviteUser();
-        accountsPage.uploadProfile(Constant.PATH);
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.inviteNewPartner(firstName,lastName,userName,Constant.PATH,"adidas");
         Utilities.wait(5000);
     }
 

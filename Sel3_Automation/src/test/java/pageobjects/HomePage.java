@@ -9,8 +9,8 @@ import utils.enums.LeftMenu;
 @ResourcePage(file = "homePage.properties")
 public class HomePage extends AbstractPage{
     private static HomePage instance = null;
-    @Find(key = "eleTitle")
-    private IElement eleTitle;
+    @Find(key = "eleHomepageTitle")
+    private IElement eleHomeTitle;
 
     @Find(key = "eleUserProfile")
     private IElement eleUserProfile;
@@ -33,7 +33,8 @@ public class HomePage extends AbstractPage{
     }
 
     public boolean isDisplayedTitle(String value) {
-        return eleTitle.of(value).isDisplayed();
+        eleHomeTitle.waitForVisibility();
+        return eleHomeTitle.of(value).isDisplayed();
     }
 
     public boolean isDisplayedEleOnPopup(String value) {
@@ -51,16 +52,16 @@ public class HomePage extends AbstractPage{
     }
 
     public PartnersPage selectPartner(String title) {
-        eleTitle.of(title).waitForVisibility();
-        eleTitle.of(title).click();
+        eleStringTitle.of(title).waitForVisibility();
+        eleStringTitle.of(title).click();
         return PartnersPage.getInstance();
     }
 
     //Coi lai
-    public AccountsPage selectTitle(String title) {
-        eleTitle.of(title).waitForVisibility();
-        eleTitle.of(title).click();
-        return AccountsPage.getInstance();
+    public HomePage selectTitle(String title) {
+        eleStringTitle.of(title).waitForVisibility();
+        eleStringTitle.of(title).click();
+        return HomePage.getInstance();
     }
 
     public <T extends AbstractPage> T openTab( LeftMenu tab) {
@@ -72,8 +73,8 @@ public class HomePage extends AbstractPage{
 //        if (isActiveTab(tab))
 //            return page;
 //        waitForLoadingSpinnerDisappear();
-        eleTitle.of(tab.getValue()).waitForVisibility();
-        eleTitle.of(tab.getValue()).click();
+        eleStringTitle.of(tab.getValue()).waitForVisibility();
+        eleStringTitle.of(tab.getValue()).click();
         page.waitForPageLoadingComplete();
         return page;
     }
