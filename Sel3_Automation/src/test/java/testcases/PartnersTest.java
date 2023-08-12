@@ -134,4 +134,25 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.EXPIRED_DATE_IS_REQUIRED.getValue()), "\"Expired date is required\" is displayed");
     }
 
+    @Test(description = "User can not add partner with Empty description field")
+    public void PARTNER_TC005(){
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Leave the Description field empty");
+        partnerPage.enterDescription("");
+
+        logger.step("VP Step 4. \"Description is required\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.DESCRIPTION_IS_REQUIRED.getValue()), "\"Description is required\" is displayed");
+    }
 }

@@ -23,7 +23,7 @@ public class PartnersPage extends AbstractPage{
     private IElement eleTitle;
 
     @Find(key = "lblErrorMessage")
-    private IElement lblNameErrorMessage;
+    private IElement lblErrorMessage;
 
     @Find(key = "txtUserActions")
     private IElement txtUserActions;
@@ -66,7 +66,7 @@ public class PartnersPage extends AbstractPage{
     }
 
     public boolean isDisplayedErrorMessage(String value) {
-        return lblNameErrorMessage.of(value).isDisplayed();
+        return lblErrorMessage.of(value).isDisplayed();
     }
 
     public boolean isButtonEnabled(String value) {

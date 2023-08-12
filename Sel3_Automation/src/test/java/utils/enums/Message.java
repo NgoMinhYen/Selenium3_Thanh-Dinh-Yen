@@ -6,6 +6,7 @@ public enum Message {
     PASSWORD_CHARACTERS("Password min length 8 characters"),
     USERNAME_IS_REQUIRED("Username is required"),
     NAME_IS_REQUIRED("Name is required"),
+    DESCRIPTION_IS_REQUIRED("Description is required"),
     EXPIRED_DATE_IS_REQUIRED("Expired date is required"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully");
