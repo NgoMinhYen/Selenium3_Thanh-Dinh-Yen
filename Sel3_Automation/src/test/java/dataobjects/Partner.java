@@ -2,6 +2,7 @@ package dataobjects;
 
 
 import utils.common.Utilities;
+import utils.common.constants.Constant;
 
 public class Partner {
     private String name;
@@ -80,7 +81,7 @@ public class Partner {
         partner.setStartDate(sToday);
         partner.setExpiredDate(sFutureDay);
         partner.setDescription(Utilities.generateString(20));
-        partner.setProfile("");
+        partner.setProfile(Constant.PATH_IMG03);
         return partner;
     }
 

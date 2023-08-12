@@ -51,8 +51,8 @@ public class HomePage extends AbstractPage{
     }
 
     public PartnersPage selectPartner(String title) {
-        eleTitle.of(title).waitForVisibility();
-        eleTitle.of(title).click();
+        eleStringTitle.of(title).waitForVisibility();
+        eleStringTitle.of(title).click();
         return PartnersPage.getInstance();
     }
 
@@ -61,6 +61,11 @@ public class HomePage extends AbstractPage{
         eleTitle.of(title).waitForVisibility();
         eleTitle.of(title).click();
         return AccountsPage.getInstance();
+    }
+
+    public void selectLogout() {
+        eleStringTitle.of(LeftMenu.LOGOUT.getValue()).waitForVisibility();
+        eleStringTitle.of(LeftMenu.LOGOUT.getValue()).click();
     }
 
     public <T extends AbstractPage> T openTab( LeftMenu tab) {
@@ -72,8 +77,8 @@ public class HomePage extends AbstractPage{
 //        if (isActiveTab(tab))
 //            return page;
 //        waitForLoadingSpinnerDisappear();
-        eleTitle.of(tab.getValue()).waitForVisibility();
-        eleTitle.of(tab.getValue()).click();
+        eleStringTitle.of(tab.getValue()).waitForVisibility();
+        eleStringTitle.of(tab.getValue()).click();
         page.waitForPageLoadingComplete();
         return page;
     }
