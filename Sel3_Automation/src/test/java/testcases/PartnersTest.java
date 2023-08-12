@@ -414,7 +414,6 @@ public class PartnersTest extends BaseTest{
         partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(),0);
         Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
 
-
         logger.step("Step 7. Click Delete");
         partnerPage.select(UserActions.DELETE_PARTNER.getValue());
 
@@ -464,6 +463,37 @@ public class PartnersTest extends BaseTest{
 
         logger.step("VP Step 9. \"Update Partner\" popup is displayed");
         Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
+    }
+
+    @Test(description = "User can search Partner")
+    public void PARTNER_TC017(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+        String name = partnerPage.getTextPartner(0);
+
+        logger.step("Step 3. Add a partner if list is empty");
+        if(partnerPage.getListPartnerOnAPage()<0) {
+            partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+            partnerPage.addPartnerWithRandomInfo(partner);
+            Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+            name = partner.getName();
+            Driver.refresh();
+            partnerPage.waitForPageLoadingComplete();
+        }
+
+        logger.step("Step 4. Search for the newly added partner");
+        partnerPage.searchPartner(name);
+
+        logger.step("Step 5. Observe");
+        logger.step("VP Step 5. The newly added partner is displayed");
+        Assert.assertEquals(name, partnerPage.getTextPartner(0),"The newly added partner is displayed");
     }
 
 }
