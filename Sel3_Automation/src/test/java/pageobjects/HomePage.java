@@ -64,6 +64,11 @@ public class HomePage extends AbstractPage{
         return HomePage.getInstance();
     }
 
+    public void selectLogout() {
+        eleStringTitle.of(LeftMenu.LOGOUT.getValue()).waitForVisibility();
+        eleStringTitle.of(LeftMenu.LOGOUT.getValue()).click();
+    }
+
     public <T extends AbstractPage> T openTab( LeftMenu tab) {
         T page = getTab(tab);
 
