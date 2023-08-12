@@ -18,7 +18,9 @@ public class Constant {
     public static String PROJECT = System.getProperty("user.dir");
     public static String TARGET = System.getProperty("user.dir").concat(File.separator).concat("target");
     public static String PATH = System.getProperty("user.dir") + "/src/test/resources/dataFileUpload/upload_01.png";
-    public static String PATH_IMG03 = System.getProperty("user.dir") + "/src/test/resources/dataFileUpload/upload_03.png";
+    public static String PATH_IGMAGE = System.getProperty("user.dir") + "/src/test/resources/dataFileUpload";
+    public static String PATH_IMG03 = PATH_IGMAGE + "/upload_03.png";
+    public static String PATH_TESTPDF = PATH_IGMAGE + "/test.pdf";
 
 
 }

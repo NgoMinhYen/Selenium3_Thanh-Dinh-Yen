@@ -5,16 +5,24 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.Partner;
+import org.openqa.selenium.WebElement;
 import utils.enums.EntityFields;
 import utils.enums.UserActions;
+import utils.logs.Logger;
 
 @ResourcePage(file = "partnersPage.properties")
 public class PartnersPage extends AbstractPage{
 
     private static PartnersPage instance = null;
 
+    @Find(key = "eleListPartner")
+    private IElement eleListPartner;
+
     @Find(key = "btnUserActions")
     private IElement btnUserActions;
+
+    @Find(key = "btnActionOnPartner")
+    private IElement btnActionOnPartner;
 
     @Find(key = "eleUploadFile")
     private IElement btnUploadFile;
@@ -22,8 +30,11 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "eleTitle")
     private IElement eleTitle;
 
+    @Find(key = "elePartner")
+    private IElement elePartner;
+
     @Find(key = "lblErrorMessage")
-    private IElement lblNameErrorMessage;
+    private IElement lblErrorMessage;
 
     @Find(key = "txtUserActions")
     private IElement txtUserActions;
@@ -66,7 +77,7 @@ public class PartnersPage extends AbstractPage{
     }
 
     public boolean isDisplayedErrorMessage(String value) {
-        return lblNameErrorMessage.of(value).isDisplayed();
+        return lblErrorMessage.of(value).isDisplayed();
     }
 
     public boolean isButtonEnabled(String value) {
@@ -75,17 +86,39 @@ public class PartnersPage extends AbstractPage{
     }
 
     public void addPartnerWithRandomInfo(Partner partner) {
+        enterDataIntoAddPartnerForm(partner);
+        selectButton(UserActions.SAVE.getValue());
+    }
+
+    public void enterDataIntoAddPartnerForm(Partner partner) {
         enterValue(UserActions.ENTER_NAME.getValue(), partner.getName());
         enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
         enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
         enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
         enterDescription(partner.getDescription());
-        uploadProfile(partner.getProfile());
+        if(!partner.getProfile().isEmpty()) {
+            uploadProfile(partner.getProfile());
+        }
     }
 
     public void uploadProfile(String path){
         btnUploadFile.waitForVisibility();
         btnUploadFile.enter(path);
+    }
+
+    public int getListPartnerOnAPage() {
+        eleListPartner.waitForVisibility();
+        return eleListPartner.getElements().size();
+    }
+
+    public void selectEditFirstPartner() {
+        if(getListPartnerOnAPage()>0) {
+            String name = eleListPartner.getElements().get(0).getText();
+            elePartner.of(name).waitForVisibility();
+            elePartner.of(name).hover();
+            btnActionOnPartner.of(name).hover();
+            btnActionOnPartner.of(name).click();
+        }
     }
 
 }
