@@ -5,41 +5,34 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.Partner;
+import utils.enums.EntityFields;
+import utils.enums.UserActions;
 
 @ResourcePage(file = "partnersPage.properties")
 public class PartnersPage extends AbstractPage{
 
     private static PartnersPage instance = null;
 
-    @Find(key = "btnAddPartner")
-    private IElement btnAddPartner;
+    @Find(key = "btnUserActions")
+    private IElement btnUserActions;
 
-    @Find(key = "btnSave")
-    private IElement btnSave;
+    @Find(key = "eleUploadFile")
+    private IElement btnUploadFile;
 
-    @Find(key = "eleInviteNewPartnerPopup")
-    private IElement eleInviteNewPartnerPopup;
+    @Find(key = "eleTitle")
+    private IElement eleTitle;
 
-    @Find(key = "lblRequiredNameErrorMessage")
-    private IElement lblRequiredNameErrorMessage;
+    @Find(key = "lblErrorMessage")
+    private IElement lblNameErrorMessage;
 
-    @Find(key = "lblRequiredExpiredDateErrorMessage")
-    private IElement lblRequiredExpiredDateErrorMessage;
-
-    @Find(key = "txtName")
-    private IElement txtName;
-
-    @Find(key = "txtWebsite")
-    private IElement txtWebsite;
+    @Find(key = "txtUserActions")
+    private IElement txtUserActions;
 
     @Find(key = "txtDescription")
     private IElement txtDescription;
 
-    @Find(key = "txtExpiredDate")
-    private IElement txtExpiredDate;
-
-    @Find(key = "txtStartDate")
-    private IElement txtStartDate;
+    @Find(key = "txtFormcontrolname")
+    private IElement txtFormcontrolname;
 
     private PartnersPage() {
         Page.init(this);
@@ -51,55 +44,48 @@ public class PartnersPage extends AbstractPage{
         return instance;
     }
 
-    public void enterName(String sName) {
-        txtName.enter(sName);
-    }
-
-    public void enterWebsite(String sWebsite) {
-        txtWebsite.enter(sWebsite);
+    public void enterValue(String fieldName, String value) {
+        txtUserActions.of(fieldName).enter(value);
     }
 
     public void enterDescription(String sDescription) {
         txtDescription.enter(sDescription);
     }
 
-    public void enterExpiredDate(String sExpiredDate) {
-        txtExpiredDate.enter(sExpiredDate);
+    public void enterForm(String fieldName, String value) {
+        txtFormcontrolname.of(fieldName).enter(value);
     }
 
-    public void enterStartDate(String sStartDate) {
-        txtStartDate.enter(sStartDate);
+    public void selectButton(String value) {
+        btnUserActions.of(value).waitForVisibility();
+        btnUserActions.of(value).click();
     }
 
-    public void clickAddPartner() {
-        btnAddPartner.waitForVisibility();
-        btnAddPartner.click();
+    public boolean isDisplayedTitle(String value) {
+        return eleTitle.of(value).isDisplayed();
     }
 
-    public boolean isDisplayedInviteNewPartnerPopup() {
-        return eleInviteNewPartnerPopup.isDisplayed();
+    public boolean isDisplayedErrorMessage(String value) {
+        return lblNameErrorMessage.of(value).isDisplayed();
     }
 
-    public boolean isDisplayedRequiredNameErrorMessage() {
-        return lblRequiredNameErrorMessage.isDisplayed();
-    }
-
-    public boolean isDisplayedRequiredExpiredDateErrorMessage() {
-        return lblRequiredExpiredDateErrorMessage.isDisplayed();
-    }
-
-    public boolean isButtonSaveEnabled() {
-        btnSave.waitForVisibility();
-        return btnSave.isEnabled();
+    public boolean isButtonEnabled(String value) {
+        btnUserActions.of(value).waitForVisibility();
+        return btnUserActions.of(value).isEnabled();
     }
 
     public void addPartnerWithRandomInfo(Partner partner) {
-        enterName(partner.getName());
-        enterWebsite(partner.getWebsite());
-        enterStartDate(partner.getStartDate());
-        enterExpiredDate(partner.getExpiredDate());
+        enterValue(UserActions.ENTER_NAME.getValue(), partner.getName());
+        enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
+        enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
+        enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
         enterDescription(partner.getDescription());
+        uploadProfile(partner.getProfile());
+    }
 
+    public void uploadProfile(String path){
+        btnUploadFile.waitForVisibility();
+        btnUploadFile.enter(path);
     }
 
 }
