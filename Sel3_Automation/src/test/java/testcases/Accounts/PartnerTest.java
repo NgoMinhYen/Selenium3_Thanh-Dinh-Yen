@@ -9,6 +9,7 @@ import pageobjects.LoginPage;
 import testcases.BaseTest;
 import utils.common.Utilities;
 import utils.common.constants.Constant;
+import utils.enums.EntityFields;
 import utils.enums.UserRole;
 
 public class PartnerTest extends BaseTest {
@@ -30,7 +31,7 @@ public class PartnerTest extends BaseTest {
 
         logger.info("Wait for the page to load");
         logger.step("VP Step 4: Login successfully.");
-        Assert.assertTrue(homePage.isDisplayedHomePage(), "Login successfully");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
 
         logger.step("Step 5. Select Account on the left");
         homePage.selectTitle("Accounts");

@@ -1,7 +1,11 @@
 package utils.enums;
 
 public enum UserActions {
-    YES("Yes");
+    YES("Yes"),
+    SAVE("Save"),
+    ENTER_NAME("Enter Name"),
+    ENTER_WEBSITE("Enter Website"),
+    ADD_PARTNER("Add Partner");
 
     private String value;
 

@@ -9,20 +9,17 @@ import utils.enums.LeftMenu;
 @ResourcePage(file = "homePage.properties")
 public class HomePage extends AbstractPage{
     private static HomePage instance = null;
-    @Find(key = "titleWelcome")
-    private IElement titleWelcome;
+    @Find(key = "eleTitle")
+    private IElement eleTitle;
 
     @Find(key = "eleUserProfile")
     private IElement eleUserProfile;
-
-    @Find(key = "elePartner")
-    private IElement elePartner;
 
     @Find(key = "eleStringOnPopup")
     private IElement eleStringOnPopup;
 
     @Find(key = "eleStringTitle")
-    private IElement eleTitle;
+    private IElement eleStringTitle;
 
 
     private HomePage() {
@@ -35,8 +32,8 @@ public class HomePage extends AbstractPage{
         return instance;
     }
 
-    public boolean isDisplayedHomePage() {
-        return titleWelcome.isDisplayed();
+    public boolean isDisplayedTitle(String value) {
+        return eleTitle.of(value).isDisplayed();
     }
 
     public boolean isDisplayedEleOnPopup(String value) {
@@ -53,9 +50,9 @@ public class HomePage extends AbstractPage{
         return UserProfilePage.getInstance();
     }
 
-    public PartnersPage clickPartner() {
-        elePartner.waitForVisibility();
-        elePartner.click();
+    public PartnersPage selectPartner(String title) {
+        eleTitle.of(title).waitForVisibility();
+        eleTitle.of(title).click();
         return PartnersPage.getInstance();
     }
 

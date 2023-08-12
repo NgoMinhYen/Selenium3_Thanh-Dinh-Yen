@@ -10,17 +10,14 @@ public class UserProfilePage extends AbstractPage{
 
     private static UserProfilePage instance = null;
 
-    @Find(key = "titleUserProfile")
-    private IElement titleUserProfile;
+    @Find(key = "lblTitle")
+    private IElement lblTitle;
 
-    @Find(key = "txtFirstName")
-    private IElement txtFirstName;
+    @Find(key = "txtUserActions")
+    private IElement txtUserActions;
 
-    @Find(key = "txtPhone")
-    private IElement txtPhone;
-
-    @Find(key = "btnSave")
-    private IElement btnSave;
+    @Find(key = "btnUserActions")
+    private IElement btnUserActions;
 
     private UserProfilePage() {
         Page.init(this);
@@ -32,21 +29,17 @@ public class UserProfilePage extends AbstractPage{
         return instance;
     }
 
-    public void enterFirstName(String sFirstName) {
-        txtFirstName.enter(sFirstName);
+    public void enter(String fieldName, String value) {
+        txtUserActions.of(fieldName).enter(value);
     }
 
-    public void enterPhone(String sPhone) {
-        txtPhone.enter(sPhone);
+    public boolean isButtonEnabled(String value) {
+        btnUserActions.of(value).waitForVisibility();
+        return btnUserActions.of(value).isEnabled();
     }
 
-    public boolean isButtonSaveEnabled() {
-        btnSave.waitForVisibility();
-        return btnSave.isEnabled();
-    }
-
-    public boolean isDisplayedUserProfilePage() {
-        return titleUserProfile.isDisplayed();
+    public boolean isDisplayedTitle(String value) {
+        return lblTitle.of(value).isDisplayed();
     }
 
 }

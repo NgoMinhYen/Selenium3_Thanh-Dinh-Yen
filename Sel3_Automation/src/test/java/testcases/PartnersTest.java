@@ -1,6 +1,7 @@
 package testcases;
 
 import core.framework.wrappers.Driver;
+import dataobjects.Partner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
@@ -8,6 +9,10 @@ import pageobjects.LoginPage;
 import pageobjects.PartnersPage;
 import utils.common.Utilities;
 import utils.common.constants.Constant;
+import utils.enums.EntityFields;
+import utils.enums.LeftMenu;
+import utils.enums.Message;
+import utils.enums.UserActions;
 
 public class PartnersTest extends BaseTest{
     LoginPage loginPage = LoginPage.getInstance();
@@ -23,18 +28,18 @@ public class PartnersTest extends BaseTest{
         homePage.waitForPageLoadingComplete();
 
         logger.step("Step 2. Click \"Partners\"");
-        partnerPage = homePage.clickPartner();
+        partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
-        partnerPage.clickAddPartner();
-        Assert.assertTrue(partnerPage.isDisplayedInviteNewPartnerPopup(), "'Invite New Partner' popup is displayed");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.INVITE_NEW_PARTNER.getValue()), "'Invite New Partner' popup is displayed");
 
         logger.step("Step 4. Leave the Name field empty");
-        partnerPage.enterName("");
+        partnerPage.enterValue(UserActions.ENTER_NAME.getValue(), "");
 
         logger.step("VP Step 4. \"Name is required\" is displayed. User can not click \"Save\"");
-        Assert.assertTrue(partnerPage.isDisplayedRequiredNameErrorMessage(), "\"Name is required\" is displayed");
-        Assert.assertFalse(partnerPage.isButtonSaveEnabled(), "User can not click \"Save\"");
+        Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.NAME_IS_REQUIRED.getValue()), "\"Name is required\" is displayed");
+        Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
     @Test(description = "Error message is played when user add partner with Expired date before start date")
@@ -49,21 +54,21 @@ public class PartnersTest extends BaseTest{
         homePage.waitForPageLoadingComplete();
 
         logger.step("Step 2. Click \"Partners\"");
-        partnerPage = homePage.clickPartner();
+        partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
-        partnerPage.clickAddPartner();
-        Assert.assertTrue(partnerPage.isDisplayedInviteNewPartnerPopup(), "'Invite New Partner' popup is displayed");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.INVITE_NEW_PARTNER.getValue()), "'Invite New Partner' popup is displayed");
 
         logger.step("Step 4. Select Expired Date");
-        partnerPage.enterExpiredDate(sToday);
+        partnerPage.enterForm(EntityFields.EXPIRED_DATE.getValue(), sToday);
 
         logger.step("Step 5. Select Start Date after Expired Date");
-        partnerPage.enterStartDate(sFutureDate);
+        partnerPage.enterForm(EntityFields.START_DATE.getValue(), sFutureDate);
 
         logger.step("Step 6. Observe");
         logger.step("VP Step 6. \"Expired date is required\" is displayed");
-        Assert.assertTrue(partnerPage.isDisplayedRequiredExpiredDateErrorMessage(), "\"Expired date is required\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.EXPIRED_DATE_IS_REQUIRED.getValue()), "\"Expired date is required\" is displayed");
     }
 
 }
