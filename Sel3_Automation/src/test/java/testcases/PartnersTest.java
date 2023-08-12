@@ -186,4 +186,27 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
+    @Test(description = "User can not add partner with invalid profile")
+    public void PARTNER_TC007(){
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Upload the image file \"testpdf.pdf\"");
+        partnerPage.uploadProfile(Constant.PATH_TESTPDF);
+
+        logger.step("Step 5. Observe");
+        logger.step("VP Step 5. \"File upload support .png/.jpg\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.FILE_UPLOAD_SUPPORT.getValue()), "\"File upload support .png/.jpg\" is displayed");
+    }
+
 }
