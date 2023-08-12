@@ -11,6 +11,8 @@ public class Constant {
     public static final String URL                  = "http://18.232.153.220:10000/login";
     public static final int    DEFAULT_TIME_OUT     = 20;
 
+    public static final String    EMAIL_TAIL     = "@test.com";
+
     public static final User USER_ADMIN = new User("ad@vp.com", "password");
 
     public static String PROJECT = System.getProperty("user.dir");
