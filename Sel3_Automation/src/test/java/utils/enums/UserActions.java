@@ -2,9 +2,11 @@ package utils.enums;
 
 public enum UserActions {
     YES("Yes"),
+    NO("No"),
     SAVE("Save"),
     CANCEL("Cancel"),
     SEARCH("Search..."),
+    EDIT("Edit"),
     ENTER_NAME("Enter Name"),
     ENTER_WEBSITE("Enter Website"),
     ENTER_DESCRIPTION("Enter Description"),

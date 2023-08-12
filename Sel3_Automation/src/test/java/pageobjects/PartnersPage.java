@@ -137,13 +137,13 @@ public class PartnersPage extends AbstractPage{
         index is the position of the partner to be updated
         The index starts from 0, meaning the index of the first partner is 0
      */
-    public void selectEditPartner(int index) {
+    public void selectActionOnPartner(String action, int index) {
         if(getListPartnerOnAPage()>0) {
             String name = getTextPartner(index);
             elePartner.of(name).waitForVisibility();
             elePartner.of(name).hover();
-            btnActionOnPartner.of(name).hover();
-            btnActionOnPartner.of(name).click();
+            btnActionOnPartner.of(name, action).hover();
+            btnActionOnPartner.of(name, action).click();
         }
     }
 
