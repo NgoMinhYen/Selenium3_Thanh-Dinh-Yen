@@ -12,6 +12,7 @@ public enum Message {
     FILE_UPLOAD_SUPPORT("File upload support .png/.jpg"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
     ARE_YOU_SURE_DELETE_THIS_PARTNER("Are you sure delete this partner?"),
+    PARTNER_HAVE_BEEN_DELETED_SUCCESSFULLY("Partner have been deleted successfully"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully"),
     UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully"),
     CREATED_ACCOUNT_SUCCESSFULLY("Create account success"),
