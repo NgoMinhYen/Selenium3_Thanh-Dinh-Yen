@@ -386,7 +386,45 @@ public class PartnersTest extends BaseTest{
 
         logger.step("Step 8. Observe");
         logger.step("VP Step 8. \"Are you sure delete this partner?\" is displayed");
-        Assert.assertTrue(partnerPage.isDisplayedTitleOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTextOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+    }
+
+    @Test(description = "User can delete Partner")
+    public void PARTNER_TC015(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Add a partner if list is empty");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+        partnerPage.addPartnerWithRandomInfo(partner);
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+
+        logger.step("Step 4. Select a partner");
+        logger.step("Step 6. Click edit partner");
+        partnerPage.searchPartner(partner.getName());
+        partnerPage.selectEditPartner(0);
+
+        logger.step("Step 7. Click Delete");
+        partnerPage.select(UserActions.DELETE_PARTNER.getValue());
+
+        logger.step("Step 8. Observe");
+        logger.step("VP Step 8. \"Are you sure delete this partner?\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTextOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+
+        logger.step("Step 9. Click Yes");
+        partnerPage.selectButton(UserActions.YES.getValue());
+
+        logger.step("VP Step 9. Partner is deleted");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.PARTNER_HAVE_BEEN_DELETED_SUCCESSFULLY.getValue()), "Partner is deleted");
     }
 
 }

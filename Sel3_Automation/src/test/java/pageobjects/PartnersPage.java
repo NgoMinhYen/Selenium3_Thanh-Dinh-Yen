@@ -28,8 +28,8 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "eleTitle")
     private IElement eleTitle;
 
-    @Find(key = "eleTitleOfSpan")
-    private IElement eleTitleOfSpan;
+    @Find(key = "eleTextOfSpan")
+    private IElement eleTextOfSpan;
 
     @Find(key = "elePartner")
     private IElement elePartner;
@@ -81,12 +81,16 @@ public class PartnersPage extends AbstractPage{
         eleImg.of(value).click();
     }
 
+    public void click(String fieldName) {
+        txtUserActions.of(fieldName).click();
+    }
+
     public boolean isDisplayedTitle(String value) {
         return eleTitle.of(value).isDisplayed();
     }
 
-    public boolean isDisplayedTitleOfSpan(String value) {
-        return eleTitleOfSpan.of(value).isDisplayed();
+    public boolean isDisplayedTextOfSpan(String value) {
+        return eleTextOfSpan.of(value).isDisplayed();
     }
 
     public boolean isDisplayedErrorMessage(String value) {
@@ -141,6 +145,11 @@ public class PartnersPage extends AbstractPage{
             btnActionOnPartner.of(name).hover();
             btnActionOnPartner.of(name).click();
         }
+    }
+
+    public void searchPartner(String partner){
+        click(UserActions.SEARCH.getValue());
+        enterValue(UserActions.SEARCH.getValue(), partner);
     }
 
 }

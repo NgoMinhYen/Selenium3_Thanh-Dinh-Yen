@@ -4,6 +4,7 @@ public enum UserActions {
     YES("Yes"),
     SAVE("Save"),
     CANCEL("Cancel"),
+    SEARCH("Search..."),
     ENTER_NAME("Enter Name"),
     ENTER_WEBSITE("Enter Website"),
     ENTER_DESCRIPTION("Enter Description"),
