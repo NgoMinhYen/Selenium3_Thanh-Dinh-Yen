@@ -6,7 +6,9 @@ public enum UserActions {
     CANCEL("Cancel"),
     ENTER_NAME("Enter Name"),
     ENTER_WEBSITE("Enter Website"),
-    ADD_PARTNER("Add Partner");
+    ENTER_DESCRIPTION("Enter Description"),
+    ADD_PARTNER("Add Partner"),
+    DELETE_PARTNER("Delete Partner");
 
     private String value;
 

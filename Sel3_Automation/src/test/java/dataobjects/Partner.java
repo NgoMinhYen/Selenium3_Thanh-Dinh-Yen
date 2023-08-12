@@ -30,7 +30,7 @@ public class Partner {
         String sToday = Utilities.toDate("MM/dd/yyyy");
         String sFutureDay = Utilities.fromDate("MM/dd/yyyy", 3);
         Partner partner = new Partner();
-        partner.setName("Name " + Utilities.generateString(5) + sToday);
+        partner.setName("Name " + Utilities.generateString(5) + " " + sToday);
         partner.setWebsite("https://" + Utilities.generateString(10) + ".com");
         partner.setStartDate(sToday);
         partner.setExpiredDate(sFutureDay);

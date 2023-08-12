@@ -5,10 +5,8 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.Partner;
-import org.openqa.selenium.WebElement;
 import utils.enums.EntityFields;
 import utils.enums.UserActions;
-import utils.logs.Logger;
 
 @ResourcePage(file = "partnersPage.properties")
 public class PartnersPage extends AbstractPage{
@@ -30,8 +28,14 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "eleTitle")
     private IElement eleTitle;
 
+    @Find(key = "eleTitleOfSpan")
+    private IElement eleTitleOfSpan;
+
     @Find(key = "elePartner")
     private IElement elePartner;
+
+    @Find(key = "eleImg")
+    private IElement eleImg;
 
     @Find(key = "lblErrorMessage")
     private IElement lblErrorMessage;
@@ -39,8 +43,8 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "txtUserActions")
     private IElement txtUserActions;
 
-    @Find(key = "txtDescription")
-    private IElement txtDescription;
+    @Find(key = "textareaUserActions")
+    private IElement textareaUserActions;
 
     @Find(key = "txtFormcontrolname")
     private IElement txtFormcontrolname;
@@ -59,8 +63,8 @@ public class PartnersPage extends AbstractPage{
         txtUserActions.of(fieldName).enter(value);
     }
 
-    public void enterDescription(String sDescription) {
-        txtDescription.enter(sDescription);
+    public void enterTextarea(String fieldName, String value) {
+        textareaUserActions.of(fieldName).enter(value);
     }
 
     public void enterForm(String fieldName, String value) {
@@ -72,8 +76,17 @@ public class PartnersPage extends AbstractPage{
         btnUserActions.of(value).click();
     }
 
+    public void select(String value) {
+        eleImg.of(value).waitForVisibility();
+        eleImg.of(value).click();
+    }
+
     public boolean isDisplayedTitle(String value) {
         return eleTitle.of(value).isDisplayed();
+    }
+
+    public boolean isDisplayedTitleOfSpan(String value) {
+        return eleTitleOfSpan.of(value).isDisplayed();
     }
 
     public boolean isDisplayedErrorMessage(String value) {
@@ -95,7 +108,7 @@ public class PartnersPage extends AbstractPage{
         enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
         enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
         enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
-        enterDescription(partner.getDescription());
+        enterTextarea(UserActions.ENTER_DESCRIPTION.getValue(), partner.getDescription());
         if(!partner.getProfile().isEmpty()) {
             uploadProfile(partner.getProfile());
         }
@@ -111,9 +124,18 @@ public class PartnersPage extends AbstractPage{
         return eleListPartner.getElements().size();
     }
 
-    public void selectEditFirstPartner() {
+    public String getTextPartner(int index) {
+        eleListPartner.waitForVisibility();
+        return eleListPartner.getElements().get(index).getText();
+    }
+
+    /*
+        index is the position of the partner to be updated
+        The index starts from 0, meaning the index of the first partner is 0
+     */
+    public void selectEditPartner(int index) {
         if(getListPartnerOnAPage()>0) {
-            String name = eleListPartner.getElements().get(0).getText();
+            String name = getTextPartner(index);
             elePartner.of(name).waitForVisibility();
             elePartner.of(name).hover();
             btnActionOnPartner.of(name).hover();

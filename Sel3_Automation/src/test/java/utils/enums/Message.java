@@ -11,6 +11,7 @@ public enum Message {
     EXPIRED_DATE_IS_REQUIRED("Expired date is required"),
     FILE_UPLOAD_SUPPORT("File upload support .png/.jpg"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
+    ARE_YOU_SURE_DELETE_THIS_PARTNER("Are you sure delete this partner?"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully"),
     UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully");
 
