@@ -61,4 +61,6 @@ public interface IElement{
     void selectText(String value);
 
     void selectValue(String value);
+
+    void clear();
 }
