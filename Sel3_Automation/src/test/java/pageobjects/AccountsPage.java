@@ -1,12 +1,20 @@
 package pageobjects;
 
 import core.framework.elements.IElement;
+import core.framework.elements.IListElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
+import core.framework.wrappers.Driver;
+import dataobjects.InvitePartner;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import dataobjects.Admin;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.enums.LeftMenu;
+
+import java.time.Duration;
 
 @ResourcePage(file = "accountsPage.properties")
 public class AccountsPage extends AbstractPage {
@@ -48,6 +56,38 @@ public class AccountsPage extends AbstractPage {
     ///
 
 
+    @Find(key = "eleSearchPartner")
+    private IElement eleSearchPartner;
+
+    @Find(key = "elePartners")
+    private IElement getPartners;
+
+    @Find(key = "eleFirstName")
+    private IElement eleFirstName;
+
+    @Find(key = "eleLastName")
+    private IElement eleLastName;
+
+    @Find(key = "eleUserName")
+    private IElement eleUserName;
+
+    @Find(key = "eleSubmit")
+    private IElement submit;
+
+    @Find(key = "userDetail")
+    private IElement userDetail;
+
+    @Find(key = "eleNoticeMessage")
+    private IElement noticeMessage;
+
+    @Find(key = "eleSearch")
+    private IElement txtSearch;
+    @Find(key = "btnSearch")
+    private IElement btnSearch;
+    @Find(key = "iconEdit")
+    private IElement iconEdit;
+
+
     private AccountsPage() {
         Page.init(this);
     }
@@ -62,6 +102,9 @@ public class AccountsPage extends AbstractPage {
         selectOptionRole.selectValue(role);
         return AccountsPage.getInstance();
 
+    }
+    public void waitForUserDetailDisplayed(){
+        userDetail.waitForVisibility();
     }
     public AccountsPage clickInviteUser(){
         inviteUser.waitForVisibility();
@@ -82,10 +125,24 @@ public class AccountsPage extends AbstractPage {
         }
         return AccountsPage.getInstance();
     }
-    public AccountsPage uploadProfile(String path){
-
+    public void uploadProfile(String path){
         btnUploadFile.waitForVisibility();
         btnUploadFile.enter(path);
+
+    }
+    public void searchPartnerInPopup(String partner){
+        eleSearchPartner.click();
+        //getPartners.waitForVisibility();
+        getPartners.of(partner).click();
+
+    }
+    public AccountsPage inviteNewPartner(InvitePartner invitePartner){
+        eleFirstName.enter(invitePartner.getFirstName());
+        eleLastName.enter(invitePartner.getLastName());
+        eleUserName.enter(invitePartner.getUserName());
+        uploadProfile(invitePartner.getProfile());
+        searchPartnerInPopup(invitePartner.getPartner());
+        submit.click();
         return AccountsPage.getInstance();
     }
     public boolean isSaveButtonEnable(){
@@ -119,4 +176,31 @@ public class AccountsPage extends AbstractPage {
         result = result && eleAdminPhoneList.of(admin.getPhone()).isDisplayed();
         return result;
     }
+
+    public boolean isNoticeMessageDisplayed(String value){
+        return noticeMessage.of(value).isDisplayed();
+    }
+
+    public void waitNoticeMessageNotDisplayed(String value){
+        noticeMessage.of(value).waitForInvisibility();
+    }
+
+    public AccountsPage searchPartner(String name){
+        txtSearch.enter(name);
+        //btnSearch.click();
+        return AccountsPage.getInstance();
+    }
+    public AccountsPage clickIconEdit(){
+        userDetail.waitForVisibility();
+        Actions actions = new Actions(Driver.getWebDriver());
+        actions.moveToElement(userDetail.getElement())
+                .pause(Duration.ofSeconds(2))
+                .moveToElement(iconEdit.getElement())
+                .click()
+                .build().perform();
+        return AccountsPage.getInstance();
+
+    }
+    //public void editFirstName
+
 }

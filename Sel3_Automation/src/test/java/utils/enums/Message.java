@@ -13,7 +13,8 @@ public enum Message {
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
     ARE_YOU_SURE_DELETE_THIS_PARTNER("Are you sure delete this partner?"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully"),
-    UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully");
+    UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully"),
+    CREATED_ACCOUNT_SUCCESSFULLY("Create account success");
 
     private String value;
 
