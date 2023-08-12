@@ -25,7 +25,7 @@ public class HomePageTest extends BaseTest {
         homePage.waitForPageLoadingComplete();
 
         logger.step("Step 3. Click Logout");
-        homePage.selectTitle(LeftMenu.LOGOUT.getValue());
+        homePage.selectLogout();
 
         logger.step("VP Step 3. \"Do you want to logout?\" popup is displayed");
         Assert.assertTrue(homePage.isDisplayedEleOnPopup(Message.DO_YOU_WANT_TO_LOGOUT.getValue()), "\"Do you want to logout?\" popup is displayed");

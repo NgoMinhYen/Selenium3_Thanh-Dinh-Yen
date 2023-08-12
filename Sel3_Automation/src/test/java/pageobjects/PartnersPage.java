@@ -5,6 +5,8 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import dataobjects.Partner;
+import utils.enums.EntityFields;
+import utils.enums.UserActions;
 
 @ResourcePage(file = "partnersPage.properties")
 public class PartnersPage extends AbstractPage{
@@ -13,6 +15,9 @@ public class PartnersPage extends AbstractPage{
 
     @Find(key = "btnUserActions")
     private IElement btnUserActions;
+
+    @Find(key = "eleUploadFile")
+    private IElement btnUploadFile;
 
     @Find(key = "eleTitle")
     private IElement eleTitle;
@@ -70,12 +75,17 @@ public class PartnersPage extends AbstractPage{
     }
 
     public void addPartnerWithRandomInfo(Partner partner) {
-//        enterName(partner.getName());
-//        enterWebsite(partner.getWebsite());
-//        enterStartDate(partner.getStartDate());
-//        enterExpiredDate(partner.getExpiredDate());
-//        enterDescription(partner.getDescription());
+        enterValue(UserActions.ENTER_NAME.getValue(), partner.getName());
+        enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
+        enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
+        enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
+        enterDescription(partner.getDescription());
+        uploadProfile(partner.getProfile());
+    }
 
+    public void uploadProfile(String path){
+        btnUploadFile.waitForVisibility();
+        btnUploadFile.enter(path);
     }
 
 }
