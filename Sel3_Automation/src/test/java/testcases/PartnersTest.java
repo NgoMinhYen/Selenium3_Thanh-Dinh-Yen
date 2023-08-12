@@ -155,4 +155,35 @@ public class PartnersTest extends BaseTest{
         logger.step("VP Step 4. \"Description is required\" is displayed");
         Assert.assertTrue(partnerPage.isDisplayedErrorMessage(Message.DESCRIPTION_IS_REQUIRED.getValue()), "\"Description is required\" is displayed");
     }
+
+    @Test(description = "User can not add partner without profile")
+    public void PARTNER_TC006(){
+        Partner partner = Partner.generateRandomPartner();
+        partner.setProfile("");
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Enter Name");
+        logger.step("Step 5. Enter Website");
+        logger.step("Step 6. Select valid Start Date");
+        logger.step("Step 6. Select valid Expired Date");
+        logger.step("Step 7. Enter Description");
+        partnerPage.enterDataIntoAddPartnerForm(partner);
+
+        logger.step("Step 8. Observe");
+        logger.step("VP Step 8.  User can not click \"Save\"");
+        Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
+    }
+
 }
