@@ -3,6 +3,7 @@ package utils.enums;
 public enum UserActions {
     YES("Yes"),
     SAVE("Save"),
+    CANCEL("Cancel"),
     ENTER_NAME("Enter Name"),
     ENTER_WEBSITE("Enter Website"),
     ADD_PARTNER("Add Partner");
