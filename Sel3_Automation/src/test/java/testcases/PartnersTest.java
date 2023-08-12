@@ -302,4 +302,34 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedTitle(Message.UPDATED_PARTNER_SUCCESSFULLY.getValue()), "User update partner is successful");
     }
 
+    @Test(description = "Update Partner popup is displayed")
+    public void PARTNER_TC011(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Add a partner if list is empty");
+        if(partnerPage.getListPartnerOnAPage()<0) {
+            partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+            partnerPage.addPartnerWithRandomInfo(partner);
+            Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+        }
+
+        logger.step("Step 4. Select a partner");
+        logger.step("Step 5. Click edit partner");
+        partnerPage.selectEditFirstPartner();
+
+        logger.step("Step 6. Observe");
+        logger.step("VP Step 6. Update Partner popup is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
+    }
+
 }
