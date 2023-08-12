@@ -14,6 +14,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.enums.LeftMenu;
 
+import java.time.Duration;
+
 @ResourcePage(file = "accountsPage.properties")
 public class AccountsPage extends AbstractPage {
     private static AccountsPage instance = null;
