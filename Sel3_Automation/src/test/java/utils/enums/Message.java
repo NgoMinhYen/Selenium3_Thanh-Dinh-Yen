@@ -8,6 +8,7 @@ public enum Message {
     NAME_IS_REQUIRED("Name is required"),
     DESCRIPTION_IS_REQUIRED("Description is required"),
     EXPIRED_DATE_IS_REQUIRED("Expired date is required"),
+    FILE_UPLOAD_SUPPORT("File upload support .png/.jpg"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully");
 
