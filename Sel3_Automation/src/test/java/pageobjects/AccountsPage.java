@@ -25,12 +25,17 @@ public class AccountsPage extends AbstractPage {
     @Find(key = "eleSelectRole")
     private IElement selectOptionRole;
 
+    @Find(key = "eleAdminUserPanel")
+    private IElement eleAdminUserPanel;
     @Find(key = "eleAdminNameList")
     private IElement eleAdminNameList;
     @Find(key = "eleAdminUserNameList")
     private IElement eleAdminUserNameList;
     @Find(key = "eleAdminPhoneList")
     private IElement eleAdminPhoneList;
+
+    @Find(key = "btnEdit")
+    private IElement btnEdit;
 
     @Find(key = "btnNextPage")
     private IElement btnNextPage;
@@ -160,10 +165,13 @@ public class AccountsPage extends AbstractPage {
         return AccountsPage.getInstance();
     }
     public boolean isAdminDetailDisplayed(Admin admin){
-        boolean result;
+        boolean result = false;
         do {
             result = checkAdminDetailDisplayed(admin);
+            if(result == true) return result;
             if(btnNextPage.isEnabled()) btnNextPage.click();
+            waitForPageLoadingComplete();
+            result = checkAdminDetailDisplayed(admin);
         }
         while (btnNextPage.isEnabled());
         return result;

@@ -37,7 +37,7 @@ public class Admin {
         admin.setPhone("0" + Utilities.generateNumber(9));
         return admin;
     }
-    public Admin generateRandomAdmin(String profile) {
+    public static Admin generateRandomAdmin(String profile) {
         Admin admin = generateRandomAdmin();
         admin.setProfile(profile);
         return admin;
