@@ -7,6 +7,7 @@ import core.framework.wrappers.Driver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -353,5 +354,17 @@ public class Element implements IElement {
     public void selectValue(String value){
         Select select = new Select(getElement());
         select.selectByValue(value);
+    }
+    protected WebDriver getDriver() {
+        return Driver.getWebDriver();
+    }
+    protected JavascriptExecutor jsExecutor() {
+        return (JavascriptExecutor) getDriver();
+    }
+    public void scrollToView(int timeOut) {
+        waitForVisibility(timeOut);
+        jsExecutor().executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'nearest'});", this.getElement());
+//        long screenHeight = (long) jsExecutor().executeScript("return window.innerHeight");
+//        jsExecutor().executeScript(String.format("window.scrollTo(%d,%d)", getElement().getLocation().x, getElement().getLocation().y - (screenHeight / 3)));
     }
 }
