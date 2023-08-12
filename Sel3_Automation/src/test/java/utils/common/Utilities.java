@@ -17,6 +17,9 @@ public class Utilities {
     public static String generateString(int length) {
         return RandomStringUtils.randomAlphanumeric(length);
     }
+    public static String generateNumber(int length) {
+        return RandomStringUtils.randomNumeric(length);
+    }
 
     /**
      * Generate random recruitment
