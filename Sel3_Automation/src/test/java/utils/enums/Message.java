@@ -12,7 +12,8 @@ public enum Message {
     FILE_UPLOAD_SUPPORT("File upload support .png/.jpg"),
     DO_YOU_WANT_TO_LOGOUT("Do you want to logout?"),
     CREATED_PARTNER_SUCCESSFULLY("Created Partner successfully"),
-    UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully");
+    UPDATED_PARTNER_SUCCESSFULLY("Updated Partner successfully"),
+    CREATED_ACCOUNT_SUCCESSFULLY("Create account success");
 
     private String value;
 
