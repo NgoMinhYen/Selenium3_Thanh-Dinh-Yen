@@ -29,7 +29,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
@@ -57,7 +57,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -73,6 +73,37 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
+    @Test(description = "User can not add partner with Invalid website")
+    public void PARTNER_TC003(){
+        Partner partner = Partner.generateRandomPartner();
+        partner.setWebsite("xyzcorp.com");
+
+        logger.step("Step 1. Login to the application");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\"");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Click \"Add Partner\"");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+
+        logger.step("Step 4. Enter Name");
+        logger.step("Step 5. Enter \"xyzcorp.com\" in the Website field");
+        logger.step("Step 6. Select valid Start Date");
+        logger.step("Step 6. Select valid Expired Date");
+        logger.step("Step 7. Enter Description");
+        logger.step("Step 8. Select Profile");
+        partnerPage.enterDataIntoAddPartnerForm(partner);
+
+        logger.step("Step 9. Observe");
+        logger.step("VP Step 9. User can not click \"Save\"");
+        Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
+    }
+
     @Test(description = "Error message is played when user add partner with Expired date before start date")
     public void PARTNER_TC004(){
         String sToday = Utilities.toDate("M/dd/YYYY");
@@ -84,7 +115,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Click \"Partners\"");
+        logger.step("Step 2. Select \"Partners\"");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 

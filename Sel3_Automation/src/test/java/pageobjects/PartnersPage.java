@@ -75,13 +75,17 @@ public class PartnersPage extends AbstractPage{
     }
 
     public void addPartnerWithRandomInfo(Partner partner) {
+        enterDataIntoAddPartnerForm(partner);
+        selectButton(UserActions.SAVE.getValue());
+    }
+
+    public void enterDataIntoAddPartnerForm(Partner partner) {
         enterValue(UserActions.ENTER_NAME.getValue(), partner.getName());
         enterValue(UserActions.ENTER_WEBSITE.getValue(), partner.getWebsite());
         enterForm(EntityFields.START_DATE.getValue(), partner.getStartDate());
         enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
         enterDescription(partner.getDescription());
         uploadProfile(partner.getProfile());
-        selectButton(UserActions.SAVE.getValue());
     }
 
     public void uploadProfile(String path){
