@@ -1,5 +1,6 @@
 package pageobjects;
 
+import core.framework.elements.Element;
 import core.framework.elements.IElement;
 import core.framework.source.Find;
 import core.framework.source.Page;
@@ -17,12 +18,17 @@ public class AccountsPage extends AbstractPage {
     @Find(key = "eleSelectRole")
     private IElement selectOptionRole;
 
+    @Find(key = "eleAdminUserPanel")
+    private IElement eleAdminUserPanel;
     @Find(key = "eleAdminNameList")
     private IElement eleAdminNameList;
     @Find(key = "eleAdminUserNameList")
     private IElement eleAdminUserNameList;
     @Find(key = "eleAdminPhoneList")
     private IElement eleAdminPhoneList;
+
+    @Find(key = "btnEdit")
+    private IElement btnEdit;
 
     @Find(key = "btnNextPage")
     private IElement btnNextPage;
@@ -103,10 +109,13 @@ public class AccountsPage extends AbstractPage {
         return AccountsPage.getInstance();
     }
     public boolean isAdminDetailDisplayed(Admin admin){
-        boolean result;
+        boolean result = false;
         do {
             result = checkAdminDetailDisplayed(admin);
+            if(result == true) return result;
             if(btnNextPage.isEnabled()) btnNextPage.click();
+            waitForPageLoadingComplete();
+            result = checkAdminDetailDisplayed(admin);
         }
         while (btnNextPage.isEnabled());
         return result;
@@ -119,4 +128,18 @@ public class AccountsPage extends AbstractPage {
         result = result && eleAdminPhoneList.of(admin.getPhone()).isDisplayed();
         return result;
     }
+//    public Element getAdminCardElement(Admin admin){
+//        Element e = eleAdminUserPanel.of(admin.getFirstName() + " " + admin.getLastName(),
+//                admin.getUserName(),
+//                admin.getPhone());
+//        return e;
+//    }
+//    public AccountsPage clickEditOfAdmin(Admin admin){
+//        btnEdit = getAdminCardElement(admin);
+//        btnEdit.waitForVisibility();
+//        btnEdit.hover();
+//        btnEdit.waitForClickable();
+//        btnEdit.click();
+//        return AccountsPage.getInstance();
+//    }
 }
