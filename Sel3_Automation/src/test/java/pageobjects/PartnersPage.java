@@ -81,6 +81,7 @@ public class PartnersPage extends AbstractPage{
         enterForm(EntityFields.EXPIRED_DATE.getValue(), partner.getExpiredDate());
         enterDescription(partner.getDescription());
         uploadProfile(partner.getProfile());
+        selectButton(UserActions.SAVE.getValue());
     }
 
     public void uploadProfile(String path){

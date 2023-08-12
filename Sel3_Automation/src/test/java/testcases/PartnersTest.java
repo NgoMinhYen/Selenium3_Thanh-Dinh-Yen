@@ -45,8 +45,8 @@ public class PartnersTest extends BaseTest{
         logger.step("Step 9. Click Save");
         partnerPage.addPartnerWithRandomInfo(partner);
 
-        logger.step("Step 10. Search for a partner by the newly added partner's name");
-        logger.step("VP Step 10. Verify user add partner is successful");
+        logger.step("VP Step 9. Verify user add partner is successful");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
     }
 
     @Test(description = "User can not add partner with Empty Name field")
