@@ -206,10 +206,10 @@ public class Element implements IElement {
         return this.getText(timeOutSecond);
     }
 
-    @Override
-    public void clear() {
-        getElement().clear();
-    }
+//    @Override
+//    public void clear() {
+//        getElement().clear();
+//    }
 
     /**
      * Dùng driver để find element
