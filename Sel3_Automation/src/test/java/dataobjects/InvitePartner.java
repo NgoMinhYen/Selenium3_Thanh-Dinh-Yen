@@ -24,7 +24,7 @@ public class InvitePartner {
         this.profile = profile;
     }
 
-    public static InvitePartner generateRandomAdmin() {
+    public static InvitePartner generateRandomPartner() {
         InvitePartner invitePartner = new InvitePartner();
         invitePartner.setFirstName("First" + Utilities.generateString(4));
         invitePartner.setLastName("Last" + Utilities.generateString(4));
@@ -33,8 +33,8 @@ public class InvitePartner {
         invitePartner.setPartner("CGV Cinemas");
         return invitePartner;
     }
-    public InvitePartner generateRandomAdmin(String profile) {
-        InvitePartner invitePartner = generateRandomAdmin();
+    public InvitePartner generateRandomPartner(String profile) {
+        InvitePartner invitePartner = generateRandomPartner();
         invitePartner.setProfile(profile);
         return invitePartner;
     }
