@@ -14,10 +14,10 @@ import utils.common.constants.Constant;
 import utils.enums.*;
 
 public class PartnerTest extends BaseTest {
+
     LoginPage loginPage = LoginPage.getInstance();
     HomePage homePage = HomePage.getInstance();
     AccountsPage accountsPage = AccountsPage.getInstance();
-
 
     @Test(description = "Test case PARTNERS_TC01: Partner can invite User")
     public void PARTNER_TC01(){
