@@ -140,6 +140,8 @@ public class AccountsPage extends AbstractPage {
         getPartners.of(partner).click();
 
     }
+
+
     public AccountsPage inviteNewPartner(InvitePartner invitePartner){
         txtFirstNamePopUp.enter(invitePartner.getFirstName());
         txtLastNamePopUp.enter(invitePartner.getLastName());
@@ -154,10 +156,21 @@ public class AccountsPage extends AbstractPage {
         txtUserNamePopUp.enter(userName);
 
     }
-    public void inviteNewPartnerWithEmptyFirstname(String firstName){
+    public void inviteNewPartnerWithInvalidFirstname(String firstName){
         txtFirstNamePopUp.enter(firstName);
         submit.click();
     }
+
+    public void inviteNewPartnerWithInvalidLastname(String lastName){
+        txtLastNamePopUp.enter(lastName);
+        submit.click();
+    }
+
+    public void inviteNewPartnerWithInvalidPartner(){
+        eleSearchPartner.click();
+        submit.click();
+    }
+
 
     public boolean isSaveButtonEnable(){
         btnSave.waitForVisibility();
