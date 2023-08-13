@@ -20,6 +20,13 @@ public class Driver extends DriverFactory {
 
     private static Logger logger = LoggerFactory.getLogger(Element.class);
 
+    /**
+     * Tạo driver và add vào driver manager
+     * @param threadId
+     * @param key
+     * @param property
+     * @return
+     */
     public static WebDriver initWebDriver(String threadId, String key, DriverProperty property) {
         WebDriver webDriver = createWebDriver(property);
         DriverManager.add(threadId, key, webDriver);
