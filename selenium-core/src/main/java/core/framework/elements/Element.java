@@ -73,7 +73,12 @@ public class Element implements IElement {
         waitForVisibility();
         getElement().sendKeys(value);
     }
-
+    @Override
+    public void clear(){
+        logger.info(String.format("Clear %s", getElement()));
+        waitForVisibility();
+        getElement().clear();
+    }
     /**
      * Click on the element
      */
@@ -85,6 +90,12 @@ public class Element implements IElement {
         } catch (Exception e) {
             logger.error(String.format("Has error with control '%s': %s", getElement(), e.getMessage()));
         }
+    }
+    public boolean isEditAbl(){
+        String s = getElement().getCssValue("disabled");
+        if(s != null)
+            return true;
+        return false;
     }
 
     /**
