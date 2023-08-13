@@ -3,7 +3,7 @@ package utils.enums;
 public enum UserRole {
     ADMIN("Admin"),
     PARTNER("Partner"),
-    MEMBER(" Member");
+    MEMBER("Member");
 
     private String value;
 
