@@ -22,7 +22,7 @@ public class PartnerTest extends BaseTest {
     @Test(description = "Test case PARTNERS_TC01: Partner can invite User")
     public void PARTNER_TC01(){
 
-        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -60,7 +60,7 @@ public class PartnerTest extends BaseTest {
     public void PARTNER_TC04(){
         String newFirstName = Utilities.generateString(6);
 
-        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -111,7 +111,7 @@ public class PartnerTest extends BaseTest {
     @Test(description = "Test case PARTNERS_TC02: Delete partner")
     public void PARTNER_TC02() {
 
-        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -161,7 +161,7 @@ public class PartnerTest extends BaseTest {
     @Test(description = "Test case PARTNERS_TC05: User can change partner for account")
     public void PARTNER_TC05() {
 
-        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -210,7 +210,7 @@ public class PartnerTest extends BaseTest {
     @Test(description = "Test case PARTNERS_TC06: User can search partner")
     public void PARTNER_TC06() {
 
-        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
         logger.step("Step 1. Navigate to the login page");
         Driver.navigateTo(Constant.URL);
         loginPage.waitForPageLoadingComplete();
@@ -248,9 +248,81 @@ public class PartnerTest extends BaseTest {
         accountsPage.searchPartner(invitePartner.getFirstName());
 
         logger.step("VP: Partner with new name appear");
-        Assert.assertTrue(accountsPage.isNoticeMessageDisplayed(invitePartner.getFirstName()));
-
-
+        Assert.assertTrue(accountsPage.isCarUserInfoDetailDisplayed(invitePartner.getFirstName()));
 
     }
+    @Test(description = "Test case PARTNERS_TC07: Invite Partner with invalid username")
+    public void PARTNER_TC07() {
+        String userNameInvalid = Utilities.generateString(8);
+
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidUsername(userNameInvalid);
+
+        logger.step("VP:Username invalid format appear");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Username invalid format"), "Username invalid format");
+
+    }
+    @Test(description = "Test case PARTNERS_TC08: Invite Partner with empty first name")
+    public void PARTNER_TC08() {
+
+        InvitePartner invitePartner = InvitePartner.generateRandomPartner();
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithEmptyFirstname("");
+
+        logger.step("VP:Username invalid format appear");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("First name is required "), "First name is required ");
+
+    }
+
 }

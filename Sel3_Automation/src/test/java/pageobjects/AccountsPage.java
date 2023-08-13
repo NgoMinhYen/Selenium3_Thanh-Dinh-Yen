@@ -88,6 +88,8 @@ public class AccountsPage extends AbstractPage {
     private IElement buttonOnPopup;
     @Find(key = "eleCardUserInfo")
     private IElement eleCardUserInfo;
+    @Find(key = "eleErrorMessage")
+    private IElement eleErrorMessage;
 
 
     private AccountsPage() {
@@ -147,6 +149,16 @@ public class AccountsPage extends AbstractPage {
         submit.click();
         return AccountsPage.getInstance();
     }
+
+    public void inviteNewPartnerWithInvalidUsername(String userName){
+        txtUserNamePopUp.enter(userName);
+
+    }
+    public void inviteNewPartnerWithEmptyFirstname(String firstName){
+        txtFirstNamePopUp.enter(firstName);
+        submit.click();
+    }
+
     public boolean isSaveButtonEnable(){
         btnSave.waitForVisibility();
         return btnSave.isEnabled();
@@ -219,6 +231,9 @@ public class AccountsPage extends AbstractPage {
     }
     public boolean isCarUserInfoDetailDisplayed(String value){
        return eleCardUserInfo.of(value).isDisplayed();
+    }
+    public boolean isErrorMessageOnPopupDisplayed(String value){
+       return eleErrorMessage.of(value).isDisplayed();
     }
 
 }
