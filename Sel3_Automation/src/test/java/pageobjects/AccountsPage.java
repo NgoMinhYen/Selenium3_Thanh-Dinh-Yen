@@ -86,6 +86,8 @@ public class AccountsPage extends AbstractPage {
     private IElement iconDelete;
     @Find(key = "eleButtonOnPopup")
     private IElement buttonOnPopup;
+    @Find(key = "eleCardUserInfo")
+    private IElement eleCardUserInfo;
 
 
     private AccountsPage() {
@@ -214,6 +216,9 @@ public class AccountsPage extends AbstractPage {
         buttonOnPopup.waitForVisibility();
         buttonOnPopup.of(value).click();
         return AccountsPage.getInstance();
+    }
+    public boolean isCarUserInfoDetailDisplayed(String value){
+       return eleCardUserInfo.of(value).isDisplayed();
     }
 
 }
