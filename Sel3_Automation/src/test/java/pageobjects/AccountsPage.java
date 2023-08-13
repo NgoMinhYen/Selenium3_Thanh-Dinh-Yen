@@ -98,8 +98,8 @@ public class AccountsPage extends AbstractPage {
     private IElement eleCardUserInfo;
     @Find(key = "eleErrorMessage")
     private IElement eleErrorMessage;
-    @Find(key = "eleErrorBirthday")
-    private IElement eleErrorBirthday;
+    @Find(key = "eleErrorBirthdayAndPhone")
+    private IElement eleErrorBirthdayAndPhone;
 
 
     private AccountsPage() {
@@ -180,7 +180,6 @@ public class AccountsPage extends AbstractPage {
     }
     public void updateAddressForMember(String address){
         txtAddressPopUp.clear();
-
         txtAddressPopUp.enter(address);
 
     }
@@ -194,12 +193,14 @@ public class AccountsPage extends AbstractPage {
         txtUserNamePopUp.enter(userName);
 
     }
-    public void inviteNewPartnerWithInvalidFirstname(String firstName){
+    public void inviteNewUserWithInvalidFirstname(String firstName){
+        txtFirstNamePopUp.clear();
         txtFirstNamePopUp.enter(firstName);
         submit.click();
     }
 
-    public void inviteNewPartnerWithInvalidLastname(String lastName){
+    public void inviteNewUserWithInvalidLastname(String lastName){
+        txtLastNamePopUp.clear();
         txtLastNamePopUp.enter(lastName);
         submit.click();
     }
@@ -287,11 +288,12 @@ public class AccountsPage extends AbstractPage {
     }
 
     public boolean isErrorMessageOnPopupDisplayed(String value){
+
        return eleErrorMessage.of(value).isDisplayed();
     }
 
-    public boolean isErrorBirthdayOnPopupDisplayed(String value){
-        return eleErrorBirthday.of(value).isDisplayed();
+    public boolean isErrorBirthdayOrPhoneOnPopupDisplayed(String value){
+        return eleErrorBirthdayAndPhone.of(value).isDisplayed();
     }
 
 }
