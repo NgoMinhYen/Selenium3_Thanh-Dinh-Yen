@@ -21,6 +21,11 @@ public class Page {
             .concat(File.separator).concat("resources")
             .concat(File.separator).concat("pages").concat(File.separator);
 
+    /**
+     * Đọc file properties
+     * @param file
+     * @return
+     */
     private static Properties read(String file) {
         Properties properties = new Properties();
         InputStream inputStream = null;
@@ -46,6 +51,10 @@ public class Page {
         return properties;
     }
 
+    /**
+     * Load và khởi tạo element từ file properties
+     * @param page
+     */
     public static void init(Object page) {
         Class<?> clone = page.getClass();
         ResourcePage sourcePage = clone.getAnnotation(ResourcePage.class);
@@ -78,7 +87,11 @@ public class Page {
     }
 
 
-
+    /**
+     * Get giá trị của locator sau dâu #
+     * @param value
+     * @return
+     */
     private static List<String> extract(Object value){
         if(value != null){
             Pattern pattern = Pattern.compile("(.*)#(.*)");

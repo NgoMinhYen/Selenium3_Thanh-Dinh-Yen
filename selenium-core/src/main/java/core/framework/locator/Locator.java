@@ -86,6 +86,12 @@ public class Locator implements Cloneable {
         return locator;
     }
 
+    /**
+     * Get element by dynamicXpath
+     * @param xpath
+     * @param objects
+     * @return
+     */
     public static Locator dynamicXPath(String xpath, Object... objects){
         Locator locator = new Locator();
         locator.locatorType = LocatorType.DynamicXPath;
@@ -129,6 +135,10 @@ public class Locator implements Cloneable {
         return by;
     }
 
+    /**
+     * clone class Locator
+     * @return
+     */
     @Override
     public Object clone() {
         try {
