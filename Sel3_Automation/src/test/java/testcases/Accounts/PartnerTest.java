@@ -318,11 +318,191 @@ public class PartnerTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Partner");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithEmptyFirstname("");
+        accountsPage.inviteNewPartnerWithInvalidFirstname("");
 
-        logger.step("VP:Username invalid format appear");
+        logger.step("VP:First name is required  appear");
         Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("First name is required "), "First name is required ");
 
     }
+
+    @Test(description = "Test case PARTNERS_TC09: Invite Partner with empty last name")
+    public void PARTNER_TC09() {
+
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidLastname("");
+
+        logger.step("VP:Last name is required ");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Last name is required "), "Last name is required ");
+
+    }
+    @Test(description = "Test case PARTNERS_TC10: Invite Partner with empty username")
+    public void PARTNER_TC10() {
+
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidUsername("");
+
+        logger.step("VP:Username is required");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Username is required"), "Username is required");
+
+    }
+    @Test(description = "Test case PARTNERS_TC11: Invite Partner with empty partner")
+    public void PARTNER_TC11() {
+
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidPartner();
+
+        logger.step("VP:Username is required");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Partner is required "), "Partner is required ");
+
+    }
+
+    @Test(description = "Test case PARTNERS_TC12: Invite partner with first name invalid format")
+    public void PARTNER_TC12() {
+
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidFirstname("first name");
+
+        logger.step("VP:Username is required");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("First name invalid format"), "First name invalid format");
+
+    }
+
+    @Test(description = "Test case PARTNERS_TC13: Invite partner with last name invalid format")
+    public void PARTNER_TC13() {
+
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartnerWithInvalidLastname("last name");
+
+        logger.step("VP:Username is required");
+        Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Last name invalid format"), "Last name invalid format");
+
+    }
+
+
 
 }
