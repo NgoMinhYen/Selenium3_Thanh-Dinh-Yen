@@ -27,7 +27,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
@@ -53,7 +53,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -78,7 +78,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -107,7 +107,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -132,7 +132,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -155,7 +155,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -180,7 +180,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -203,7 +203,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -233,7 +233,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -256,7 +256,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -290,7 +290,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -316,7 +316,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -336,7 +336,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
         partner.setName(partnerPage.getTextPartner(0));
@@ -366,7 +366,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -397,7 +397,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -436,7 +436,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -473,7 +473,7 @@ public class PartnersTest extends BaseTest{
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
         String name = partnerPage.getTextPartner(0);
