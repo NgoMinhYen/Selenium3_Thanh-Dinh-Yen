@@ -28,8 +28,8 @@ public class PartnersPage extends AbstractPage{
     @Find(key = "eleTitle")
     private IElement eleTitle;
 
-    @Find(key = "eleTitleOfSpan")
-    private IElement eleTitleOfSpan;
+    @Find(key = "eleTextOfSpan")
+    private IElement eleTextOfSpan;
 
     @Find(key = "elePartner")
     private IElement elePartner;
@@ -81,12 +81,16 @@ public class PartnersPage extends AbstractPage{
         eleImg.of(value).click();
     }
 
+    public void click(String fieldName) {
+        txtUserActions.of(fieldName).click();
+    }
+
     public boolean isDisplayedTitle(String value) {
         return eleTitle.of(value).isDisplayed();
     }
 
-    public boolean isDisplayedTitleOfSpan(String value) {
-        return eleTitleOfSpan.of(value).isDisplayed();
+    public boolean isDisplayedTextOfSpan(String value) {
+        return eleTextOfSpan.of(value).isDisplayed();
     }
 
     public boolean isDisplayedErrorMessage(String value) {
@@ -133,14 +137,19 @@ public class PartnersPage extends AbstractPage{
         index is the position of the partner to be updated
         The index starts from 0, meaning the index of the first partner is 0
      */
-    public void selectEditPartner(int index) {
+    public void selectActionOnPartner(String action, int index) {
         if(getListPartnerOnAPage()>0) {
             String name = getTextPartner(index);
             elePartner.of(name).waitForVisibility();
             elePartner.of(name).hover();
-            btnActionOnPartner.of(name).hover();
-            btnActionOnPartner.of(name).click();
+            btnActionOnPartner.of(name, action).hover();
+            btnActionOnPartner.of(name, action).click();
         }
+    }
+
+    public void searchPartner(String partner){
+        click(UserActions.SEARCH.getValue());
+        enterValue(UserActions.SEARCH.getValue(), partner);
     }
 
 }

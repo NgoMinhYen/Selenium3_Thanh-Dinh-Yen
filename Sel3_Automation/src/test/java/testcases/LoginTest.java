@@ -15,13 +15,9 @@ public class LoginTest extends BaseTest{
     LoginPage loginPage = LoginPage.getInstance();
     HomePage homePage = HomePage.getInstance();
 
-    @Test(description = "Test case 001: User can login with valid account")
+    @Test(description = "User can login with valid account")
     public void LOGIN_TC001(){
-        
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Enter a valid 'Email address' in the email field");
         logger.step("Step 3. Enter a valid 'Password' in the password field");
         logger.step("Step 4. Click on the \"Login\" button");
@@ -33,12 +29,9 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
     }
 
-    @Test(description = "Test case 002: Login with Invalid Email")
+    @Test(description = "User can Login with Invalid Email")
     public void LOGIN_TC002(){
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Enter an invalid email address (e.g., missing \"@\" symbol) in the email field.");
         loginPage.enterEmailAddress("abc");
 
@@ -52,14 +45,11 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.isDisplayedErrorMessage(Message.USERNAME_INVALID_FORMAT.getValue()), "An error message is displayed \"Username invalid format\"");
     }
 
-    @Test(description = "Test case 003: Login with Invalid Password")
+    @Test(description = "User can Login with Invalid Password")
     public void LOGIN_TC003(){
         User invalidUser = new User(Constant.USER_ADMIN.getUsername(), "invaliduser");
 
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Enter a valid email address in the email field.");
         logger.step("Step 3. Enter an incorrect password in the password field");
         logger.step("Step 4. Click on the \"Login\" button\n Wait for the page to load");
@@ -69,12 +59,9 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.isDisplayedLoginFailPopup(), "An error message is displayed \n \"Login fail \n Login credentials not valid\"");
     }
 
-    @Test(description = "Test case 004: Login with Empty Fields")
+    @Test(description = "User can Login with Empty Fields")
     public void LOGIN_TC004(){
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Leave the email field and password field empty.");
         loginPage.enterEmailAddress("");
         loginPage.enterPassword("");
@@ -88,12 +75,9 @@ public class LoginTest extends BaseTest{
         Assert.assertFalse(loginPage.isButtonLoginEnabled(), "The login button cannot be clicked");
     }
 
-    @Test(description = "Login with password less than 8 characters")
+    @Test(description = "User can Login with password less than 8 characters")
     public void LOGIN_TC005(){
         logger.step("Step 1. Navigate to the login page");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
-
         logger.step("Step 2. Enter a valid 'Email address' in the email field");
         loginPage.enterEmailAddress(Constant.USER_ADMIN.getUsername());
 

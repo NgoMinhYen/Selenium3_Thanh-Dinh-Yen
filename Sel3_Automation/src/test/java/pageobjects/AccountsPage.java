@@ -8,6 +8,7 @@ import core.framework.source.Find;
 import core.framework.source.Page;
 import core.framework.source.ResourcePage;
 import core.framework.wrappers.Driver;
+import dataobjects.InviteMember;
 import dataobjects.InvitePartner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,6 +54,13 @@ public class AccountsPage extends AbstractPage {
     private IElement txtUserNamePopUp;
     @Find(key = "txtPhoneNamePopUp")
     private IElement txtPhoneNamePopUp;
+    @Find(key = "txtBirthdayPopUp")
+    private IElement txtBirthdayPopUp;
+    @Find(key = "txtAddressPopUp")
+    private IElement txtAddressPopUp;
+    @Find(key = "eleContentOnPopup")
+    private IElement eleContentOnPopup;
+
 
     @Find(key = "eleUploadFile")
     private IElement btnUploadFile;
@@ -69,15 +77,6 @@ public class AccountsPage extends AbstractPage {
     @Find(key = "elePartners")
     private IElement getPartners;
 
-    @Find(key = "eleFirstName")
-    private IElement eleFirstName;
-
-    @Find(key = "eleLastName")
-    private IElement eleLastName;
-
-    @Find(key = "eleUserName")
-    private IElement eleUserName;
-
     @Find(key = "eleSubmit")
     private IElement submit;
 
@@ -93,6 +92,16 @@ public class AccountsPage extends AbstractPage {
     private IElement btnSearch;
     @Find(key = "iconEdit")
     private IElement iconEdit;
+    @Find(key = "iconDelete")
+    private IElement iconDelete;
+    @Find(key = "eleButtonOnPopup")
+    private IElement buttonOnPopup;
+    @Find(key = "eleCardUserInfo")
+    private IElement eleCardUserInfo;
+    @Find(key = "eleErrorMessage")
+    private IElement eleErrorMessage;
+    @Find(key = "eleErrorBirthday")
+    private IElement eleErrorBirthday;
 
 
     private AccountsPage() {
@@ -132,26 +141,6 @@ public class AccountsPage extends AbstractPage {
         }
         return AccountsPage.getInstance();
     }
-    public AccountsPage updateInvitePopup(Admin admin){
-        txtPhoneNamePopUp.waitForVisibility();
-        txtFirstNamePopUp.clear();
-        if(admin.getFirstName()!=null)
-        txtFirstNamePopUp.enter(admin.getFirstName());
-        txtLastNamePopUp.clear();
-        if(admin.getLastName()!=null)
-        txtLastNamePopUp.enter(admin.getLastName());
-        txtPhoneNamePopUp.clear();
-        if(admin.getPhone()!=null)
-        txtPhoneNamePopUp.enter(admin.getPhone());
-        if(admin.getProfile() != null){
-            uploadProfile(admin.getProfile());
-        }
-        return AccountsPage.getInstance();
-    }
-    public boolean isUserNameFieldEditable(){
-        txtUserNamePopUp.waitForVisibility();
-        return txtUserNamePopUp.isEnabled();
-    }
     public void uploadProfile(String path){
         btnUploadFile.waitForVisibility();
         btnUploadFile.enter(path);
@@ -164,14 +153,63 @@ public class AccountsPage extends AbstractPage {
 
     }
     public AccountsPage inviteNewPartner(InvitePartner invitePartner){
-        eleFirstName.enter(invitePartner.getFirstName());
-        eleLastName.enter(invitePartner.getLastName());
-        eleUserName.enter(invitePartner.getUserName());
+        txtFirstNamePopUp.enter(invitePartner.getFirstName());
+        txtLastNamePopUp.enter(invitePartner.getLastName());
+        txtUserNamePopUp.enter(invitePartner.getUserName());
         uploadProfile(invitePartner.getProfile());
         searchPartnerInPopup(invitePartner.getPartner());
         submit.click();
         return AccountsPage.getInstance();
     }
+
+    public AccountsPage inviteNewMember(InviteMember inviteMember){
+        txtFirstNamePopUp.enter(inviteMember.getFirstName());
+        txtLastNamePopUp.enter(inviteMember.getLastName());
+        txtUserNamePopUp.enter(inviteMember.getUserName());
+        txtBirthdayPopUp.enter(inviteMember.getBirthday());
+        txtPhoneNamePopUp.enter(inviteMember.getPhone());
+        txtAddressPopUp.enter(inviteMember.getAddress());
+        uploadProfile(inviteMember.getProfile());
+        submit.click();
+        return AccountsPage.getInstance();
+    }
+
+    public void inviteNewPartnerWithInvalidPhone(String phone){
+               txtPhoneNamePopUp.enter(phone);
+
+    }
+    public void updateAddressForMember(String address){
+        txtAddressPopUp.clear();
+
+        txtAddressPopUp.enter(address);
+
+    }
+
+    public void inviteNewPartnerWithInvalidBirthday(String birthday){
+        txtBirthdayPopUp.enter(birthday);
+
+    }
+
+    public void inviteNewPartnerWithInvalidUsername(String userName){
+        txtUserNamePopUp.enter(userName);
+
+    }
+    public void inviteNewPartnerWithInvalidFirstname(String firstName){
+        txtFirstNamePopUp.enter(firstName);
+        submit.click();
+    }
+
+    public void inviteNewPartnerWithInvalidLastname(String lastName){
+        txtLastNamePopUp.enter(lastName);
+        submit.click();
+    }
+
+    public void inviteNewPartnerWithInvalidPartner(){
+        eleSearchPartner.click();
+        submit.click();
+    }
+
+
     public boolean isSaveButtonEnable(){
         btnSave.waitForVisibility();
         return btnSave.isEnabled();
@@ -188,7 +226,6 @@ public class AccountsPage extends AbstractPage {
     }
     public boolean isAdminDetailDisplayed(Admin admin){
         boolean result = false;
-        Driver.refresh();
         do {
             result = checkAdminDetailDisplayed(admin);
             if(result == true) return result;
@@ -209,6 +246,7 @@ public class AccountsPage extends AbstractPage {
     }
 
     public boolean isNoticeMessageDisplayed(String value){
+        eleContentOnPopup.waitForInvisibility();
         return noticeMessage.of(value).isDisplayed();
     }
 
@@ -233,4 +271,28 @@ public class AccountsPage extends AbstractPage {
         return AccountsPage.getInstance();
 
     }
+    public void editFirstName(String value){
+        txtFirstNamePopUp.clear();
+        txtFirstNamePopUp.enter(value);
+
+    }
+    public AccountsPage deleteAccount(String value){
+        iconDelete.waitForClickable();
+        iconDelete.click();
+        buttonOnPopup.waitForVisibility();
+        buttonOnPopup.of(value).click();
+        return AccountsPage.getInstance();
+    }
+    public boolean isCarUserInfoDetailDisplayed(String value){
+       return eleCardUserInfo.of(value).isDisplayed();
+    }
+
+    public boolean isErrorMessageOnPopupDisplayed(String value){
+       return eleErrorMessage.of(value).isDisplayed();
+    }
+
+    public boolean isErrorBirthdayOnPopupDisplayed(String value){
+        return eleErrorBirthday.of(value).isDisplayed();
+    }
+
 }

@@ -200,6 +200,10 @@ public class Element implements IElement {
     }
 
     @Override
+    public void clear() {
+        getElement().clear();
+    }
+    @Override
     public WebElement getElement() {
         try {
             if(element != null) return element;

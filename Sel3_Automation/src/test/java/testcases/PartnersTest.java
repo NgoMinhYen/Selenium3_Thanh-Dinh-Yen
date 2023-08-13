@@ -24,12 +24,10 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.selectPartner(LeftMenu.PARTNERS.getValue());
 
         logger.step("Step 3. Click \"Add Partner\"");
@@ -52,12 +50,10 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with Empty Name field")
     public void PARTNER_TC002(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -79,12 +75,10 @@ public class PartnersTest extends BaseTest{
         partner.setWebsite("xyzcorp.com");
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -104,18 +98,16 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isButtonEnabled(UserActions.SAVE.getValue()), "User can not click \"Save\"");
     }
 
-    @Test(description = "Error message is played when user add partner with Expired date before start date")
+    @Test(description = "Verify Error message is played when user add partner with Expired date before start date")
     public void PARTNER_TC004(){
         String sToday = Utilities.toDate("M/dd/YYYY");
         String sFutureDate = Utilities.fromDate("M/dd/YYYY", 2);
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -137,12 +129,10 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with Empty description field")
     public void PARTNER_TC005(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -162,12 +152,10 @@ public class PartnersTest extends BaseTest{
         partner.setProfile("");
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -189,12 +177,10 @@ public class PartnersTest extends BaseTest{
     @Test(description = "User can not add partner with invalid profile")
     public void PARTNER_TC007(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -214,12 +200,10 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -241,17 +225,15 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is not successful");
     }
 
-    @Test(description = "Error message is played when user add partner with start date before today")
+    @Test(description = "Verify Error message is played when user add partner with start date before today")
     public void PARTNER_TC009(){
         String sYesterday = Utilities.fromDate("M/dd/YYYY", -1);
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -271,12 +253,10 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -289,7 +269,7 @@ public class PartnersTest extends BaseTest{
 
         logger.step("Step 4. Select a partner");
         logger.step("Step 5. Click edit partner");
-        partnerPage.selectEditPartner(0);
+        partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(), 0);
         Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
 
         logger.step("Step 6. Enter new name");
@@ -302,17 +282,15 @@ public class PartnersTest extends BaseTest{
         Assert.assertTrue(partnerPage.isDisplayedTitle(Message.UPDATED_PARTNER_SUCCESSFULLY.getValue()), "User update partner is successful");
     }
 
-    @Test(description = "Update Partner popup is displayed")
+    @Test(description = "User can Update Partner popup is displayed")
     public void PARTNER_TC011(){
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -325,22 +303,20 @@ public class PartnersTest extends BaseTest{
 
         logger.step("Step 4. Select a partner");
         logger.step("Step 5. Click edit partner");
-        partnerPage.selectEditPartner(0);
+        partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(),0);
 
         logger.step("Step 6. Observe");
         logger.step("VP Step 6. Update Partner popup is displayed");
         Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
     }
 
-    @Test(description = "Invite New Partner popup is displayed")
+    @Test(description = "Verify Invite New Partner popup is displayed")
     public void PARTNER_TC012(){
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -357,12 +333,10 @@ public class PartnersTest extends BaseTest{
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
         partner.setName(partnerPage.getTextPartner(0));
@@ -384,17 +358,15 @@ public class PartnersTest extends BaseTest{
         Assert.assertFalse(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
     }
 
-    @Test(description = "\"Are you sure delete this partner?\" is displayed when User click delete Partner")
+    @Test(description = "Verify \"Are you sure delete this partner?\" is displayed when User click delete Partner")
     public void PARTNER_TC014(){
         Partner partner = Partner.generateRandomPartner();
 
         logger.step("Step 1. Login to the application");
-        Driver.navigateTo(Constant.URL);
-        loginPage.waitForPageLoadingComplete();
         loginPage.login(Constant.USER_ADMIN);
         homePage.waitForPageLoadingComplete();
 
-        logger.step("Step 2. Select \"Partners\"");
+        logger.step("Step 2. Select \"Partners\" on the left menu");
         partnerPage = homePage.openTab(LeftMenu.PARTNERS);
         partnerPage.waitForPageLoadingComplete();
 
@@ -407,14 +379,121 @@ public class PartnersTest extends BaseTest{
 
         logger.step("Step 4. Select a partner");
         logger.step("Step 6. Click edit partner");
-        partnerPage.selectEditPartner(0);
+        partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(),0);
 
         logger.step("Step 7. Click Delete");
         partnerPage.select(UserActions.DELETE_PARTNER.getValue());
 
         logger.step("Step 8. Observe");
         logger.step("VP Step 8. \"Are you sure delete this partner?\" is displayed");
-        Assert.assertTrue(partnerPage.isDisplayedTitleOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTextOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+    }
+
+    @Test(description = "User can delete Partner")
+    public void PARTNER_TC015(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\" on the left menu");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Add a partner if list is empty");
+        partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+        partnerPage.addPartnerWithRandomInfo(partner);
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+        Driver.refresh();
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 4. Select a partner");
+        logger.step("Step 6. Click edit partner");
+        partnerPage.searchPartner(partner.getName());
+        partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(),0);
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
+
+        logger.step("Step 7. Click Delete");
+        partnerPage.select(UserActions.DELETE_PARTNER.getValue());
+
+        logger.step("Step 8. Observe");
+        logger.step("VP Step 8. \"Are you sure delete this partner?\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTextOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+
+        logger.step("Step 9. Click Yes");
+        partnerPage.selectButton(UserActions.YES.getValue());
+
+        logger.step("VP Step 9. Partner is deleted");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(Message.PARTNER_HAVE_BEEN_DELETED_SUCCESSFULLY.getValue()), "Partner is deleted");
+    }
+
+    @Test(description = "User can cancel delete Partner")
+    public void PARTNER_TC016(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\" on the left menu");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Add a partner if list is empty");
+        if(partnerPage.getListPartnerOnAPage()<0) {
+            partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+            partnerPage.addPartnerWithRandomInfo(partner);
+            Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+        }
+
+        logger.step("Step 4. Select a partner");
+        logger.step("Step 6. Click edit partner");
+        partnerPage.selectActionOnPartner(UserActions.EDIT.getValue(),0);
+
+        logger.step("Step 7. Click Delete");
+        partnerPage.select(UserActions.DELETE_PARTNER.getValue());
+
+        logger.step("Step 8. Observe");
+        logger.step("VP Step 8. \"Are you sure delete this partner?\" is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTextOfSpan(Message.ARE_YOU_SURE_DELETE_THIS_PARTNER.getValue()), "\"Are you sure delete this partner?\" is displayed");
+
+        logger.step("Step 9. Click No");
+        partnerPage.selectButton(UserActions.NO.getValue());
+
+        logger.step("VP Step 9. \"Update Partner\" popup is displayed");
+        Assert.assertTrue(partnerPage.isDisplayedTitle(EntityFields.UPDATE_PARTNER.getValue()), "'Update Partner' popup is displayed");
+    }
+
+    @Test(description = "User can search Partner")
+    public void PARTNER_TC017(){
+        Partner partner = Partner.generateRandomPartner();
+
+        logger.step("Step 1. Login to the application");
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Partners\" on the left menu");
+        partnerPage = homePage.openTab(LeftMenu.PARTNERS);
+        partnerPage.waitForPageLoadingComplete();
+        String name = partnerPage.getTextPartner(0);
+
+        logger.step("Step 3. Add a partner if list is empty");
+        if(partnerPage.getListPartnerOnAPage()<0) {
+            partnerPage.selectButton(UserActions.ADD_PARTNER.getValue());
+            partnerPage.addPartnerWithRandomInfo(partner);
+            Assert.assertTrue(partnerPage.isDisplayedTitle(Message.CREATED_PARTNER_SUCCESSFULLY.getValue()), "User add partner is successful");
+            name = partner.getName();
+            Driver.refresh();
+            partnerPage.waitForPageLoadingComplete();
+        }
+
+        logger.step("Step 4. Search for the newly added partner");
+        partnerPage.searchPartner(name);
+
+        logger.step("Step 5. Observe");
+        logger.step("VP Step 5. The newly added partner is displayed");
+        Assert.assertEquals(name, partnerPage.getTextPartner(0),"The newly added partner is displayed");
     }
 
 }
