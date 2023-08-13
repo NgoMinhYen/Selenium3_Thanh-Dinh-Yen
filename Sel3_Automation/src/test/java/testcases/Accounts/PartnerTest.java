@@ -206,7 +206,51 @@ public class PartnerTest extends BaseTest {
         logger.step("VP: Verify user delete partner is successful");
         Assert.assertTrue(accountsPage.isNoticeMessageDisplayed(Message.UPDATE_ACCOUNT_SUCCESSFULLY.getValue()), "Update account success");
 
+    }
+    @Test(description = "Test case PARTNERS_TC06: User can search partner")
+    public void PARTNER_TC06() {
+
+        InvitePartner invitePartner = InvitePartner.generateRandomAdmin();
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : partner ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Partner");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewPartner(invitePartner);
+
+        logger.step("VP:Verify user create partner is successful");
+        Assert.assertTrue(accountsPage.isNoticeMessageDisplayed(Message.CREATED_ACCOUNT_SUCCESSFULLY.getValue()), "Create account success");
+
+        logger.step("Step 9: Search the new partner created ");
+        accountsPage.waitNoticeMessageNotDisplayed(Message.CREATED_ACCOUNT_SUCCESSFULLY.getValue());
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.searchPartner(invitePartner.getFirstName());
+
+        logger.step("VP: Partner with new name appear");
+        Assert.assertTrue(accountsPage.isNoticeMessageDisplayed(invitePartner.getFirstName()));
+
+
 
     }
-
 }
