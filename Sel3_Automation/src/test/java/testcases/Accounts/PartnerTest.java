@@ -318,7 +318,7 @@ public class PartnerTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Partner");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithInvalidFirstname("");
+        accountsPage.inviteNewUserWithInvalidFirstname("");
 
         logger.step("VP:First name is required  appear");
         Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("First name is required "), "First name is required ");
@@ -354,7 +354,7 @@ public class PartnerTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Partner");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithInvalidLastname("");
+        accountsPage.inviteNewUserWithInvalidLastname("");
 
         logger.step("VP:Last name is required ");
         Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Last name is required "), "Last name is required ");
@@ -460,7 +460,7 @@ public class PartnerTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Partner");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithInvalidFirstname("first name");
+        accountsPage.inviteNewUserWithInvalidFirstname("first name");
 
         logger.step("VP:Username is required");
         Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("First name invalid format"), "First name invalid format");
@@ -496,7 +496,7 @@ public class PartnerTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Partner");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithInvalidLastname("last name");
+        accountsPage.inviteNewUserWithInvalidLastname("last name");
 
         logger.step("VP:Username is required");
         Assert.assertTrue(accountsPage.isErrorMessageOnPopupDisplayed("Last name invalid format"), "Last name invalid format");

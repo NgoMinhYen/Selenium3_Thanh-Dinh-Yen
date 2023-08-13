@@ -40,6 +40,13 @@ public class Element implements IElement {
         this.locator = locator;
     }
 
+    /**
+     * Tạo một element dựa vào element mẫu bằng thông tin truyền vào
+     *
+     * @param content
+     * @return
+     */
+
     public Element of(Object... content) {
         Locator newLocator = (Locator) this.locator.clone();
         newLocator.setValue(String.format(this.locator.getValue(), content));
@@ -166,7 +173,7 @@ public class Element implements IElement {
         return getElement().findElements(locator.getBy()).stream().map(WebElement::getText).filter(StringUtils::isNoneEmpty).collect(Collectors.toList());
     }
 
-    // xem lai
+
     @Override
     public List<WebElement> getElements() {
         return Driver.getWebDriver().findElements(locator.getBy());
@@ -203,6 +210,11 @@ public class Element implements IElement {
     public void clear() {
         getElement().clear();
     }
+
+    /**
+     * Dùng driver để find element
+     * @return
+     */
     @Override
     public WebElement getElement() {
         try {
@@ -359,23 +371,34 @@ public class Element implements IElement {
         getElement().sendKeys(value);
     }
 
+    /**
+     * Select text trong group list
+     * @param value
+     */
     @Override
     public void selectText(String value){
         Select select = new Select(getElement());
         select.selectByVisibleText(value);
     }
 
+    /**
+     * Select Value trong group list
+     * @param value
+     */
     @Override
     public void selectValue(String value){
         Select select = new Select(getElement());
         select.selectByValue(value);
     }
+
     protected WebDriver getDriver() {
         return Driver.getWebDriver();
     }
+
     protected JavascriptExecutor jsExecutor() {
         return (JavascriptExecutor) getDriver();
     }
+
     public void scrollToView(int timeOut) {
         waitForVisibility(timeOut);
         jsExecutor().executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'nearest'});", this.getElement());

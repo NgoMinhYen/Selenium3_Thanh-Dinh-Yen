@@ -10,6 +10,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import utils.common.Utilities;
+import utils.email.EmailAttachmentsSender;
+import utils.email.EmailConfig;
 import utils.extentreports.ExtentTestManager;
 
 import static utils.extentreports.ExtentManager.getExtentReports;
@@ -40,8 +42,13 @@ public class ReportListener implements ITestListener {
         //Finish and execute Extents Report
         try{
             getExtentReports().flush();
+            EmailAttachmentsSender.sendEmailWithAttachments(EmailConfig.HOST, EmailConfig.PORT, EmailConfig.FROM,
+                    EmailConfig.PASSWORD, EmailConfig.TO, EmailConfig.SUBJECT,EmailConfig.MESSAGE ,
+                    ThreadContext.get("pathFileReportHTML"),
+                    ThreadContext.get("pathFileReportPDF"));
         }catch (Exception e){
-
+            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
