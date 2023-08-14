@@ -19,7 +19,7 @@ public class Utilities {
 
     /**
      * Load browser setting from file
-     * Load driver property theo đường dẫn của file và load data theo browserSetting
+     * Load driver property by file path and load data by browserSetting
      * @param pathFile:       path file configurations
      * @param browserSetting: browser setting key
      * @return driver property

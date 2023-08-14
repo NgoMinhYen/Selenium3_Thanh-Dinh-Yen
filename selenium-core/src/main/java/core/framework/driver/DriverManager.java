@@ -7,7 +7,7 @@ import java.util.*;
 public class DriverManager {
     private static DriverManager instance;
     /**
-     * Map<String, Map<String, WebDriver>>: Chứa danh sách driver trong từng thread
+     * Map<String, Map<String, WebDriver>>: Contains list of drivers in each thread
      */
 
     private static Map<String, Map<String, WebDriver>> list;
@@ -21,7 +21,7 @@ public class DriverManager {
     }
 
     /**
-     *Them driver vào danh sách quản lý driver
+     *Add driver to driver management list
      */
     public synchronized static void add(String threadId, String key, WebDriver newDriver) {
         init();
@@ -35,7 +35,7 @@ public class DriverManager {
     }
 
     /**
-     * Tắt driver và xóa danh sách driver của luồng đó
+     * Quit the driver and clear driver list of that thread
      * @param threadId
      */
     public static void clear(String threadId) {
@@ -46,7 +46,7 @@ public class DriverManager {
     }
 
     /**
-     * get driver theo threadID và name Driver
+     * get driver by threadID and name Driver
      * @param threadId
      * @param key
      * @return
@@ -56,7 +56,7 @@ public class DriverManager {
     }
 
     /**
-     * get driver theo name Driver trong luồn hiện tại
+     * get driver by name Driver in current thread
 
      */
     public static WebDriver get(String key) {

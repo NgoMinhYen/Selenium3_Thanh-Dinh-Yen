@@ -22,7 +22,7 @@ public class Page {
             .concat(File.separator).concat("pages").concat(File.separator);
 
     /**
-     * Đọc file properties
+     * Read file properties
      * @param file
      * @return
      */
@@ -52,7 +52,7 @@ public class Page {
     }
 
     /**
-     * Load và khởi tạo element từ file properties
+     * Load anf init element from properties file
      * @param page
      */
     public static void init(Object page) {
@@ -88,7 +88,7 @@ public class Page {
 
 
     /**
-     * Get giá trị của locator sau dâu #
+     * Get value of the locator after the #
      * @param value
      * @return
      */
