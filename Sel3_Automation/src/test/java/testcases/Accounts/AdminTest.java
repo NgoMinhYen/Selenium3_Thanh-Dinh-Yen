@@ -778,6 +778,6 @@ public class AdminTest extends BaseTest {
         logger.step("Verify step 8: Admin should delete successfully");
         accountsPage.waitForDisableAdminDetail(admin);
         Assert.assertFalse(accountsPage.isAdminDetailDisplayed(admin),
-                "Admin should be displayed");
+                "Admin should NOT be displayed");
     }
 }
