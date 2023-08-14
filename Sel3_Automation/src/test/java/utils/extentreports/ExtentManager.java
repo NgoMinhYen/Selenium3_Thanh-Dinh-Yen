@@ -13,6 +13,9 @@ public class ExtentManager {
     private static final String sPathFileReportHTML = Constant.TARGET + "/ExtentReports/ExtentReport " + sDate + ".html";
     private static final String sPathFileReportPDF = Constant.TARGET + "/ExtentReports/ExtentReport " + sDate + ".pdf";
 
+    /*
+     Configure and create an ExtentReports object that can generate HTML and PDF reports
+     */
     public synchronized static ExtentReports getExtentReports() {
         ThreadContext.put("pathFileReportHTML", sPathFileReportHTML);
         ThreadContext.put("pathFileReportPDF", sPathFileReportPDF);
