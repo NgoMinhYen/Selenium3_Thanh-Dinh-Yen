@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" thread-count="2" parallel="methods">
-    <parameter name="browser-setting" value="windows.chrome.local"/>
 
     <listeners>
         <listener class-name="utils.listeners.ReportListener" />
-<!--        <listener class-name="utils.listeners.AllureReportListener" />-->
-
     </listeners>
-    <test name="Test case">
+    <test name="Run Chrome Local ">
+        <parameter name="browser-setting" value="windows.chrome.local"/>
         <classes>
+
             <class name="testcases.LoginTest"><methods><include name="LOGIN_TC001"/></methods></class>
-<!--            <class name="testcases.ManageEmployeeTest"><methods><include name="OHRM_MANAGE_EMPLOYEE_TC002"/></methods></class>-->
-<!--            <class name="testcases.LeaveTest"><methods><include name="OHRM_LEAVE_TC006"/></methods></class>-->
-<!--            <class name="testcases.PIMTest"><methods><include name="OHRM_PIM_ADD_NEW_EMPLOYEE_TC011"/></methods></class>-->
-<!--            <class name="testcases.PIMTest"><methods><include name="OHRM_PIM_ADD_NEW_EMPLOYEE_FROM_EMPLOYEE_LIST_PAGE_TC012"/></methods></class>-->
-<!--            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC016"/></methods></class>-->
-<!--            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC017"/></methods></class>-->
-<!--            <class name="testcases.RecruitmentTest"><methods><include name="OHRM_RECRUITMENT_TC018"/></methods></class>-->
+<!--            <class name="testcases.LoginTest"><methods><include name="LOGIN_TC002"/></methods></class>-->
+<!--            <class name="testcases.LoginTest"><methods><include name="LOGIN_TC003"/></methods></class>-->
+        </classes>
+    </test>
+
+    <test name="Run Firefox Local ">
+        <parameter name="browser-setting" value="windows.firefox.local"/>
+        <classes>
+            <class name="testcases.HomePageTest"><methods><include name="LOGOUT_TC001"/></methods></class>
 
         </classes>
 
