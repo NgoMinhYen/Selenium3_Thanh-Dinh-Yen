@@ -60,7 +60,6 @@ public class Page {
         ResourcePage sourcePage = clone.getAnnotation(ResourcePage.class);
         Properties data = read(sourcePage.file());
 
-
         for (Field field : clone.getDeclaredFields()) {
             Find find = field.getAnnotation(Find.class);
             if(find != null){

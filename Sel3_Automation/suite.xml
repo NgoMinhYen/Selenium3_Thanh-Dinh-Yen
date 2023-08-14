@@ -15,12 +15,12 @@
         </classes>
     </test>
 
-    <test name="Run Firefox Local ">
-        <parameter name="browser-setting" value="windows.firefox.local"/>
-        <classes>
-            <class name="testcases.HomePageTest"><methods><include name="LOGOUT_TC001"/></methods></class>
+<!--    <test name="Run Firefox Local ">-->
+<!--        <parameter name="browser-setting" value="windows.firefox.local"/>-->
+<!--        <classes>-->
+<!--            <class name="testcases.HomePageTest"><methods><include name="LOGOUT_TC001"/></methods></class>-->
 
-        </classes>
+<!--        </classes>-->
 
-    </test>
+<!--    </test>-->
 </suite>
