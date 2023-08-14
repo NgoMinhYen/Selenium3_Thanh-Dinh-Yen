@@ -922,4 +922,70 @@ public class AdminTest extends BaseTest {
         Assert.assertTrue(accountsPage.isAdminDetailDisplayed(admin),
                 "Admin should be displayed");
     }
+    @Test(description = "User can access Admin Accounts page")
+    public void ADMIN_TC_22(){
+        String sImage = Constant.UPLOAD_PATH + "upload_01.png";
+        Admin admin = Admin.generateRandomAdmin(sImage);
+
+        logger.step("Step 1: Login to home page (Admin Role)");
+        homePage = loginPage.login(Constant.USER_ADMIN);
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()),
+                "Home Page should be displayed");
+
+        logger.step("Step 2: Select Accounts tab");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 3: Select 'Admin'");
+        accountsPage.waitForLoadingSpinnerDisappear();
+        accountsPage.selectUserRole(UserRole.ADMIN.getValue());
+
+        logger.step("Verify step 3: Admin Account Page should be displayed");
+        Assert.assertTrue(accountsPage.isDisplayedRoleAccountPage(UserRole.ADMIN),
+                "Admin account page should be displayed");
+    }
+    @Test(description = "User can access Member Accounts page")
+    public void ADMIN_TC_23(){
+        String sImage = Constant.UPLOAD_PATH + "upload_01.png";
+        Admin admin = Admin.generateRandomAdmin(sImage);
+
+        logger.step("Step 1: Login to home page (Admin Role)");
+        homePage = loginPage.login(Constant.USER_ADMIN);
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()),
+                "Home Page should be displayed");
+
+        logger.step("Step 2: Select Accounts tab");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 3: Select 'Admin'");
+        accountsPage.waitForLoadingSpinnerDisappear();
+        accountsPage.selectUserRole(UserRole.MEMBER.getValue());
+
+        logger.step("Verify step 3: Member Account Page should be displayed");
+        Assert.assertTrue(accountsPage.isDisplayedRoleAccountPage(UserRole.MEMBER),
+                "Member account page should be displayed");
+    }
+    @Test(description = "User can access Partner Accounts page")
+    public void ADMIN_TC_24(){
+        String sImage = Constant.UPLOAD_PATH + "upload_01.png";
+        Admin admin = Admin.generateRandomAdmin(sImage);
+
+        logger.step("Step 1: Login to home page (Admin Role)");
+        homePage = loginPage.login(Constant.USER_ADMIN);
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()),
+                "Home Page should be displayed");
+
+        logger.step("Step 2: Select Accounts tab");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 3: Select 'Partner'");
+        accountsPage.waitForLoadingSpinnerDisappear();
+        accountsPage.selectUserRole(UserRole.PARTNER.getValue());
+
+        logger.step("Verify step 3: Partner Account Page should be displayed");
+        Assert.assertTrue(accountsPage.isDisplayedRoleAccountPage(UserRole.PARTNER),
+                "Partner account page should be displayed");
+    }
 }

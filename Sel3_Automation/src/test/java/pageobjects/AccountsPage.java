@@ -16,12 +16,19 @@ import dataobjects.Admin;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.enums.LeftMenu;
+import utils.enums.UserRole;
 
 import java.time.Duration;
 
 @ResourcePage(file = "accountsPage.properties")
 public class AccountsPage extends AbstractPage {
     private static AccountsPage instance = null;
+    @Find(key = "lbTitle")
+    private IElement lbTitle;
+    @Find(key = "lbTitlePartner")
+    private IElement lbTitlePartner;
+    @Find(key = "lbTitleMember")
+    private IElement lbTitleMember;
     @Find(key = "eleInviteUser")
     private IElement inviteUser;
 
@@ -118,6 +125,9 @@ public class AccountsPage extends AbstractPage {
         if (instance == null)
             instance = new AccountsPage();
         return instance;
+    }
+    public boolean isDisplayedRoleAccountPage(UserRole userRole){
+        return lbTitle.of(userRole).isDisplayed();
     }
     public AccountsPage selectUserRole(String role){
         selectOptionRole.waitForVisibility();
