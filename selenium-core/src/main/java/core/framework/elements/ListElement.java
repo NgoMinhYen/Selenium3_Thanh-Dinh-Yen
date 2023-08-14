@@ -29,7 +29,7 @@ public class ListElement  implements IListElement  {
     }
 
     /**
-     * Click element đầu tiền trong ListElement
+     * Click the first element in the ListElement
      */
     @Override
     public void click() {
@@ -45,7 +45,7 @@ public class ListElement  implements IListElement  {
     }
 
     /**
-     * CLick theo index của element trong list element
+     * CLick by the index of element in the element list
      * @param index
      */
     @Override
@@ -54,16 +54,17 @@ public class ListElement  implements IListElement  {
     }
 
     /**
-     * CLick theo text
+     * CLick by text
      * @param text
      */
     @Override
     public void click(String text) {
-        getElements().stream().filter(e -> e.getText().equalsIgnoreCase(text)).forEach(e -> e.click());
+        getElements().stream().filter(e -> e.getText()
+                .equalsIgnoreCase(text)).forEach(e -> e.click());
     }
 
     /**
-     * Get all text của list trả về danh sách text
+     * Get all text of a list return a list oftext
      * @return
      */
     @Override
@@ -72,7 +73,7 @@ public class ListElement  implements IListElement  {
     }
 
     /**
-     * Get element đầu tiên
+     * Get first element
      * @return
      */
     @Override
@@ -99,7 +100,7 @@ public class ListElement  implements IListElement  {
     }
 
     /**
-     * Get element theo index
+     * Get element by index
      * @param index
      * @return
      */

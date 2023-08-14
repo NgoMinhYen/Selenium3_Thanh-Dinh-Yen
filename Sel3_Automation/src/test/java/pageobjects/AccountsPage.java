@@ -184,7 +184,7 @@ public class AccountsPage extends AbstractPage {
 
     }
 
-    public void inviteNewPartnerWithInvalidBirthday(String birthday){
+    public void inviteNewUserWithInvalidBirthday(String birthday){
         txtBirthdayPopUp.enter(birthday);
 
     }
@@ -247,6 +247,10 @@ public class AccountsPage extends AbstractPage {
     }
 
     public boolean isNoticeMessageDisplayed(String value){
+        eleContentOnPopup.waitForInvisibility();
+        return noticeMessage.of(value).isDisplayed();
+    }
+    public boolean isDisplayedTitleOnPopup(String value){
         eleContentOnPopup.waitForInvisibility();
         return noticeMessage.of(value).isDisplayed();
     }

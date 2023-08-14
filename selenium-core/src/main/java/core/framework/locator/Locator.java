@@ -13,9 +13,9 @@ public class Locator implements Cloneable {
 
 
     /**
-     * Get element by xpath return locator (bọc cái by lại)
+     * Get element by xpath return locator
      */
-    // xpath="ffgf";
+
     public static Locator xpath(String value) {
         Locator locator = new Locator();
         locator.locatorType = LocatorType.XPath;

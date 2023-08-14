@@ -41,7 +41,7 @@ public class Element implements IElement {
     }
 
     /**
-     * Tạo một element dựa vào element mẫu bằng thông tin truyền vào
+     * Create an element  based on  the template element using the information passed in
      *
      * @param content
      * @return
@@ -201,7 +201,7 @@ public class Element implements IElement {
     }
 
     /**
-     * Dùng driver để find element
+     * Use driver to find element
      * @return
      */
     @Override

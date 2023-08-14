@@ -14,7 +14,7 @@ public class LocalChromeDriver implements IWebDriver {
 
     /**
      * Create local chrome driver
-     * Tạo driver theo từng mode: local hoặc remote
+     * Create drivers in each mode: local or remote
      * @param property:DriverProperty
      * @return WebDriver
      */

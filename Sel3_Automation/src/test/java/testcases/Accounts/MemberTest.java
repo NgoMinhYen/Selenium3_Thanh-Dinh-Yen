@@ -170,7 +170,7 @@ public class MemberTest extends BaseTest {
 
         logger.step("Step 8: Enter invite New Member");
         accountsPage.waitForInvitePopupDisplayed();
-        accountsPage.inviteNewPartnerWithInvalidBirthday(Utilities.fromDate("MM/dd/yyyy", 3));
+        accountsPage.inviteNewUserWithInvalidBirthday(Utilities.fromDate("MM/dd/yyyy", 3));
 
         logger.step("VP:Birthday invalid format appear");
         Assert.assertTrue(accountsPage.isErrorBirthdayOrPhoneOnPopupDisplayed("Birthday invalid"), "Birthday invalid");
@@ -522,9 +522,80 @@ public class MemberTest extends BaseTest {
         logger.step("Step 10: Update member with first name empty");
         accountsPage.waitForInvitePopupDisplayed();
         accountsPage.inviteNewPartnerWithInvalidPhone("0354512454785414");
-        Utilities.wait(50000);
 
         logger.step("VP:Verify First name is required");
         Assert.assertTrue(accountsPage.isErrorBirthdayOrPhoneOnPopupDisplayed("Phone invalid format"), "Phone invalid format");
     }
+
+    @Test(description = "Test case MEMBER_TC12: User can not update member with birthday wrong format")
+    public void MEMBER_TC12() {
+        InviteMember inviteMember = InviteMember.generateRandomMember();
+        logger.step("Step 1. Navigate to the login page");
+        Driver.navigateTo(Constant.URL);
+        loginPage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Enter a valid 'Email address' in the email field");
+        logger.step("Step 3. Enter a valid 'Password' in the password field");
+        logger.step("Step 4. Click on the \"Login\" button");
+        loginPage.login(Constant.USER_ADMIN);
+
+        logger.info("Wait for the page to load");
+        logger.step("VP Step 4: Login successfully.");
+        Assert.assertTrue(homePage.isDisplayedTitle(EntityFields.WELCOME_TO_VOUCHER_PARADISE.getValue()), "Login successfully");
+
+        logger.step("Step 5. Select Account on the left");
+        homePage.waitForLoadingSpinnerDisappear();
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+
+        logger.step("Step 6. Select user role : member ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.MEMBER.getValue());
+
+        logger.step("Step 7: Click Invite User");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.clickInviteUser();
+
+        logger.step("Step 8: Enter invite New Member");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewMember(inviteMember);
+
+        logger.step("VP:Verify user create partner is successful");
+        Assert.assertTrue(accountsPage.isNoticeMessageDisplayed(Message.CREATED_ACCOUNT_SUCCESSFULLY.getValue()), "Create account success");
+
+        logger.step("Step 9: Search the new member created and click icon Edit");
+        accountsPage.waitNoticeMessageNotDisplayed(Message.CREATED_ACCOUNT_SUCCESSFULLY.getValue());
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.searchPartner(inviteMember.getFirstName());
+        accountsPage.clickIconEdit();
+
+        logger.step("Step 10: Update member with first name empty");
+        accountsPage.waitForInvitePopupDisplayed();
+        accountsPage.inviteNewUserWithInvalidBirthday("31/03/2022");
+
+        logger.step("VP:Verify First name is required");
+        Assert.assertTrue(accountsPage.isErrorBirthdayOrPhoneOnPopupDisplayed("Birthday is required"), "Birthday is required");
     }
+
+    @Test(description = "Verify Invite New Partner popup is displayed")
+    public void MEMBER_TC13(){
+        logger.step("Step 1. Login to the application");
+        loginPage.login(Constant.USER_ADMIN);
+        homePage.waitForPageLoadingComplete();
+
+        logger.step("Step 2. Select \"Account\" on the left menu");
+        accountsPage = homePage.openTab(LeftMenu.ACCOUNT);
+        accountsPage.waitForPageLoadingComplete();
+
+        logger.step("Step 3. Select user role : member ");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.selectUserRole(UserRole.MEMBER.getValue());
+
+        logger.step("Step 4: Click Invite User");
+        accountsPage.waitForUserDetailDisplayed();
+        accountsPage.clickInviteUser();
+
+        logger.step("VP:Verify  Invite New Member popup is displayed");
+        Assert.assertTrue(accountsPage.isDisplayedTitleOnPopup( " Invite New Member "), " Invite New Member ");
+
+    }
+}
