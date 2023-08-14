@@ -42,6 +42,7 @@ public class Admin {
         admin.setProfile(profile);
         return admin;
     }
+    public String getFullName(){return firstName + " " + lastName;}
 
     public String getFirstName() {
         return firstName;
