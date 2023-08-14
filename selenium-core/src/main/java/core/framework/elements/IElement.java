@@ -10,6 +10,7 @@ public interface IElement{
     boolean isDisplayed();
 
     void enter(String value);
+//    void clear();
     Element of(Object... content);
 
     void click();

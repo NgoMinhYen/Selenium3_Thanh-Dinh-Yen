@@ -1,5 +1,7 @@
 package pageobjects;
 
+import core.framework.driver.DriverManager;
+import core.framework.elements.Element;
 import core.framework.elements.IElement;
 import core.framework.elements.IListElement;
 import core.framework.source.Find;
@@ -62,6 +64,12 @@ public class AccountsPage extends AbstractPage {
 
     @Find(key = "eleUploadFile")
     private IElement btnUploadFile;
+    @Find(key = "btnDeleteAdmin")
+    private IElement btnDeleteAdmin;
+    @Find(key = "btnYesDeleteAdmin")
+    private IElement btnYesDeleteAdmin;
+    @Find(key = "btnNoDeleteAdmin")
+    private IElement btnNoDeleteAdmin;
     @Find(key = "btnSave")
     private IElement btnSave;
     @Find(key = "btnCancel")
@@ -139,6 +147,26 @@ public class AccountsPage extends AbstractPage {
         }
         return AccountsPage.getInstance();
     }
+    public AccountsPage updateInvitePopup(Admin admin){
+        txtPhoneNamePopUp.waitForVisibility();
+        txtFirstNamePopUp.clear();
+        if(admin.getFirstName()!=null)
+            txtFirstNamePopUp.enter(admin.getFirstName());
+        txtLastNamePopUp.clear();
+        if(admin.getLastName()!=null)
+            txtLastNamePopUp.enter(admin.getLastName());
+        txtPhoneNamePopUp.clear();
+        if(admin.getPhone()!=null)
+            txtPhoneNamePopUp.enter(admin.getPhone());
+        if(admin.getProfile() != null){
+            uploadProfile(admin.getProfile());
+        }
+        return AccountsPage.getInstance();
+    }
+    public boolean isUserNameFieldEditable(){
+        txtUserNamePopUp.waitForVisibility();
+        return txtUserNamePopUp.isEnabled();
+    }
     public void uploadProfile(String path){
         btnUploadFile.waitForVisibility();
         btnUploadFile.enter(path);
@@ -150,8 +178,6 @@ public class AccountsPage extends AbstractPage {
         getPartners.of(partner).click();
 
     }
-
-
     public AccountsPage inviteNewPartner(InvitePartner invitePartner){
         txtFirstNamePopUp.enter(invitePartner.getFirstName());
         txtLastNamePopUp.enter(invitePartner.getLastName());
@@ -215,6 +241,21 @@ public class AccountsPage extends AbstractPage {
         btnSave.waitForVisibility();
         return btnSave.isEnabled();
     }
+    public AccountsPage clickDeleteAdmin(){
+        btnDeleteAdmin.waitForClickable();
+        btnDeleteAdmin.click();
+        return AccountsPage.getInstance();
+    }
+    public AccountsPage clickYesDeleteAdminPopup(){
+        btnYesDeleteAdmin.waitForClickable();
+        btnYesDeleteAdmin.click();
+        return AccountsPage.getInstance();
+    }
+    public AccountsPage clickNoDeleteAdminPopup(){
+        btnNoDeleteAdmin.waitForClickable();
+        btnNoDeleteAdmin.click();
+        return AccountsPage.getInstance();
+    }
     public AccountsPage clickSave(){
         btnSave.waitForClickable();
         btnSave.click();
@@ -224,6 +265,10 @@ public class AccountsPage extends AbstractPage {
         btnCancel.waitForClickable();
         btnCancel.click();
         return AccountsPage.getInstance();
+    }
+    public void waitForDisableAdminDetail(Admin admin){
+        eleAdminUserPanel.of(admin);
+        eleAdminUserPanel.waitForInvisibility();
     }
     public boolean isAdminDetailDisplayed(Admin admin){
         boolean result = false;
@@ -260,6 +305,7 @@ public class AccountsPage extends AbstractPage {
     }
 
     public AccountsPage searchPartner(String name){
+        txtSearch.clear();
         txtSearch.enter(name);
         //btnSearch.click();
         return AccountsPage.getInstance();
