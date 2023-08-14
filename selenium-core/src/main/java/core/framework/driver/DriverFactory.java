@@ -30,9 +30,13 @@ public class DriverFactory {
         String className = String.format("core.framework.browsers.%s.%s%sDriver", StringUtils.lowerCase(property.getBrowser()), StringUtils.capitalize(property.getMode()), StringUtils.capitalize(property.getBrowser()));
         logger.info("Create webdriver " + className);
         try {
+            //new class name
             Class<?> clazz  = Class.forName(className);
+            //gọi constructor và tạo instance cho class trên
             Object   obj    = clazz.getDeclaredConstructor().newInstance();
+            //gọi hàm create Webdriver của class trên
             Method   method = clazz.getDeclaredMethod("createWebDriver", DriverProperty.class);
+            //gọi hàm create Webdriver của class trên để chạy
             driver = (WebDriver) method.invoke(obj, property);
             threadWebDriver.set(driver);
             return threadWebDriver.get();
