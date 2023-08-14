@@ -22,13 +22,24 @@ import java.util.Map;
 import static core.framework.browsers.IWebDriver.logger;
 
 public class ExtentTestManager {
+    /*
+    Integer: ThreadId
+    ExtentTest: object has been created to be used for recording test results and information
+     */
     static Map<Integer, ExtentTest> extentTestMap = new HashMap<>();
     static ExtentReports extent = ExtentManager.getExtentReports();
 
+    /*
+    This function is used to retrieve the ExtentTest associated with the current thread
+     */
     public static ExtentTest getTest() {
         return extentTestMap.get((int) Thread.currentThread().getId());
     }
 
+    /*
+    This function creates an ExtentTest with the current thread ID and stores it in a extentTestMap
+    The function returns the ExtentTest, allowing you to record test results and information
+     */
     public static synchronized ExtentTest saveToReport(String testName, String desc) {
         ExtentTest test = extent.createTest(testName, desc);
         extentTestMap.put((int) Thread.currentThread().getId(), test);
@@ -45,6 +56,9 @@ public class ExtentTestManager {
         getTest().log(Status.INFO, message, MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
     }
 
+    /*
+     Add a screenshot to the test report along with a corresponding message and status
+     */
     public static void addScreenShot(Status status, String message) {
         try {
             getTest().log(status,message, MediaEntityBuilder.createScreenCaptureFromPath(getScreenshotAbsolutePath(message)).build());
@@ -53,6 +67,9 @@ public class ExtentTestManager {
         }
     }
 
+    /*
+    Capture a screenshot and return the file path of the image
+     */
     public static String getScreenshotAbsolutePath(String screenshotName) {
         //Use the Toolkit object to get the screen size, then use that size to create a Rectangle object
         Rectangle allScreenBounds = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
@@ -84,10 +101,16 @@ public class ExtentTestManager {
         return filePath;
     }
 
+    /*
+     Add message to the test report
+     */
     public static void logMessage(String message) {
         getTest().log(Status.INFO, message);
     }
 
+    /*
+     Add message and status to the test report
+     */
     public static void logMessage(Status status, String message) {
         getTest().log(status, message);
     }

@@ -9,6 +9,10 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 
 public class EmailAttachmentsSender {
+
+    /*
+    Send email with attached files
+     */
     public static void sendEmailWithAttachments(String host, String port, final String username, final String password,
                                                 String[] toAddress, String subject, String message, String... attachFiles) {
         Properties props = new Properties();
