@@ -31,8 +31,6 @@ public class BaseTest {
             @Optional(DEFAULT_BROWSER_SETTING) String browserSetting) {
 
         property = Utilities.loadBrowserSetting(Constant.BROWSER_SETTING_PATH, browserSetting);
-        propertyFF = Utilities.loadBrowserSetting(Constant.BROWSER_SETTING_PATH, FF_BROWSER_SETTING);
-
 
         Driver.initWebDriver(String.valueOf(Thread.currentThread().getId()), BROWSER_1, property);
         Driver.maximize();
