@@ -32,11 +32,11 @@ public class DriverFactory {
         try {
             //new class name
             Class<?> clazz  = Class.forName(className);
-            //gọi constructor và tạo instance cho class trên
+            //call constructor and create instance for class
             Object   obj    = clazz.getDeclaredConstructor().newInstance();
-            //gọi hàm create Webdriver của class trên
+            //call method createWebdriver of class
             Method   method = clazz.getDeclaredMethod("createWebDriver", DriverProperty.class);
-            //gọi hàm create Webdriver của class trên để chạy
+            //call method createWebdriver of class to run
             driver = (WebDriver) method.invoke(obj, property);
             threadWebDriver.set(driver);
             return threadWebDriver.get();

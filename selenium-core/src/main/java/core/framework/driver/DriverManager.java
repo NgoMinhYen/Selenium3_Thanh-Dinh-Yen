@@ -3,6 +3,7 @@ package core.framework.driver;
 import org.openqa.selenium.WebDriver;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DriverManager {
     private static DriverManager instance;
@@ -10,12 +11,12 @@ public class DriverManager {
      * Map<String, Map<String, WebDriver>>: Contains list of drivers in each thread
      */
 
-    private static Map<String, Map<String, WebDriver>> list;
+    private static ConcurrentHashMap<String, Map<String, WebDriver>> list;
 
     public synchronized static DriverManager init() {
         if (instance == null) {
             instance = new DriverManager();
-            list = new HashMap<>();
+            list = new ConcurrentHashMap<>();
         }
         return instance;
     }
@@ -26,7 +27,7 @@ public class DriverManager {
     public synchronized static void add(String threadId, String key, WebDriver newDriver) {
         init();
         if (list.get(threadId) == null) {
-            Map<String, WebDriver> mDriver = new HashMap<>();
+           Map<String, WebDriver> mDriver = new HashMap<>();
             mDriver.put(key, newDriver);
             list.put(threadId, mDriver);
         } else {
