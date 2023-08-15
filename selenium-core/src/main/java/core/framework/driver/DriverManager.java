@@ -27,7 +27,7 @@ public class DriverManager {
     public synchronized static void add(String threadId, String key, WebDriver newDriver) {
         init();
         if (list.get(threadId) == null) {
-           Map<String, WebDriver> mDriver = new HashMap<>();
+           Map<String, WebDriver> mDriver = new ConcurrentHashMap<>();
             mDriver.put(key, newDriver);
             list.put(threadId, mDriver);
         } else {
