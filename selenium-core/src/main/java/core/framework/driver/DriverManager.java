@@ -16,7 +16,7 @@ public class DriverManager {
     public synchronized static DriverManager init() {
         if (instance == null) {
             instance = new DriverManager();
-            list = new HashMap<>();
+            list = new ConcurrentHashMap<>();
         }
         return instance;
     }
