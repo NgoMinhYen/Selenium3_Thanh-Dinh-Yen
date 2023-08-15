@@ -13,17 +13,8 @@ import utils.enums.LeftMenu;
 import java.time.Duration;
 
 public abstract class AbstractPage {
-    protected IElement elePIMHeader = new Element(Locator.xpath("//nav[@aria-label='Topbar Menu']"));
-
-    private String   leftMenuItem    = "//ul[@class='oxd-main-menu']/li/a[span[text()='%s']]";
-    private IElement eleToastMessage = new Element(Locator.xpath("//div[@class='oxd-toast-start']"));
-    private IElement eleToastTitle   = new Element(Locator.xpath("//p[contains(@class, 'oxd-text--toast-title')]"));
-    private IElement eleToastContent = new Element(Locator.xpath("//p[contains(@class, 'oxd-text--toast-message')]"));
 
     private IElement eleLoadingSpinner = new Element(Locator.xpath("//div[@class='oxd-loading-spinner-container']"));
-    private IElement eleConfirmPopup   = new Element(Locator.xpath("//div[contains(@class, 'orangehrm-dialog-popup') and @role='document']"));
-    private IElement btnNoCancel       = new Element(Locator.xpath("//div[@class='orangehrm-modal-footer']/button[text()=' No, Cancel ']"));
-    private IElement btnYesDelete      = new Element(Locator.xpath("//div[@class='orangehrm-modal-footer']/button[text()=' Yes, Delete ']"));
 
     public void waitForPageLoadingComplete() {
         try {
@@ -34,10 +25,9 @@ public abstract class AbstractPage {
         }
     }
 
-    public boolean isDisplayedHeader() {
-        return elePIMHeader.isDisplayed();
+    public void waitForLoadingSpinnerDisappear() {
+        eleLoadingSpinner.waitForInvisibility();
     }
-
 
 //    /**
 //     * Select left menu item
@@ -93,35 +83,8 @@ public abstract class AbstractPage {
      *
      * @return true/false
      */
-    public boolean isDisplayedToastMessage() {
-        return eleToastMessage.isDisplayed();
-    }
 
-    public String getToastMessageTitle() {
-        return eleToastTitle.getText();
-    }
 
-    public String getToastMessageContent() {
-        return eleToastContent.getText();
-    }
 
-    public void waitForLoadingSpinnerDisappear() {
-        eleLoadingSpinner.waitForInvisibility();
-    }
 
-    public boolean isDisplayedConfirmPopup() {
-        return eleConfirmPopup.isDisplayed();
-    }
-
-    public boolean isDisplayedNoCancelButton() {
-        return btnNoCancel.isDisplayed();
-    }
-
-    public boolean isDisplayedYesDeleteButton() {
-        return btnYesDelete.isDisplayed();
-    }
-
-    public void clickYesDeleteButton() {
-        btnYesDelete.click();
-    }
 }
